@@ -1,0 +1,15 @@
+DirectoryIndex index.html
+RewriteEngine on
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+RewriteRule ^(en|es)$ /index.html?lang=$1 [QSA,L]
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !jorgebruned.com$
+RewriteRule (.*) - [F]
+ErrorDocument 403 /error
+ErrorDocument 404 /error
+Options All -Indexes
+<Files "deployment_status.txt">
+    Order Allow,Deny
+    Deny from all
+</Files>

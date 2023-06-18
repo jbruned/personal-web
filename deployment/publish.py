@@ -57,9 +57,11 @@ def publish(
         port=port,
         cnopts=cnopts
     ) as sftp:
+        # Initialize
         init(sftp, remote_path, local_path, status_file)
         curr_status = get_status(status_file)
         new_status = {}
+
         # Fetch all file paths
         remote_files = get_all_remote_files(sftp, verbose=verbose, ignore=ignore)
         for file in list(curr_status.keys()):
@@ -67,6 +69,7 @@ def publish(
                 curr_status.pop(file)            
         local_files = get_all_local_files(verbose=verbose, ignore=ignore)
         ignore.append(status_file)
+
         # Publish the files
         log(f"Publishing files...", verbose=verbose, dry_run=dry_run, header=True, level=VERBOSE_ALL)
         for file in remote_files.union(local_files):
@@ -79,9 +82,9 @@ def publish(
                 elif file in curr_status:
                     raise Exception(f"File {file} is in the remote status but not in the local directory. "
                                     "Use the --remove_unmatched flag if you wish to continue.")
-                #else:
-                    # log(f"Skipped {file} (it's in the remote directory but not in the status file).",
-                    #     verbose=verbose, dry_run=dry_run)
+                # else:
+                #     log(f"Skipped {file} (it's in the remote directory but not in the status file).",
+                #         verbose=verbose, dry_run=dry_run)
                 continue
             published_hash = curr_status.get(file) if file in curr_status else None
             local_hash = file_hash(file)
@@ -90,6 +93,12 @@ def publish(
                 upload_file(sftp, file, verbose=verbose, dry_run=dry_run)
             else:
                 log(f"Already up to date: {file}", verbose=verbose, dry_run=dry_run)
+
+        # Warn if the status file is not forbidden
+        if '.htaccess' not in local_files or not file_contains('.htaccess', status_file):
+            log("WARNING: The status file is not forbidden from being accessed. This is a security risk.",
+                level=VERBOSE_WARNING)
+
         # Update the status file
         with open(status_file, "w") as f:
             f.write("\n".join([
@@ -214,6 +223,13 @@ def is_ignored(file: str, ignore: list):
         if file.startswith(ignored):
             return True
     return False
+
+def file_contains(file: str, string: str):
+    """
+    Check if a file contains a string
+    """
+    with open(file, "r") as f:
+        return string in f.read()
 
 if __name__ == '__main__':
     if "--help" in sys.argv or "-h" in sys.argv:
