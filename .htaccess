@@ -1,13 +1,30 @@
 DirectoryIndex index.html
+
+# Ensure that the RewriteEngine is enabled only once
 RewriteEngine on
+
+# Redirect HTTP to HTTPS
 RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
-RewriteRule ^(en|es)$ /index.html?lang=$1 [QSA,L]
-RewriteEngine On
+RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# Restrict access to specific domain
 RewriteCond %{HTTP_HOST} !jorgebruned.com$
 RewriteRule (.*) - [F]
+
+# Add language query parameter
+RewriteRule ^(en|es)$ /index.html?lang=\$1 [QSA,L]
+
+# Rewrite URLs to .html if the file or directory does not exist
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !\.html$
+RewriteRule ^(.*)$ /$1.html [NC,L]
+
+# Error documents
 ErrorDocument 403 /error
 ErrorDocument 404 /error
+
+# Disable directory listing and protect specific files
 Options All -Indexes
 <Files "deployment_status.txt">
     Order Allow,Deny
