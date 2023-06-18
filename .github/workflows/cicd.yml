@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: jorgebruned.com
-      url: ${{ vars.WEB_URL }}
+      url: https://jorgebruned.com
     steps:
       - name: Checkout
         uses: actions/checkout@v3
