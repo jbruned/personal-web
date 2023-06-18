@@ -1,0 +1,26 @@
+name: CI/CD
+on:
+  push:
+    branches: ["main"]
+jobs:
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+    environment:
+      name: jorgebruned.com
+      url: ${{ vars.WEB_URL }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install dependencies
+        run: cd deployment && pip install -r requirements.txt
+      - name: Publish via FTP
+        run: cd deployment && python publish.py -v
+        env:
+          FTP_HOST: ${{ secrets.FTP_HOST }}
+          FTP_USER: ${{ secrets.FTP_USER }}
+          FTP_PASS: ${{ secrets.FTP_PASS }}
+          FTP_PATH: ${{ secrets.FTP_PATH }}
+          FTP_PORT: ${{ secrets.FTP_PORT }}
+          FTP_PUBKEY: ${{ secrets.FTP_PUBKEY }}
+          IGNORED_PATHS: ${{ secrets.IGNORED_PATHS }}
