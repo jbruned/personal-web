@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'jbruned-icons';
-  src: url('jbruned-icons.eot?93193098');
-  src: url('jbruned-icons.eot?93193098#iefix') format('embedded-opentype'),
-       url('jbruned-icons.woff2?93193098') format('woff2'),
-       url('jbruned-icons.woff?93193098') format('woff'),
-       url('jbruned-icons.ttf?93193098') format('truetype'),
-       url('jbruned-icons.svg?93193098#jbruned-icons') format('svg');
+  src: url('../fonts/jbruned-icons.eot?74304496');
+  src: url('../fonts/jbruned-icons.eot?74304496#iefix') format('embedded-opentype'),
+       url('../fonts/jbruned-icons.woff2?74304496') format('woff2'),
+       url('../fonts/jbruned-icons.woff?74304496') format('woff'),
+       url('../fonts/jbruned-icons.ttf?74304496') format('truetype'),
+       url('../fonts/jbruned-icons.svg?74304496#jbruned-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'jbruned-icons';
-    src: url('../font/jbruned-icons.svg?93193098#jbruned-icons') format('svg');
+    src: url('../font/jbruned-icons.svg?74304496#jbruned-icons') format('svg');
   }
 }
 */
@@ -80,3 +80,10 @@
 .icon-calendar-solid:before { content: '\e817'; } /* '' */
 .icon-calendar:before { content: '\e818'; } /* '' */
 .icon-medal:before { content: '\e819'; } /* '' */
+.icon-down:before { content: '\e81a'; } /* '' */
+.icon-blog:before { content: '\e81b'; } /* '' */
+.icon-home:before { content: '\e81c'; } /* '' */
+.icon-user:before { content: '\e81d'; } /* '' */
+.icon-github:before { content: '\f09b'; } /* '' */
+.icon-user-circle:before { content: '\f2bd'; } /* '' */
+.icon-user-outline:before { content: '\f2be'; } /* '' */
