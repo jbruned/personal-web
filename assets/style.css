@@ -36,8 +36,8 @@ section:last-child {
     margin-bottom: 280px;
 }
 .section-box {
-    padding: 45px;
     border-radius: 10px;
+    position: relative;
 }
 section h2 {
     color: #3d4451;
@@ -263,6 +263,61 @@ textarea {
     display: block;
     width: 100%;
 }
+.btn-link {
+    display: block;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 15px;
+}
+.bigger.btn-link {
+    font-size: 18px;
+}
+.bigger.btn-link i {
+    font-size: 24px;
+    margin-top: -7px;
+}
+.btn-link i {
+    font-size: 20px;
+    display: block;
+    margin-top: -5px
+}
+.btn-link:hover {
+    text-decoration: underline;
+}
+.nav-link i {
+    display: inline-block;
+    font-size: 22px;
+    line-height: 13px;
+    vertical-align: middle;
+}
+.navbar-top i, .navbar-top .top-only {
+    display: inline-block !important;
+}
+.navbar i, .navbar .top-only {
+    display: none;
+}
+.navbar-top .scrolling-only {
+    display: none !important;
+}
+.navbar .scrolling-only {
+    display: inline-block;
+}
+.nav-item {
+    display: flex;
+    vertical-align: middle;
+}
+.nav-link {
+    vertical-align: middle;
+    height: 100%;
+    line-height: 100%;
+}
+.nav-link::before {
+    content: '';
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+    margin-right: -0.25em; /* Adjusts for spacing */
+  }
 .input-field .line:before, .input-field .line:after {
     content: '';
     height: 2px;
@@ -362,6 +417,25 @@ textarea {
     border: 1px solid #cbcdcf;
     background: transparent;
     box-shadow: none;
+}
+.icon-btn {
+    display: flex;
+    width: 40px;
+    height: 40px;
+    padding: 0;
+    margin: 0 auto;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
+}
+.section-btn {
+    position: absolute;
+    bottom: -20px !important;
+    left: calc(50% - 20px);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+.icon-btn i {
+    margin: auto;
 }
 .btn-primary {
     color: #fff;
@@ -1374,6 +1448,10 @@ mark,
 .timeline-box-compact .date span,
 .widget_tag_cloud a:hover, .mibg, .nav-under {
     background-color: #ff9801; }
+.mibg {
+    color: #fff!important; }
+.micolor {
+    color: #ff9801!important; }
 .mejs-container .mejs-controls .mejs-time-rail .mejs-time-current,
 .mejs-container .mejs-controls .mejs-horizontal-volume-slider .mejs-horizontal-volume-current {
     background: #ff9801; }
@@ -1397,7 +1475,7 @@ mark,
   position: relative;
   display: inline-block;
   margin: 0 5px;
-  margin-top: 4px;
+  margin-top: 6px;
   opacity: .82;
   margin-left: 15px;
 }

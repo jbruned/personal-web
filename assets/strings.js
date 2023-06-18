@@ -16,10 +16,13 @@ const EN = {
     email: 'Email',
     email_addr: '******',  // 'contact',
     location_title: 'Location',
+    cv: 'CV',
+    source: 'Source code',
+    blog: 'Blog',
     location_content: 'Sabiñánigo (Spain)<br>Pamplona (Spain)',
-    welcome: 'Hi! I am Jorge Bruned, a Computer Scientist & Engineer currently taking the Computer Science Master at Public University of Navarre',
-    welcome_2: "Although I took the Artificial Intelligence track in my degree, I'm also passionate about Software Development.",
-    welcome_3: "Among my most remarkable projects so far, the development of a customized web application from scratch for a SME and my BSc thesis on Active Learning (a Machine Learning technique) stand out, " +
+    welcome: 'Hi! I am Jorge Bruned, a Computer Scientist & Engineer currently taking the Computer Science MSc at Public University of Navarre',
+    welcome_2: "Although I took the Artificial Intelligence track in my degree, I'm also passionate about Software Development. " +
+               "Among my most remarkable projects so far, the development of a customized web application from scratch for a SME and my BSc thesis on Active Learning (a Machine Learning technique) stand out, " +
         "along with several and diverse projects as part of my degree (both individually and in group work environments): signal detector, distributed applications...",
     sabi: 'Sabiñánigo (Spain)',
     results: 'Results',

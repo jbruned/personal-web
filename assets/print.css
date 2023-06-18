@@ -28,6 +28,9 @@ header, .btn-upper, .filter {
 .only-print {
     display: initial !important;
 }
+.no-print {
+    display: none !important;
+}
 .knowledge-bar .bar-fill {
     -webkit-transition: unset !important;
     -moz-transition: unset !important;

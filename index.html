@@ -26,12 +26,32 @@
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Abrir/cerrar menú"><span class="navbar-toggler-icon"></span></button>
                 <nav class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link active" href="#top" data-string="about_me">Sobre mí<div class="nav-under"></div></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#estudios" data-string="education">Educación<div class="nav-under"></div></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#experiencia" data-string="experience">Experiencia<div class="nav-under"></div></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#portfolio" data-string="projects">Proyectos<div class="nav-under"></div></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#skills" data-string="knowledge">Conocimientos<div class="nav-under"></div></a></li>
-                        <li class="nav-item"><a class="nav-link" href="#contact" data-string="contact">Contacto<div class="nav-under"></div></a></li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#top">
+                                <i class="icon-user-outline top-only"></i>
+                                <span data-string="about_me">Sobre mí</span>
+                                <div class="nav-under"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#estudios"><span data-string="education">Educación</span><div class="nav-under"></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#experiencia"><span data-string="experience">Experiencia</span><div class="nav-under"></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#portfolio"><span data-string="projects">Proyectos</span><div class="nav-under"></div></a></li>
+                        <li class="nav-item"><a class="nav-link" href="#skills"><span data-string="knowledge">Conocimientos</span><div class="nav-under"></div></a></li>
+                        <li class="nav-item scrolling-only"><a class="nav-link" href="#contact"><span data-string="contact">Contacto</span><div class="nav-under"></div></a></li>
+                        <li class="nav-item">
+                            <a class="nav-link top-only" href="/blog">
+                                <i class="icon-blog"></i>
+                                <span data-string="blog">Blog</span>
+                                <div class="nav-under"></div>
+                            </a>
+                        </li>
+                        <li class="nav-item top-only">
+                            <a class="nav-link" href="https://github.com/jbruned/personal-web" target="_blank" data-string="view_gh">
+                                <i class="icon-github"></i>
+                                <span data-string="source">Código fuente</span>
+                                <div class="nav-under"></div>
+                            </a>
+                        </li>
                         <li>
                             <div class="lang-switch">
                                 <input id="lang-switch" class="check-toggle check-toggle-round-flat" type="checkbox">
@@ -50,7 +70,7 @@
         <div class="container">
             <section id="about" class="animate-up">
                 <div class="section-box">
-                    <div class="row">
+                    <div class="row px-5 py-5">
                         <div class="col-sm-5 align-middle">
                             <img src="assets/img/jbruned_square.jpg" alt="Jorge Bruned" class="pe-sm-3 mb-3 mb-sm-0">
                         </div>
@@ -83,20 +103,44 @@
                             </ul>
                         </div>
                     </div>
+                    <!--<div class="card-footer pb-1 no-print" id="links">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor" href="/blog" data-string="more_info">
+                                    Ir a mi blog
+                                    <i class="icon-blog"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor bigger" href="#links" data-string="more_info">
+                                    Continuar viendo mi CV
+                                    <i class="icon-down"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor" href="https://github.com/jbruned/personal-web" data-string="more_info" target="_blank">
+                                    Ver esta página en GitHub
+                                    <i class="icon-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- Create a div aligned with the bottom border and in the center -->
+                    <a class="btn icon-btn section-btn mibg" href="#btn-scroll" id="btn-scroll">
+                        <i class="icon-down"></i>
+                    </a>
                 </div>
-                <p class="txt-center" data-string="welcome">
-                    ¡Hola! Soy Jorge Bruned, Ingeniero Informático y estudiante del Máster en Ingeniería Informática en la Universidad Pública de Navarra
-                </p>
-                <p data-string="welcome_2">
-                    Dentro de mi carrera universitaria me especialicé en el área de Inteligencia Artificial, 
-                    aunque también me apasiona el Desarrollo de Software.
-                </p>
-                <p data-string="welcome_3">
-                    Entre mis proyectos más destacables hasta la fecha destacan la creación de una aplicación web a medida para una PYME y
-					mi Trabajo de Fin de Grado sobre Active Learning (una técnica de Machine Learning), 
-                    además de diversos proyectos en el ámbito universitario (tanto individualmente como en entornos de trabajo grupal): detector de señales, aplicaciones distribuidas...
-                </p>
-                <!--p class="txt-center"><a class="btn btn-lg btn-border ripple btn-center" target="_blank" href="#">Descargar en PDF</a></p>-->
+                <div class="px-3 py-4" id="welcome">
+                    <p class="txt-center" data-string="welcome">
+                        ¡Hola! Soy Jorge Bruned, Ingeniero Informático y estudiante del Máster en Ingeniería Informática en la Universidad Pública de Navarra
+                    </p>
+                    <p data-string="welcome_2">
+                        Dentro de mi carrera universitaria me especialicé en el área de Inteligencia Artificial, aunque también me apasiona el Desarrollo de Software.
+                        Entre mis proyectos más destacables hasta la fecha destacan la creación de una aplicación web a medida para una PYME y
+                        mi Trabajo de Fin de Grado sobre Active Learning (una técnica de Machine Learning), además de diversos proyectos en el ámbito universitario
+                        (tanto individualmente como en entornos de trabajo grupal): detector de señales, aplicaciones distribuidas...
+                    </p>
+                </div>
             </section>
 
             <!-- ESTUDIOS -->
@@ -761,7 +805,7 @@
                 <div class="animate-up">
                     <h2 data-string="knowledge">Conocimientos</h2>
                     <p class="txt-center subtitle" data-string="knowledge_brief">A continuación enumero una serie de aptitudes y destrezas que considero que soy capaz de llevar a cabo de forma satisfactoria</p>
-                    <div class="section-box">
+                    <div class="section-box p-5">
                         <h3 style="font-weight:bold" data-string="know_fields">Campos de conocimiento</h3>
                         <div class="row">
                             <div class="col-sm-6">
