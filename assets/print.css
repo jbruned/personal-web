@@ -1,0 +1,42 @@
+header, .btn-upper, .filter {
+    display: none !important;
+}
+.portfolio-figure .portfolio-caption, .portfolio-figure .portfolio-title, .portfolio-figure .portfolio-cat {
+    opacity: unset !important;
+}
+.portfolio-figure .portfolio-caption-inner {
+    -webkit-transform: unset !important;
+    -moz-transform: unset !important;
+    transform: unset !important;
+}
+.portfolio-figure .portfolio-caption {
+    background-color: rgba(32, 39, 52, 0.6) !important;
+}
+.animate-down, .animate-left, .animate-right, .animate-up {
+    opacity: 1 !important;
+    visibility: visible !important;
+    -webkit-backface-visibility: hidden !important;
+    -moz-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    -webkit-transform: translate(0, 0) !important;
+    -moz-transform: translate(0, 0) !important;
+    transform: translate(0, 0) !important;
+    -webkit-transition: unset !important;
+    -moz-transition: unset !important;
+    transition: unset !important;
+}
+.only-print {
+    display: initial !important;
+}
+.knowledge-bar .bar-fill {
+    -webkit-transition: unset !important;
+    -moz-transition: unset !important;
+    transition: unset !important;
+}
+body {
+    background-color: unset !important;
+}
+#estudios>*, #experiencia, #portfolio, #skills, #contact {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+}
