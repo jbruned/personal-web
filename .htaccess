@@ -1,4 +1,6 @@
 DirectoryIndex index.html
+Options -MultiViews
+CheckSpelling off
 
 # Ensure that the RewriteEngine is enabled only once
 RewriteEngine on
@@ -19,10 +21,6 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^(.*)$ /$1.html [NC,L]
-
-# Error documents
-ErrorDocument 403 /error
-ErrorDocument 404 /error
 
 # Disable directory listing and protect specific files
 Options All -Indexes
