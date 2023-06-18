@@ -87,13 +87,17 @@ $(window).on("load", function() {
     let animated = Array.prototype.slice.call(document.querySelectorAll("[class*='animate-']")),
         know_bars = Array.prototype.slice.call(document.getElementsByClassName("bar-fill"));
     const navbar = document.getElementsByClassName('navbar-top')[0];
+    const btn_scroll_top = document.getElementById('btn-scroll-top');
     function animate_on_scroll(animate_all = false) {
         // Animate navbar
         let scroll_top = $(window).scrollTop();
-        if (scroll_top > 0 && navbar.classList.contains('navbar-top'))
+        if (scroll_top > 0 && navbar.classList.contains('navbar-top')) {
             navbar.classList.remove('navbar-top');
-        else if (scroll_top === 0 && !navbar.classList.contains('navbar-top'))
+            btn_scroll_top.classList.remove('hidden-right');
+        } else if (scroll_top === 0 && !navbar.classList.contains('navbar-top')) {
             navbar.classList.add('navbar-top');
+            btn_scroll_top.classList.add('hidden-right');
+        }
         // Animate classes animate-*
         animated.forEach((elem, i) => {
             // If the element is visible, animate it

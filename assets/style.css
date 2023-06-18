@@ -440,39 +440,20 @@ textarea {
 .btn-primary {
     color: #fff;
 }
-.btn-scroll-top {
+#btn-scroll-top {
     z-index: 10;
-    bottom: 35px;
-    right: 40px;
+    bottom: 66px;
+    right: 55px;
     position: fixed;
-    width: 40px;
-    height: 40px;
-    display: none;
-    text-align: center;
-    text-decoration: none;
-    border: 1px solid #d2d2d2;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    background-color: rgba(0, 0, 0, 0.02);
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-    -webkit-transition: all 0.3s ease-out;
-    -moz-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
+    opacity: 0.75;
+    transition: all 0.2s ease-out !important;
 }
-.btn-scroll-top:hover {
-    background-color: #fff;
-    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
-}
-.btn-scroll-top .rsicon {
-    color: #c8c8c8;
-    color: rgba(0, 0, 0, 0.2);
-    font-size: 15px;
-    font-weight: bold;
-    line-height: 38px;
+.hidden-right {
+    right: -50px !important;
+    transition: all 0.2s ease-out !important;
 }
 @media (max-width: 1180px) {
-    .btn-scroll-top {
+    #btn-scroll-top {
         right: 15px;
         bottom: 15px;
     }

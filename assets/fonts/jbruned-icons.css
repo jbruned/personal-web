@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'jbruned-icons';
-  src: url('../fonts/jbruned-icons.eot?74304496');
-  src: url('../fonts/jbruned-icons.eot?74304496#iefix') format('embedded-opentype'),
-       url('../fonts/jbruned-icons.woff2?74304496') format('woff2'),
-       url('../fonts/jbruned-icons.woff?74304496') format('woff'),
-       url('../fonts/jbruned-icons.ttf?74304496') format('truetype'),
-       url('../fonts/jbruned-icons.svg?74304496#jbruned-icons') format('svg');
+  src: url('../fonts/jbruned-icons.eot?28831639');
+  src: url('../fonts/jbruned-icons.eot?28831639#iefix') format('embedded-opentype'),
+       url('../fonts/jbruned-icons.woff2?28831639') format('woff2'),
+       url('../fonts/jbruned-icons.woff?28831639') format('woff'),
+       url('../fonts/jbruned-icons.ttf?28831639') format('truetype'),
+       url('../fonts/jbruned-icons.svg?28831639#jbruned-icons') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -15,7 +15,7 @@
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
     font-family: 'jbruned-icons';
-    src: url('../font/jbruned-icons.svg?74304496#jbruned-icons') format('svg');
+    src: url('../font/jbruned-icons.svg?28831639#jbruned-icons') format('svg');
   }
 }
 */
@@ -84,6 +84,7 @@
 .icon-blog:before { content: '\e81b'; } /* '' */
 .icon-home:before { content: '\e81c'; } /* '' */
 .icon-user:before { content: '\e81d'; } /* '' */
+.icon-up:before { content: '\e81e'; } /* '' */
 .icon-github:before { content: '\f09b'; } /* '' */
 .icon-user-circle:before { content: '\f2bd'; } /* '' */
 .icon-user-outline:before { content: '\f2be'; } /* '' */
