@@ -1326,21 +1326,47 @@ header {
         display: none;
     }
     .filter-inner {
-        display: block;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
     }
     .filter button {
-        width: 100%;
-        margin: 0;
-        padding: 10px 0;
-        display: block;
-        border-bottom: 1px solid #d7dbde;
+        height: 36px;
+        border-radius: 18px;
+        /* width: 100%; */
+        width: fit-content;
+        background-color: #fff;
+        /* margin: 0 auto !important; */
+        margin: 2px !important;
+        padding: 10px 30px !important;
+        /* display: block; */
+        /* border-bottom: 1px solid #d7dbde; */
+        border: 1px solid #d7dbde;
         position: relative;
+        transition: color 0.2s ease-in-out 0s !important;
+    }
+    .filter button.active {
+        border: none;
+        color: #fff;
+        transition: color 0.2s ease-in-out 0s !important;
+    }
+    #about .section-box>.p-5 {
+        padding: 32px !important;
+    }    
+    #blog .section-box>.p-5 {
+        padding: 0 !important;
+    }
+    #blog .filter {
+        position: static !important;
+        margin: 0;
     }
     .filter .active:after {
         content: '';
         left: 0;
-        bottom: -1px;
-        height: 3px;
+        bottom: 0px;
+        z-index: -1;
+        height: 36px;
+        border-radius: 18px;
         width: 100%;
         position: absolute;
     }
@@ -1456,6 +1482,7 @@ mark,
 .timeline-bar,
 .timeline-box .dot,
 .timeline-box-compact .date span,
+.filter button.active,
 .widget_tag_cloud a:hover, .mibg, .nav-under {
     background-color: #ff9801; }
 .mibg {
@@ -1591,6 +1618,9 @@ mark,
     color: #555;
     transition: color 0.3s ease-in-out 0.1s;
 }
+.portfolio-filter.active {
+    background-color: transparent !important;
+}
 #blog .portfolio-filter.active {
     color: #fff;
     transition: color 0.3s ease-in-out 0.1s;
@@ -1658,7 +1688,14 @@ mark,
 }
 .post-content img {
     max-width: 800px;
-    width: 90%;
+    width: 100%;
     display: block;
     margin: 20px auto;
+}
+#blog .portfolio-caption, #blog .portfolio-caption-inner, #blog .portfolio-title, #blog .portfolio-cat {
+    text-decoration: none!important;
+}
+::selection, ::-moz-selection {
+    background-color: #ff9801;
+    color: #fff;
 }

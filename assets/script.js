@@ -4,6 +4,7 @@ function reveal_email() {
     translations['en']['email_addr'] = 'hi';
     translate(curr_lang());
 }
+
 /** TRANSLATION **/
 import { EN, ES } from './strings.js';
 const translations = {
@@ -62,8 +63,8 @@ function translate(lang = 'en') {
             elem.setAttribute('data-bs-placement', 'bottom');
         }
     });
-
 }
+
 /** ANIMATIONS **/
 const THRESHOLD_SCROLL_ANIMATIONS = 20;
 function is_visible (elem) {
@@ -73,6 +74,8 @@ function is_visible (elem) {
         offset_bottom = scroll_top + Math.floor($(elem).outerHeight());
     return (scroll_bottom >= offset_top && scroll_top <= offset_bottom);
 }
+
+/** INITIALIZE ELEMENTS AND LISTENERS **/
 $(window).on("load", function() {
     // Get user language and translate
     document.getElementById('lang-switch').onchange = () => {
@@ -83,37 +86,47 @@ $(window).on("load", function() {
           get_url = window.location.search || '',
           get_lang = get_url.indexOf("lang") > -1 ? get_url.split("lang")[1].substr(1) : null;
     translate(path_lang || get_lang || window.navigator.userLanguage || window.navigator.language);
+
     // Scroll animations (navbar and animate-*)
     let animated = Array.prototype.slice.call(document.querySelectorAll("[class*='animate-']")),
         know_bars = Array.prototype.slice.call(document.getElementsByClassName("bar-fill"));
     const navbar = document.getElementsByClassName('navbar-top')[0];
     const btn_scroll_top = document.getElementById('btn-scroll-top');
+
     function animate_on_scroll(animate_all = false) {
-        // Animate navbar
+        // Animate navbar and toggle scroll top button
         let scroll_top = $(window).scrollTop();
-        if (scroll_top > 0 && navbar.classList.contains('navbar-top')) {
-            navbar.classList.remove('navbar-top');
-            btn_scroll_top.classList.remove('hidden-right');
-        } else if (scroll_top === 0 && !navbar.classList.contains('navbar-top')) {
-            navbar.classList.add('navbar-top');
-            btn_scroll_top.classList.add('hidden-right');
+        if (navbar) {
+            if (scroll_top > 0 && navbar.classList.contains('navbar-top')) {
+                navbar.classList.remove('navbar-top');
+                btn_scroll_top.classList.remove('hidden-right');
+            } else if (scroll_top === 0 && !navbar.classList.contains('navbar-top')) {
+                navbar.classList.add('navbar-top');
+                btn_scroll_top.classList.add('hidden-right');
+            }
         }
+        if (btn_scroll_top) {
+            if (scroll_top > 0 && btn_scroll_top.classList.contains('hidden-right')) {
+                btn_scroll_top.classList.remove('hidden-right');
+            } else if (scroll_top === 0 && !btn_scroll_top.classList.contains('hidden-right')) {
+                btn_scroll_top.classList.add('hidden-right');
+            }
+        }
+
         // Animate classes animate-*
         animated.forEach((elem, i) => {
-            // If the element is visible, animate it
             if (animate_all || is_visible(elem)) {
                 $(elem).addClass('animated');
             }
         });
-        // Remove animated elements from the array
         animated = animated.filter(elem => !elem.classList.contains('animated'));
+
         // Animate knowledge bars
         know_bars.forEach((elem, i) => {
             if (animate_all || is_visible(elem)) {
                 elem.style = 'width:' + elem.getAttribute('data-width');
             }
         });
-        // Remove animated elements from the array
         know_bars = know_bars.filter(elem => elem.style.width !== '0%');
     }
 
@@ -123,7 +136,7 @@ $(window).on("load", function() {
         animate_on_scroll();
     });
 
-    // Initialize Isotope JS
+    // Initialize Isotope JS (the current implementation only allows one filter group per page)
     const filter = $('.grid').isotope({
         itemSelector: '.grid-item',
         layoutMode: 'masonry',
@@ -131,26 +144,35 @@ $(window).on("load", function() {
             columnWidth: '.grid-item-small'
         }
     }), indicator = document.getElementById("portfolio-tag-indicator");
-    let first = true;
     function moveIndicator(left, width) {
         indicator.style.left = left + "px";
         indicator.style.width = width + "px";
     }
+    function setActiveFilter(elem = null) {
+        let currActive = document.getElementsByClassName("portfolio-filter active")[0];
+        if (currActive == null)
+            currActive = document.getElementsByClassName("portfolio-filter")[0];
+        if (elem === null)
+            elem = currActive;
+        if (elem == null)
+            return;
+        filter.isotope({ filter: elem.getAttribute('data-filter') });
+        moveIndicator(elem.offsetLeft, elem.offsetWidth);
+        if (currActive != null)
+            currActive.classList.remove("active");
+        elem.classList.add("active");
+    }
     Array.prototype.slice.call(document.getElementsByClassName("portfolio-filter")).forEach(elem => {
-        elem.onclick = () => {
-            document.getElementsByClassName("portfolio-filter active")[0].classList.remove("active");
-            elem.classList.add("active");
-            filter.isotope({ filter: elem.getAttribute('data-filter') });
-            moveIndicator(elem.offsetLeft, elem.offsetWidth);
-        }
-        if (first) {
-            moveIndicator(elem.offsetLeft, elem.offsetWidth);
-            elem.classList.add("active");
-            first = false;
-        }
+        elem.onclick = () => { setActiveFilter(elem); }
     });
+    
+    // Handle window resize
+    $(window).resize(() => {
+        setActiveFilter();
+    });
+    setActiveFilter();
 
-    // Modal fix
+    // Modal fix and lazy load media on modal show
     $('.modal').on('show.bs.modal', function() {
         $(this).insertAfter($('body'));
         $(this).find('[data-lazy-src]').each(function() {
@@ -185,7 +207,7 @@ $(window).on("load", function() {
         return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 
-    // Run animations and show email on print
+    // Run animations and reveal email on print
     window.onbeforeprint = () => {
         animate_on_scroll(true);
         reveal_email();
