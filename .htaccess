@@ -24,6 +24,7 @@ RewriteRule ^(en|es)$ /index.html?lang=\$1 [QSA,L]
 # Rewrite URLs to .html if the file or directory does not exist
 RewriteCond %{REQUEST_FILENAME} !-f
 # RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/$
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^(.*)$ /$1.html [NC,L]
 
