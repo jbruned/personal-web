@@ -6,7 +6,6 @@ import sys
 from hashlib import md5
 import pysftp
 import dotenv
-from paramiko import RSAKey
 
 VERBOSE_NONE = 0
 VERBOSE_ERROR = 1
@@ -38,6 +37,9 @@ def publish(
     assert host is not None, "No host provided"
     public_key = public_key.strip() if public_key is not None else ""
     cnopts = pysftp.CnOpts()
+    for should_be_ignored in ['posts', 'deployment', '.gitignore', '.git', 'README.md']:
+        if should_be_ignored not in ignore:
+            ignore.append(should_be_ignored)
     if public_key != "":
         # key_type, public_key = public_key.split(" ", maxsplit=1)
         # Temporary file to store the public key

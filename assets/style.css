@@ -26,6 +26,9 @@ main {
     padding-right: 10px;
     margin: 0 auto;
 }
+.container.wide {
+    max-width: 1200px;
+}
 .only-print {
     display: none
 }
@@ -44,6 +47,12 @@ section h2 {
     font-size: 34px;
     line-height: 1.2;
     font-weight: 600;
+    text-align: center;
+}
+#blog h1 {
+    /*color: white;
+    font-weight: 500;*/
+    font-size: 40px;
     text-align: center;
 }
 .grid-box, .section-box, .timeline-box-inner {
@@ -146,6 +155,18 @@ hr {
     height: 1px;
     margin-top: 0;
     margin-bottom: 25px;
+}
+hr.darker {
+    border-bottom: 1px solid #dedede;
+    opacity: 1;
+    background-color: unset;
+    height: 0px;
+    padding-top: 25px;
+}
+.vertical-separator {
+    display: block;
+    border-left: 1px solid #dedede;
+    margin: 0 50px;
 }
 ul, ol {
     margin: 0 0 25px 20px;
@@ -661,16 +682,16 @@ header {
 /*
  * About Section
  */
-#about h1 {
+.section-box h1 {
     font-size: 36px;
     line-height: 1.1;
     font-weight: 700;
     margin: 5px 0;
 }
-#about h1 span {
+.section-box h1 span {
     font-weight: 300;
 }
-#about h2 {
+.section-box h2 {
     text-align: start !important;
     font-size: 18px;
     font-weight: 400;
@@ -1043,6 +1064,7 @@ header {
 }
 .grid {
     *zoom: 1;
+    margin: 0 -10px
 }
 .grid .grid-item, .grid .grid-sizer {
     width: 33.33%;
@@ -1398,6 +1420,13 @@ blockquote:before,
 .widget-popuplar-posts .post-title a:hover,
 .widget-recent-posts .post-title a:hover, .micolor {
     color: #ff9801; }
+a:hover {
+    color: #ff9801;
+    text-decoration: none; }
+a.mailto_link:hover {
+    text-decoration: underline; }
+a:active {
+    color: #d88200; }
 ins,
 mark,
 .btn-primary,
@@ -1555,4 +1584,81 @@ mark,
 }
 .lang-switch input.check-toggle-round-flat:checked + label:after {
   margin-left: 30px;
+}
+/* BLOG-SPECIFIC STYLES */
+#blog .portfolio-filter {
+    /*color: #888888;*/
+    color: #555;
+    transition: color 0.3s ease-in-out 0.1s;
+}
+#blog .portfolio-filter.active {
+    color: #fff;
+    transition: color 0.3s ease-in-out 0.1s;
+}
+#blog .filter-bar {
+    /*background-color: #dadada;*/
+    background-color: #f4f4f4;
+}
+#blog .filter {
+	width: 100%;
+	bottom: -40px !important;
+	position: absolute;
+}
+#blog .filter-btn-group {
+	position: relative;
+	z-index: 2;
+}
+#blog .filter-bar {
+	z-index: 1;
+	width: 100%;
+	height: 40px;
+    top: -17px;
+    /* height: 36px;
+    top: -15px; */
+	position: absolute;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+}
+#blog .filter-bar, #blog .filter-bar .filter-bar-line {
+	/* border-radius: 18px; */
+	border-radius: 20px;
+}
+#blog .filter-btn-group button {
+    padding: 0 16px;
+    /* padding: 0 14px; */
+}
+#blog .filter-btn-group button:not(:first-child) {
+    margin: 0 0 0 -8px;
+}
+#blog .portfolio-caption-inner {
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+}
+#blog .portfolio-caption-inner hr {
+    width: 70%;
+    margin: 20px auto;
+}
+#blog .portfolio-title {
+    margin: 0px;
+    text-align: center;
+    font-size: 24px;
+    text-decoration: none!important;
+}
+#blog .portfolio-cat {
+    margin: 0px;
+    text-align: center;
+    font-size: 16px;
+    text-decoration: none!important;
+}
+#blog .portfolio-title {
+    margin: 0;
+}
+.post-content img {
+    max-width: 800px;
+    width: 90%;
+    display: block;
+    margin: 20px auto;
 }

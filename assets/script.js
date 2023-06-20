@@ -138,11 +138,14 @@ $(window).on("load", function() {
     }
     Array.prototype.slice.call(document.getElementsByClassName("portfolio-filter")).forEach(elem => {
         elem.onclick = () => {
+            document.getElementsByClassName("portfolio-filter active")[0].classList.remove("active");
+            elem.classList.add("active");
             filter.isotope({ filter: elem.getAttribute('data-filter') });
             moveIndicator(elem.offsetLeft, elem.offsetWidth);
         }
         if (first) {
             moveIndicator(elem.offsetLeft, elem.offsetWidth);
+            elem.classList.add("active");
             first = false;
         }
     });
@@ -173,7 +176,7 @@ $(window).on("load", function() {
     if (index_proyecto > -1)
         $(document.getElementById('portfolio-details-' + index_proyecto)).modal('show');
     else if (hash_url === 'print') {
-        $('head').append('<link rel="stylesheet" type="text/css" href="assets/print.css">');
+        $('head').append('<link rel="stylesheet" type="text/css" href="/assets/print.css">');
         know_bars.forEach((elem, i) => elem.style = 'width:' + elem.getAttribute('data-width'));
     }
 

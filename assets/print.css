@@ -43,3 +43,6 @@ body {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
 }
+#btn-scroll-top {
+    display: none !important;
+}

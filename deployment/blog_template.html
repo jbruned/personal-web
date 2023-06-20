@@ -10,17 +10,17 @@
     <meta name="author" content="Jorge Bruned">
     <meta name="canonical" content="https://jorgebruned.com/blog">
     <title>Blog | Jorge Bruned</title>
-    <link rel="shortcut icon" type="image/ico" href="assets/img/jbruned_icon.png">
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/jbruned_icon.png">
     <!-- CSS styles -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="/assets/style.css">
 </head>
 <body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="222">
     <header id="top">
         <div class="navbar navbar-expand-lg mibg navbar-dark navbar-top fixed-top" id="header">
             <div class="container px-4 animate-down">
-                <a class="navbar-brand" href="#top">Jorge Bruned</a>
+                <a class="navbar-brand" href="/">Jorge Bruned</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Abrir/cerrar menú"><span class="navbar-toggler-icon"></span></button>
                 <nav class="collapse navbar-collapse" id="navbar">
                     <ul class="navbar-nav ms-auto">
@@ -61,16 +61,82 @@
     </header>
     <main>
         <div class="container">
-            <section id="about" class="animate-up">
-                <div class="section-box p-5">
-                    <h1 class="profile-title" data-string="coming-soon">Coming soon...</h1>
-                    <h2 class="profile-position" data-string="stay_tuned">Stay tuned!</h2>
-                    <p class="pt-4">
-                        You might want to check out some of my <a href="https://www.linkedin.com/in/jorge-bruned-alam%C3%A1n-439a4762/" rel="noreferrer" target="_blank">LinkedIn posts</a> in the meantime.
-                    </p>
+            <section id="blog" class="animate-up">
+                <div class="section-box mb-5">
+                    <div class="p-5">
+                        <h1 class="profile-title text-dark" data-string="blog">Blog</h1>
+                        <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_1">In this section you will find all kinds of content, ranging from status updates to personal projects, things I have found interesting, etc.</p>
+                        <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_2">I try to publish new content regularly, so stay tuned!</p>
+                    </div>
+                    <!--<div class="card-footer pb-1 no-print" id="links">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor" href="/blog" data-string="more_info">
+                                    Ir a mi blog
+                                    <i class="icon-blog"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor bigger" href="#links" data-string="more_info">
+                                    Continuar viendo mi CV
+                                    <i class="icon-down"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor" href="https://github.com/jbruned/personal-web" data-string="more_info" target="_blank">
+                                    Ver esta página en GitHub
+                                    <i class="icon-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- Create a div aligned with the bottom border and in the center -->
+                    <!--<a class="btn icon-btn section-btn mibg no-print" href="#btn-scroll" id="btn-scroll">
+                        <i class="icon-down"></i>
+                    </a>-->
+                    <div class="filter">
+                        <div class="filter-inner">
+                            <div class="filter-btn-group">
+                                <button class="portfolio-filter" data-filter="*" data-string="tag_all">Todo</button>
+                                {% for tag in tags %}
+                                <button class="portfolio-filter" data-filter=".{{ tag.id }}" data-string="blog_{{ tag.id }}">{{ tag.name }}</button>
+                                {% endfor %}
+                            </div>
+                            <div class="filter-bar">
+                                <span id="portfolio-tag-indicator" class="filter-bar-line"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<h1 class="section-title display-1">Blog</h1>-->
+                <div class="grid">
+                    <!--<div class="grid-sizer"></div>-->
+                    {% for post in posts %}
+                    <div class="grid-item grid-item-small {{ post.tag.id if post.tag else '' }}">
+                        <div class="grid-box">
+                            <figure class="portfolio-figure">
+                                <img src="{{ post.image|d('/assets/img/bg.jpg') }}" alt="{{ post.title }}">
+                                    <figcaption class="portfolio-caption">
+                                        <a class="portfolio-caption-inner" href="/blog/{{ post.url }}">
+                                            <h3 class="portfolio-title">{{ post.title }}</h3>
+                                            {% if post.tag %}
+                                            <hr>
+                                            <h4 class="portfolio-cat mb-0">{{ post.tag.name }}</h4>
+                                            {% endif %}
+                                            <!--<p class="text-center mb-2">
+                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-0"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
+                                            </p>-->
+                                        </a>
+                                    </figcaption>
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </section>
         </div>
+
         <!-- CONTACTO -->
         <div class="container">
             <section id="contact" class="animate-down">
@@ -86,7 +152,7 @@
             </section>
         </div>
 
-        <a class="btn-scroll-top" href="#"><i class="rsicon rsicon-arrow-up"></i></a>
+        <a class="btn hidden-right mibg icon-btn" href="#top" id="btn-scroll-top"><i class="icon-up"></i></a>
 
     </main>
 
@@ -95,5 +161,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-fh8VA992XMpeCZiRuU4xii75UIG6KvHrbUF8yIS/2/4=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-<script src="assets/script.js" type="module"></script>
+<script src="/assets/script.js" type="module"></script>
 </html>
