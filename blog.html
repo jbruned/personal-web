@@ -8,8 +8,8 @@
     <meta name="description" content="I am Jorge Bruned, a Computer Science student who is passionate about Artificial Intelligence and Software Development">
     <meta name="keywords" content="Jorge Bruned, Jorge Bruned Alamán, Pamplona, Huesca, Aragón, estudiante, ingeniería informática, informática, computer science, inglés, Universidad Pública de Navarra, UPNA, inteligencia artificial, IA, AI, ML, machine learning, data mining, aprendizaje automático, minería de datos, visión artificial, computer vision, desarrollo web, desarrollo Android, bases de datos, Spain, TU Delft, computer engineering, english, artificial intelligence, deep learning, data scientist, MLOps developer, DL, computer vision, desarrollo web, web development, Android development, desarrollo Android, bases de datos, databases">
     <meta name="author" content="Jorge Bruned">
-    <meta name="canonical" content="https://jorgebruned.com/{{ post_url }}">
-    <title>{{ post_title }} | Jorge Bruned</title>
+    <meta name="canonical" content="https://jorgebruned.com/blog">
+    <title>Blog | Jorge Bruned</title>
     <link rel="shortcut icon" type="image/ico" href="/assets/img/jbruned_icon.png">
     <!-- CSS styles -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic">
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="/blog">
+                            <a class="nav-link active" href="#top">
                                 <i class="icon-blog"></i>
                                 <span data-string="blog">Blog</span>
                                 <div class="nav-under"></div>
@@ -60,29 +60,83 @@
         <div class="header-bg"></div>
     </header>
     <main>
-        <div class="container wide">
-            <section id="post" class="animate-up">
-                <!-- Breadcrumb
-                <ol class="breadcrumb text-small mb-2" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='gray'/%3E%3C/svg%3E&#34;);">
-                    <li class="breadcrumb-item text-white"><a href="/">Jorge Bruned</a></li>
-                    <li class="breadcrumb-item text-white"><a href="/blog">Blog</a></li>
-                    <li class="breadcrumb-item active text-white" aria-current="page">Post title</li>
-                </ol> -->
-                <div class="section-box p-5">
-                    <h1>{{ post_title }}<h1>
-                    <h2><span data-string="by">by</span> <a href="/">Jorge Bruned</a>{% if post_date %} <span data-string="on">on</span> {{ post_date }}{% endif %}</h2>
-                    <div class="post-content">
-                        {{ post_content }}
+        <div class="container">
+            <section id="blog" class="animate-up">
+                <div class="section-box mb-5">
+                    <div class="p-5">
+                        <h1 class="profile-title text-dark" data-string="blog">Blog</h1>
+                        <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_1">In this section you will find all kinds of content, ranging from status updates to personal projects, things I have found interesting, etc.</p>
+                        <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_2">I try to publish new content regularly, so stay tuned!</p>
                     </div>
-                    <hr class="darker">
-                    <p class="text-center pt-3 d-flex align-middle justify-content-center mb-0">
-                        <a class="btn-link micolor d-inline-block bigger" href="/"><i class="icon-user-outline"></i>About the author</a>
-                        <i class="vertical-separator"></i>
-                        <a class="btn-link micolor d-inline-block bigger" href="/blog"><i class="icon-blog"></i>More blog posts</a>
-                    </p>
+                    <!--<div class="card-footer pb-1 no-print" id="links">
+                        <div class="row">
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor" href="/blog" data-string="more_info">
+                                    Ir a mi blog
+                                    <i class="icon-blog"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor bigger" href="#links" data-string="more_info">
+                                    Continuar viendo mi CV
+                                    <i class="icon-down"></i>
+                                </a>
+                            </div>
+                            <div class="col-sm-4 text-center">
+                                <a class="btn-link micolor" href="https://github.com/jbruned/personal-web" data-string="more_info" target="_blank">
+                                    Ver esta página en GitHub
+                                    <i class="icon-github"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- Create a div aligned with the bottom border and in the center -->
+                    <!--<a class="btn icon-btn section-btn mibg no-print" href="#btn-scroll" id="btn-scroll">
+                        <i class="icon-down"></i>
+                    </a>-->
+                    <div class="filter">
+                        <div class="filter-inner">
+                            <div class="filter-btn-group">
+                                <button class="portfolio-filter" data-filter="*" data-string="tag_all">Todo</button>
+                                
+                                <button class="portfolio-filter" data-filter=".updates" data-string="blog_updates">Updates</button>
+                                
+                            </div>
+                            <div class="filter-bar">
+                                <span id="portfolio-tag-indicator" class="filter-bar-line"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<h1 class="section-title display-1">Blog</h1>-->
+                <div class="grid">
+                    <!--<div class="grid-sizer"></div>-->
+                    
+                    <div class="grid-item grid-item-small updates">
+                        <div class="grid-box">
+                            <figure class="portfolio-figure">
+                                <img src="/assets/blog/github-jbruned-personal-web.png" alt="Welcome to my new blog!">
+                                    <figcaption class="portfolio-caption">
+                                        <a class="portfolio-caption-inner" href="/blog/welcome-to-my-new-blog">
+                                            <h3 class="portfolio-title">Welcome to my new blog!</h3>
+                                            
+                                            <hr>
+                                            <h4 class="portfolio-cat mb-0">Updates</h4>
+                                            
+                                            <!--<p class="text-center mb-2">
+                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-0"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
+                                            </p>-->
+                                        </a>
+                                    </figcaption>
+                                </a>
+                            </figure>
+                        </div>
+                    </div>
+                    
                 </div>
             </section>
         </div>
+
         <!-- CONTACTO -->
         <div class="container">
             <section id="contact" class="animate-down">
