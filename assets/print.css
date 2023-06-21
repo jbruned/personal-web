@@ -46,3 +46,18 @@ body {
 #btn-scroll-top {
     display: none !important;
 }
+#post .section-box {
+    padding: 0px !important;
+    box-shadow: none !important;
+}
+#post {
+    padding-top: 0px !important;
+}
+::-webkit-scrollbar {
+    width: 0px !important;
+    height: 0px !important;
+}
+::-moz-scrollbar {
+    width: 0px !important;
+    height: 0px !important;
+}
