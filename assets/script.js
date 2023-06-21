@@ -15,6 +15,7 @@ const HTML_HARDCODED_LANG = 'es';
 function curr_lang() {
     return document.documentElement.lang;
 }
+let callbackActiveFilter = null;
 function translate(lang = 'en') {
     let first = translations[HTML_HARDCODED_LANG] === null;
     if (first)
@@ -63,6 +64,8 @@ function translate(lang = 'en') {
             elem.setAttribute('data-bs-placement', 'bottom');
         }
     });
+    if (callbackActiveFilter !== null)
+        callbackActiveFilter();
 }
 
 /** ANIMATIONS **/
@@ -165,12 +168,13 @@ $(window).on("load", function() {
     Array.prototype.slice.call(document.getElementsByClassName("portfolio-filter")).forEach(elem => {
         elem.onclick = () => { setActiveFilter(elem); }
     });
-    
+
     // Handle window resize
     $(window).resize(() => {
         setActiveFilter();
     });
     setActiveFilter();
+    callbackActiveFilter = setActiveFilter;
 
     // Modal fix and lazy load media on modal show
     $('.modal').on('show.bs.modal', function() {

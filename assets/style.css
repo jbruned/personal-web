@@ -314,12 +314,12 @@ textarea {
 .navbar-top i, .navbar-top .top-only {
     display: inline-block !important;
 }
-.navbar i, .navbar .top-only {
+/* .navbar i, .navbar .top-only {
     display: none;
 }
 .navbar-top .scrolling-only {
     display: none !important;
-}
+} */
 .navbar .scrolling-only {
     display: inline-block;
 }
@@ -680,6 +680,13 @@ header {
     .navbar-top .nav-under {
         background-color: #ff9801 !important;
     }
+    .navbar i, .navbar .top-only {
+        display: none;
+    }
+    .navbar-top .scrolling-only {
+        display: none !important;
+    }
+    
 }
 
 /*
@@ -808,7 +815,7 @@ header {
     position: absolute;
     left: 50%;
     top: 0;
-    height: 80%;
+    height: 88%;
 }
 .timeline .timeline-inner {
     position: relative;
