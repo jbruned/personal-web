@@ -1701,9 +1701,13 @@ body::-webkit-scrollbar-thumb:active {
 #blog .portfolio-caption, #blog .portfolio-caption-inner, #blog .portfolio-title, #blog .portfolio-cat {
     text-decoration: none!important;
 }
-::selection, ::-moz-selection {
-    background-color: #ff9801;
-    color: #fff;
+::selection {
+    background-color: #ff9901a6 !important;
+    color: #fff !important;
+}
+::-moz-selection {
+    background-color: #ff9901a6 !important;
+    color: #fff !important;
 }
 /* CUSTOM SCROLLBAR */
 body::-webkit-scrollbar {
