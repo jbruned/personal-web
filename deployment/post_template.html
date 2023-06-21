@@ -8,8 +8,8 @@
     <meta name="description" content="I am Jorge Bruned, a Computer Science student who is passionate about Artificial Intelligence and Software Development">
     <meta name="keywords" content="Jorge Bruned, Jorge Bruned Alamán, Pamplona, Huesca, Aragón, estudiante, ingeniería informática, informática, computer science, inglés, Universidad Pública de Navarra, UPNA, inteligencia artificial, IA, AI, ML, machine learning, data mining, aprendizaje automático, minería de datos, visión artificial, computer vision, desarrollo web, desarrollo Android, bases de datos, Spain, TU Delft, computer engineering, english, artificial intelligence, deep learning, data scientist, MLOps developer, DL, computer vision, desarrollo web, web development, Android development, desarrollo Android, bases de datos, databases">
     <meta name="author" content="Jorge Bruned">
-    <meta name="canonical" content="https://jorgebruned.com/blog/{{ post_url }}">
-    <title>{{ post_title }} | Jorge Bruned</title>
+    <meta name="canonical" content="https://jorgebruned.com/blog/{{ post.url }}">
+    <title>{{ post.title }} | Jorge Bruned</title>
     <link rel="shortcut icon" type="image/ico" href="/assets/img/jbruned_icon.png">
     <!-- CSS styles -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic">
@@ -69,10 +69,14 @@
                     <li class="breadcrumb-item active text-white" aria-current="page">Post title</li>
                 </ol> -->
                 <div class="section-box p-5">
-                    <h1>{{ post_title }}<h1>
-                    <h2><span data-string="by">by</span> <a href="/">Jorge Bruned</a>{% if post_date %} <span data-string="on">on</span> {{ post_date }}{% endif %}</h2>
+                    <h1>{{ post.title }}<h1>
+                    <h2>
+                        <span data-string="by">by</span> <a href="/">Jorge Bruned</a>
+                        {% if post.tag %} <span data-string="in">in</span> <a href="/blog#{{ post.tag.url }}">{{ post.tag.name }}</a>{% endif %}
+                        {% if post.date %} <span data-string="on">on</span> {{ post.date }}{% endif %}
+                    </h2>
                     <div class="post-content">
-                        {{ post_content }}
+                        {{ post.content }}
                     </div>
                     <hr class="darker">
                     <p class="text-center pt-3 d-flex align-middle justify-content-center mb-0">

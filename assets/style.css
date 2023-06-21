@@ -1699,11 +1699,17 @@ body::-webkit-scrollbar-thumb:active {
 #blog .portfolio-title {
     margin: 0;
 }
-.post-content img {
-    max-width: 800px;
+.post-content img, .post-content .img-full-screen {
+    max-width: 920px;
     width: 100%;
     display: block;
     margin: 20px auto;
+}
+.post-content .img-full-screen>img {
+    max-width: 100%;
+    width: 100%;
+    display: block;
+    margin: 0;
 }
 #blog .portfolio-caption, #blog .portfolio-caption-inner, #blog .portfolio-title, #blog .portfolio-cat {
     text-decoration: none!important;

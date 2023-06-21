@@ -215,5 +215,17 @@ $(window).on("load", function() {
     window.onbeforeprint = () => {
         animate_on_scroll(true);
         reveal_email();
-    }
+    };
+
+    // Add full-screen link to images in .post-content
+    document.querySelectorAll('.post-content img').forEach(elem => {
+        const a = document.createElement('a');
+        a.classList.add('img-full-screen');
+        a.href = elem.src;
+        a.target = '_blank';
+        // Put image inside the link
+        a.appendChild(elem.cloneNode(true));
+        // Replace image with link
+        elem.parentNode.replaceChild(a, elem);
+    }); 
 });

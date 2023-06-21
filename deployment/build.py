@@ -13,13 +13,9 @@ def build_blog_post(template: str, content: str):
     # Get the metadata from the markdown comment
     metadata, content = extract_metadata(content)
     metadata = process_metadata(metadata)
+    metadata["content"] = parse_content(content)
     # Return the rendered template
-    return Template(template).render(
-        post_url=metadata["url"],
-        post_title=metadata["title"],
-        post_date=metadata.get("date", ""),
-        post_content=markdown(content)
-    ), metadata
+    return Template(template).render(post=metadata), metadata
 
 def extract_metadata(content: str) -> Tuple[dict, str]:
     """
@@ -48,6 +44,22 @@ def extract_metadata(content: str) -> Tuple[dict, str]:
     while content.endswith("\n") or content.endswith(" "):
         content = content[:-1]
     return metadata, content
+
+def parse_content(content: str) -> str:
+    """
+    Parse the Markdown content to HTML
+    """
+    # Convert the content from Markdown to HTML
+    content = markdown(content)
+    # Add target blank to all links so that they open in a new tab
+    # TODO: only do this for external links
+    content = re.sub(r"<a([^>]+)>", r"<a\1 target=\"_blank\">", content)
+    # If there is any h1, increase all the heading levels by one
+    if "<h1>" in content:
+        for i in range(6, 0, -1):
+            content = content.replace(f"<h{i}>", f"<h{i+1}>")
+            content = content.replace(f"</h{i}>", f"</h{i+1}>")
+    return content
 
 def find_image_urls(content: str) -> list:
     """
