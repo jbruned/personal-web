@@ -94,12 +94,13 @@
                     <!--<a class="btn icon-btn section-btn mibg no-print" href="#btn-scroll" id="btn-scroll">
                         <i class="icon-down"></i>
                     </a>-->
+                    {% if tags|length > 1 %}
                     <div class="filter">
                         <div class="filter-inner">
                             <div class="filter-btn-group">
-                                <button class="portfolio-filter" data-filter="*" data-string="tag_all">Todo</button>
+                                <button class="portfolio-filter" data-filter="*" data-string="blog_tag_all">Todo</button>
                                 {% for tag in tags %}
-                                <button class="portfolio-filter" data-filter=".{{ tag.id }}" data-string="blog_{{ tag.id }}">{{ tag.name }}</button>
+                                <button class="portfolio-filter" data-filter=".{{ tag.id }}" data-string="blog_tag_{{ tag.id }}">{{ tag.name }}</button>
                                 {% endfor %}
                             </div>
                             <div class="filter-bar">
@@ -107,6 +108,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                 </div>
                 <!--<h1 class="section-title display-1">Blog</h1>-->
                 <div class="grid">
