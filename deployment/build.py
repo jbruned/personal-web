@@ -65,10 +65,35 @@ def find_image_urls(content: str) -> list:
     """
     Find all image URLs in the content
     """
+    youtube_urls = find_youtube_urls(content)
+    youtube_thumbnails = [get_youtube_thumbnail(url) for url in youtube_urls]
     return [
         url[0] if url[0] else url[1] for url in
         re.findall(r'<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^"\s]+)[^)]*\)', content)
+    ] + youtube_thumbnails
+
+def find_youtube_urls(content: str) -> list:
+    """
+    Find all iframe URLs in the content that are YouTube videos
+    """
+    return [
+        url for url in
+        re.findall(r'<iframe[^>]*src="([^"]+)"[^>]*>', content)
+        if "youtube" in url
     ]
+
+def get_youtube_thumbnail(youtube_url: str) -> str:
+    """
+    Get the thumbnail of a YouTube video
+    """
+    youtube_id = youtube_url.split("/")
+    if len(youtube_id) < 2:
+        youtube_id = youtube_id[0].split("=")
+    if len(youtube_id) < 2:
+        return None
+    youtube_id = youtube_id[-1]
+    return f"https://img.youtube.com/vi/{youtube_id}/maxresdefault.jpg"
+
 
 def urlify(title: str) -> str:
     """
