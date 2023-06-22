@@ -37,6 +37,8 @@ function translate(lang = 'en') {
             translations[HTML_HARDCODED_LANG][string_name] = elem_translate.innerHTML;
         if (strings[string_name] !== undefined)
             elem_translate.innerHTML = strings[string_name];
+        else
+            console.log("Translation not found for " + string_name)
     }
     const email_revealed = !strings['email_addr'].includes('*');
     document.querySelectorAll('.mailto_link').forEach(elem => {
@@ -169,11 +171,21 @@ $(window).on("load", function() {
         elem.onclick = () => { setActiveFilter(elem); }
     });
 
-    // Handle window resize
+    // Handle initial selection if provided in URL
+    function idify(url) {
+        return url.replace(/-/g, '_');
+    }
+    const hash_url = window.location.hash.substr(1),
+          filter_selected_url = document.querySelectorAll('.portfolio-filter[data-filter=".' + idify(hash_url) + '"]');
+    if (filter_selected_url.length === 1)
+        setActiveFilter(filter_selected_url[0]);
+    else
+        setActiveFilter();
+
+    // Handle window resize and set callback for translation
     $(window).resize(() => {
         setActiveFilter();
     });
-    setActiveFilter();
     callbackActiveFilter = setActiveFilter;
 
     // Modal fix and lazy load media on modal show
@@ -186,7 +198,7 @@ $(window).on("load", function() {
     });
 
     // Open project modal if needed
-    const hash_url = window.location.hash.substr(1), index_proyecto = [
+    const index_proyecto = [
         'proyecto-active-learning',
 		'proyecto-tienda-online',
         'proyecto-red-lan',
@@ -227,5 +239,15 @@ $(window).on("load", function() {
         a.appendChild(elem.cloneNode(true));
         // Replace image with link
         elem.parentNode.replaceChild(a, elem);
-    }); 
+    });
+
+    // Put iframes inside a div with class .iframe-container
+    document.querySelectorAll('.post-content iframe').forEach(elem => {
+        const div = document.createElement('div');
+        div.classList.add('iframe-container');
+        // Put iframe inside the div
+        div.appendChild(elem.cloneNode(true));
+        // Replace iframe with div
+        elem.parentNode.replaceChild(div, elem);
+    });
 });

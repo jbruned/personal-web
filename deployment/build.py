@@ -68,7 +68,7 @@ def find_image_urls(content: str) -> list:
     youtube_urls = find_youtube_urls(content)
     youtube_thumbnails = [get_youtube_thumbnail(url) for url in youtube_urls]
     return [
-        url[0] if url[0] else url[1] for url in
+        url[0] if url[0] else url[1].replace(")", "") for url in
         re.findall(r'<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^"\s]+)[^)]*\)', content)
     ] + youtube_thumbnails
 
@@ -162,6 +162,14 @@ def build_blog_posts(template_path: str, content_path: str, output_path: str):
         print(f"> Built {metadata['url']}")
     return posts
 
+def parse_date(date: str) -> str:
+    """
+    Parse a date in DD_MM_YYYY format to an integer YYYYMMDD
+    """
+    for i in ["-", "/", " ", "_", "."]:
+        date = date.replace(i, "")
+    return sum([int(x) * 10 ** i for i, x in enumerate(reversed(date))])
+
 def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_file: str):
     """
     Build the blog index from a template and content
@@ -188,7 +196,10 @@ def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_f
     # Build the index
     template = open(template_path, "r").read()
     with open(index_file, "w") as f:
-        f.write(Template(template).render(posts=posts, tags=list(tags.values())))
+        f.write(Template(template).render(
+            posts=sorted(posts, key=lambda p: parse_date(p["date"]), reverse=True),
+            tags=list(tags.values()))
+        )
     print(f"> Built index")
     # Build the sitemap
     pass

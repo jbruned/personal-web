@@ -147,6 +147,10 @@ const EN = {
     spanish: "Spanish",
     native_level: "Native",
     contact_me: "Contact me!",
-    contact_brief: "Don't hesitate to get in touch via email or LinkedIn."
+    contact_brief: "Don't hesitate to get in touch via email or LinkedIn.",
+    // BLOG
+    blog_desc_1: "In this section you will find all kinds of content, ranging from status updates to personal projects, things I have found interesting, etc.",
+    blog_desc_2: "I try to publish new content regularly, so stay tuned!",
+    curriculum_vitae: "Curriculum Vitae"
 };
 export { ES, EN };
