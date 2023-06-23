@@ -71,18 +71,18 @@
                 <div class="section-box p-5">
                     <h1>{{ post.title }}<h1>
                     <h2>
-                        <span data-string="by">by</span> <a href="/">Jorge Bruned</a>
-                        {% if post.tag %} <span data-string="in">in</span> <a href="/blog#{{ post.tag.url }}">{{ post.tag.name }}</a>{% endif %}
-                        {% if post.date %} <span data-string="on">on</span> {{ post.date }}{% endif %}
+                        <span data-string="by">por</span> <a href="/">Jorge Bruned</a>
+                        {% if post.tag %} <span data-string="in">en</span> <a href="/blog#{{ post.tag.url }}">{{ post.tag.name }}</a>{% endif %}
+                        {% if post.date %} <span data-string="on">el</span> {{ post.date }}{% endif %}
                     </h2>
                     <div class="post-content">
                         {{ post.content }}
                     </div>
                     <hr class="darker no-print">
                     <p class="text-center pt-3 d-flex align-middle justify-content-center mb-0 no-print">
-                        <a class="btn-link micolor d-inline-block bigger" href="/"><i class="icon-user-outline"></i>About the author</a>
+                        <a class="btn-link micolor d-inline-block bigger" href="/"><i class="icon-user-outline"></i><span data-string="about_the_author">Sobre el autor</span></a>
                         <i class="vertical-separator"></i>
-                        <a class="btn-link micolor d-inline-block bigger" href="/blog"><i class="icon-blog"></i>More blog posts</a>
+                        <a class="btn-link micolor d-inline-block bigger" href="/blog"><i class="icon-blog"></i><span data-string="more_blog_posts">Ver más posts</span></a>
                     </p>
                 </div>
             </section>

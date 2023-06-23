@@ -117,7 +117,7 @@
                     <div class="grid-item grid-item-small {{ post.tag.id if post.tag else '' }}">
                         <div class="grid-box">
                             <figure class="portfolio-figure">
-                                <img src="{{ post.image|d('/assets/img/bg.jpg') }}" alt="{{ post.title }}">
+                                <img src="{{ post.thumbnail|d('/assets/img/bg.jpg') }}" alt="{{ post.title }}">
                                     <figcaption class="portfolio-caption">
                                         <a class="portfolio-caption-inner" href="/blog/{{ post.url }}">
                                             <h3 class="portfolio-title">{{ post.title }}</h3>

@@ -36,7 +36,7 @@ def extract_metadata(content: str) -> Tuple[dict, str]:
     if "thumbnail" not in metadata:
         images = find_image_urls(content)
         if len(images) > 0:
-            metadata["image"] = images[0]
+            metadata["thumbnail"] = images[0]
         
     # Filter empty lines at the beginning or the end
     while content.startswith("\n") or content.startswith(" "):
@@ -59,6 +59,10 @@ def parse_content(content: str) -> str:
         for i in range(6, 0, -1):
             content = content.replace(f"<h{i}>", f"<h{i+1}>")
             content = content.replace(f"</h{i}>", f"</h{i+1}>")
+    # Replace all iframes tags' src with data-lazy-src
+    content = re.sub(r'<iframe([^>]+)src=\\?"([^\\]+)\\?"([^>]+)>', r'<iframe\1data-lazy-src="\2"\3>', content)
+    # Replace all img tags' src with data-lazy-src
+    content = re.sub(r'<img([^>]+)src=\\?"([^\\]+)\\?"([^>]+)>', r'<img\1data-lazy-src="\2"\3>', content)
     return content
 
 def find_image_urls(content: str) -> list:

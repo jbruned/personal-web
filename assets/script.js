@@ -231,23 +231,37 @@ $(window).on("load", function() {
 
     // Add full-screen link to images in .post-content
     document.querySelectorAll('.post-content img').forEach(elem => {
+        // Lazy load image
+        if (elem.hasAttribute('data-lazy-src')) {
+            elem.src = elem.getAttribute('data-lazy-src');
+            elem.removeAttribute('data-lazy-src');
+        }
+        // Put image inside a link
         const a = document.createElement('a');
         a.classList.add('img-full-screen');
+        a.classList.add('media-container');
         a.href = elem.src;
         a.target = '_blank';
-        // Put image inside the link
         a.appendChild(elem.cloneNode(true));
         // Replace image with link
         elem.parentNode.replaceChild(a, elem);
     });
 
-    // Put iframes inside a div with class .iframe-container
+    // Put iframes inside a div with class .iframe-container inside a .media-container
     document.querySelectorAll('.post-content iframe').forEach(elem => {
+        // Lazy load iframe
+        if (elem.hasAttribute('data-lazy-src')) {
+            elem.src = elem.getAttribute('data-lazy-src');
+            elem.removeAttribute('data-lazy-src');
+        };
+        // Put iframe inside the necessary divs
         const div = document.createElement('div');
         div.classList.add('iframe-container');
-        // Put iframe inside the div
+        const div2 = document.createElement('div');
+        div2.classList.add('media-container');
         div.appendChild(elem.cloneNode(true));
+        div2.appendChild(div);
         // Replace iframe with div
-        elem.parentNode.replaceChild(div, elem);
+        elem.parentNode.replaceChild(div2, elem);
     });
 });

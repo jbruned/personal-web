@@ -151,6 +151,15 @@ const EN = {
     // BLOG
     blog_desc_1: "In this section you will find all kinds of content, ranging from status updates to personal projects, things I have found interesting, etc.",
     blog_desc_2: "I try to publish new content regularly, so stay tuned!",
-    curriculum_vitae: "Curriculum Vitae"
+    curriculum_vitae: "Curriculum Vitae",
+    by: "by",
+    on: "on",
+    in: "in",
+    blog_tag_all: "All",
+    blog_tag_updates: "Updates",
+    blog_tag_projects: "Projects",
+    blog_tag_interesting: "Interesting topics",
+    more_blog_posts: "More blog posts",
+    about_the_author: "About the author"
 };
 export { ES, EN };
