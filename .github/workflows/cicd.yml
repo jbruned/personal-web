@@ -8,12 +8,12 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: jorgebruned.com
-      url: https://jorgebruned.com
+      url: {{ vars.WEB_URL }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
-        run: cd deployment && pip install -r requirements.txt
+        run: cd deployment && source setup.sh --venv=false
       - name: Build site
         run: cd deployment && python build.py
       - name: Publish via FTP
