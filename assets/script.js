@@ -232,10 +232,10 @@ $(window).on("load", function() {
     // Add full-screen link to images in .post-content
     document.querySelectorAll('.post-content img').forEach(elem => {
         // Lazy load image
-        if (elem.hasAttribute('data-lazy-src')) {
+        /*if (elem.hasAttribute('data-lazy-src')) {
             elem.src = elem.getAttribute('data-lazy-src');
             elem.removeAttribute('data-lazy-src');
-        }
+        }*/
         // Put image inside a link
         const a = document.createElement('a');
         a.classList.add('img-full-screen');
@@ -250,10 +250,10 @@ $(window).on("load", function() {
     // Put iframes inside a div with class .iframe-container inside a .media-container
     document.querySelectorAll('.post-content iframe').forEach(elem => {
         // Lazy load iframe
-        if (elem.hasAttribute('data-lazy-src')) {
+        /*if (elem.hasAttribute('data-lazy-src')) {
             elem.src = elem.getAttribute('data-lazy-src');
             elem.removeAttribute('data-lazy-src');
-        };
+        };*/
         // Put iframe inside the necessary divs
         const div = document.createElement('div');
         div.classList.add('iframe-container');
@@ -263,5 +263,20 @@ $(window).on("load", function() {
         div2.appendChild(div);
         // Replace iframe with div
         elem.parentNode.replaceChild(div2, elem);
+    });
+
+    // Lazy load images
+    function hasParentWithClass(node, classname) {
+        if (node == null)
+            return false;
+        if (node.classList && node.classList.contains(classname))
+            return true;
+        return hasParentWithClass(node.parent, classname);
+    }
+    document.querySelectorAll('[data-lazy-src]').forEach(elem => {
+        if (!hasParentWithClass(elem, 'modal')) {
+            elem.src = elem.getAttribute('data-lazy-src');
+            elem.removeAttribute('data-lazy-src');
+        }
     });
 });
