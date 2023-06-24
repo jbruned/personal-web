@@ -1714,8 +1714,7 @@ body::-webkit-scrollbar-thumb:active {
 .iframe-container {
     position: relative;
     height: 0;
-    padding-bottom: 56.25%; /* 16:9 . 47.8% */
-    background: url('img/ajax-loader.gif') center center no-repeat;
+    padding-bottom: 56.25%; /* 16:9 */
 }
 .iframe-container iframe {
     position: absolute;
