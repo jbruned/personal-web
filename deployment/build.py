@@ -35,6 +35,9 @@ def extract_metadata(content: str) -> Tuple[dict, str]:
         metadata[key.strip().lower()] = value.strip()
     content = content.split("-->", maxsplit=1)[1].strip()
 
+    public = metadata["public"] if "public" in metadata else "true"
+    metadata["public"] = public.lower() in ["true", "yes", "1"]
+
     # Get the thumbnail from the first image, if any
     if "thumbnail" not in metadata:
         images = find_image_urls(content)
@@ -159,15 +162,18 @@ def build_blog_posts(template_path: str, content_path: str, output_path: str, as
     posts = []
     for filename in os.listdir(content_path):
         if not filename.endswith(".md"):
-            print(f"Skipping {filename} (not a Markdown file)")
+            print(f"> Skipping {filename} (not a Markdown file)")
             continue
         with open(os.path.join(content_path, filename), "r") as f:
             content = f.read()
         rendered, metadata = build_blog_post(template, content, asset_hashes)
-        posts.append(metadata)
-        with open(os.path.join(output_path, f"{metadata['url']}.html"), "w") as f:
-            f.write(rendered)
-        print(f"> Built {metadata['url']}")
+        if "public" not in metadata or metadata["public"]:
+            posts.append(metadata)
+            with open(os.path.join(output_path, f"{metadata['url']}.html"), "w") as f:
+                f.write(rendered)
+            print(f"> Built {metadata['url']}")
+        else:
+            print(f"> Skipped {metadata['url']} (set as not public)")
     return posts
 
 def parse_date(date: str) -> str:

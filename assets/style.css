@@ -1136,7 +1136,7 @@ header {
     width: 72px;
     height: 24px;
     vertical-align: middle;
-    background: url("img/ajax-loader.gif");
+    /*background: url("img/ajax-loader.gif");*/
 }
 .filter {
     text-align: center;
@@ -1415,6 +1415,8 @@ header {
     width: 100%;
     height: 0;
     padding-bottom: 56.25%;
+}
+.media-container, .grid-more .ajax-loader, .portfolio-figure {
     background: url('img/ajax-loader.gif') center center no-repeat;
 }
 .media-container iframe, .media-container img {
@@ -1422,6 +1424,9 @@ header {
     top: 0;
     left: 0;
     width: 100%;
+}
+.modal-content iframe {
+    height: 100%;
 }
 .section-txt-btn p:last-child,
 .section-text .section-box *:last-child {
