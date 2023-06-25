@@ -8,13 +8,13 @@
     <meta name="description" content="I am Jorge Bruned, a Computer Science student who is passionate about Artificial Intelligence and Software Development">
     <meta name="keywords" content="Jorge Bruned, Jorge Bruned Alamán, Pamplona, Huesca, Aragón, estudiante, ingeniería informática, informática, computer science, inglés, Universidad Pública de Navarra, UPNA, inteligencia artificial, IA, AI, ML, machine learning, data mining, aprendizaje automático, minería de datos, visión artificial, computer vision, desarrollo web, desarrollo Android, bases de datos, Spain, TU Delft, computer engineering, english, artificial intelligence, deep learning, data scientist, MLOps developer, DL, computer vision, desarrollo web, web development, Android development, desarrollo Android, bases de datos, databases">
     <meta name="author" content="Jorge Bruned">
-    <meta name="canonical" content="https://jorgebruned.com/blog">
-    <title>Blog | Jorge Bruned</title>
-    <link rel="shortcut icon" type="image/ico" href="/assets/img/jbruned_icon.png">
+    <meta name="canonical" content="https://jorgebruned.com/blog/{{ post.url }}">
+    <title>{{ post.title }} | Jorge Bruned</title>
+    <link rel="shortcut icon" type="image/ico" href="/assets/img/favicon.ico?{{ hashes.icon|default('') }}">
     <!-- CSS styles -->
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic,700,700italic,800,800italic">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="/assets/style.css">
+    <link rel="stylesheet" href="/assets/style.css?{{ hashes.style|default('') }}">
 </head>
 <body>
     <header id="top">
@@ -32,7 +32,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="#top">
+                            <a class="nav-link active" href="/blog">
                                 <i class="icon-blog"></i>
                                 <span data-string="blog">Blog</span>
                                 <div class="nav-under"></div>
@@ -60,84 +60,33 @@
         <div class="header-bg"></div>
     </header>
     <main>
-        <div class="container">
-            <section id="blog" class="animate-up">
-                <div class="section-box mb-5">
-                    <div class="p-5">
-                        <h1 class="profile-title text-dark" data-string="blog">Blog</h1>
-                        <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_1">En esta sección encontrarás todo tipo de contenido, desde actualizaciones de estado hasta proyectos personales, temas que me han resultado interesantes, etc.</p>
-                        <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_2">Intento publicar nuevo contenido con regularidad, ¡así que nos vemos por aquí!</p>
+        <div class="container wide">
+            <section id="post" class="animate-up">
+                <!-- Breadcrumb
+                <ol class="breadcrumb text-small mb-2" style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='gray'/%3E%3C/svg%3E&#34;);">
+                    <li class="breadcrumb-item text-white"><a href="/">Jorge Bruned</a></li>
+                    <li class="breadcrumb-item text-white"><a href="/blog">Blog</a></li>
+                    <li class="breadcrumb-item active text-white" aria-current="page">Post title</li>
+                </ol> -->
+                <div class="section-box p-5">
+                    <h1>{{ post.title }}<h1>
+                    <h2>
+                        <span data-string="by">por</span> <a href="/">Jorge Bruned</a>
+                        {% if post.tag %} <span data-string="in">en</span> <a href="/blog#{{ post.tag.url }}">{{ post.tag.name }}</a>{% endif %}
+                        {% if post.date %} <span data-string="on">el</span> {{ post.date }}{% endif %}
+                    </h2>
+                    <div class="post-content">
+                        {{ post.content }}
                     </div>
-                    <!--<div class="card-footer pb-1 no-print" id="links">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <a class="btn-link micolor" href="/blog" data-string="more_info">
-                                    Ir a mi blog
-                                    <i class="icon-blog"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <a class="btn-link micolor bigger" href="#links" data-string="more_info">
-                                    Continuar viendo mi CV
-                                    <i class="icon-down"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <a class="btn-link micolor" href="https://github.com/jbruned/personal-web" data-string="more_info" target="_blank">
-                                    Ver esta página en GitHub
-                                    <i class="icon-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>-->
-                    <!-- Create a div aligned with the bottom border and in the center -->
-                    <!--<a class="btn icon-btn section-btn mibg no-print" href="#btn-scroll" id="btn-scroll">
-                        <i class="icon-down"></i>
-                    </a>-->
-                    {% if tags|length > 1 %}
-                    <div class="filter">
-                        <div class="filter-inner">
-                            <div class="filter-btn-group">
-                                <button class="portfolio-filter" data-filter="*" data-string="blog_tag_all">Todo</button>
-                                {% for tag in tags %}
-                                <button class="portfolio-filter" data-filter=".{{ tag.id }}" data-string="blog_tag_{{ tag.id }}">{{ tag.name }}</button>
-                                {% endfor %}
-                            </div>
-                            <div class="filter-bar">
-                                <span id="portfolio-tag-indicator" class="filter-bar-line"></span>
-                            </div>
-                        </div>
-                    </div>
-                    {% endif %}
-                </div>
-                <!--<h1 class="section-title display-1">Blog</h1>-->
-                <div class="grid">
-                    <!--<div class="grid-sizer"></div>-->
-                    {% for post in posts %}
-                    <div class="grid-item grid-item-small {{ post.tag.id if post.tag else '' }}">
-                        <div class="grid-box">
-                            <figure class="portfolio-figure">
-                                <img src="{{ post.thumbnail|d('/assets/img/bg.jpg') }}" alt="{{ post.title }}">
-                                    <figcaption class="portfolio-caption">
-                                        <a class="portfolio-caption-inner" href="/blog/{{ post.url }}">
-                                            <h3 class="portfolio-title">{{ post.title }}</h3>
-                                            {% if post.tag %}
-                                            <hr>
-                                            <h4 class="portfolio-cat mb-0">{{ post.tag.name }}</h4>
-                                            {% endif %}
-                                            <!--<p class="text-center mb-2">
-                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-0"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
-                                            </p>-->
-                                        </a>
-                                    </figcaption>
-                                </a>
-                            </figure>
-                        </div>
-                    </div>
-                    {% endfor %}
+                    <hr class="darker no-print">
+                    <p class="text-center pt-3 d-flex align-middle justify-content-center mb-0 no-print">
+                        <a class="btn-link micolor d-inline-block bigger" href="/"><i class="icon-user-outline"></i><span data-string="about_the_author">Sobre el autor</span></a>
+                        <i class="vertical-separator"></i>
+                        <a class="btn-link micolor d-inline-block bigger" href="/blog"><i class="icon-blog"></i><span data-string="more_blog_posts">Ver más posts</span></a>
+                    </p>
                 </div>
             </section>
-
+            
             <!-- CONTACTO -->
             <section id="contact" class="animate-down">
                 <h2 class="section-title" data-string="contact_me">¡Contáctame!</h2>
@@ -151,9 +100,7 @@
                 </div>
             </section>
         </div>
-
         <a class="btn hidden-right mibg icon-btn" href="#top" id="btn-scroll-top"><i class="icon-up"></i></a>
-
     </main>
 
 </body>
@@ -161,5 +108,5 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha256-fh8VA992XMpeCZiRuU4xii75UIG6KvHrbUF8yIS/2/4=" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/isotope-layout@3.0.6/dist/isotope.pkgd.min.js"></script>
-<script src="/assets/script.js" type="module"></script>
+<script src="/assets/script.js?{{ hashes.script|default('') }}" type="module"></script>
 </html>

@@ -37,7 +37,7 @@ def publish(
     assert host is not None, "No host provided"
     public_key = public_key.strip() if public_key is not None else ""
     cnopts = pysftp.CnOpts()
-    for should_be_ignored in ['posts', 'deployment', '.gitignore', '.git', 'README.md']:
+    for should_be_ignored in ['posts', 'deployment', '.gitignore', '.git', 'README.md', 'templates', '.github']:
         if should_be_ignored not in ignore:
             ignore.append(should_be_ignored)
     if public_key != "":
