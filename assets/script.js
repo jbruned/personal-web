@@ -229,6 +229,21 @@ $(window).on("load", function() {
         reveal_email();
     };
 
+    // Lazy load images
+    function hasParentWithClass(node, classname) {
+        if (node == null)
+            return false;
+        if (node.classList && node.classList.contains(classname))
+            return true;
+        return hasParentWithClass(node.parent, classname);
+    }
+    document.querySelectorAll('[data-lazy-src]').forEach(elem => {
+        if (!hasParentWithClass(elem, 'modal')) {
+            elem.src = elem.getAttribute('data-lazy-src');
+            elem.removeAttribute('data-lazy-src');
+        }
+    });
+
     // Add full-screen link to images in .post-content
     document.querySelectorAll('.post-content img').forEach(elem => {
         // Lazy load image
@@ -263,20 +278,5 @@ $(window).on("load", function() {
         div2.appendChild(div);
         // Replace iframe with div
         elem.parentNode.replaceChild(div2, elem);
-    });
-
-    // Lazy load images
-    function hasParentWithClass(node, classname) {
-        if (node == null)
-            return false;
-        if (node.classList && node.classList.contains(classname))
-            return true;
-        return hasParentWithClass(node.parent, classname);
-    }
-    document.querySelectorAll('[data-lazy-src]').forEach(elem => {
-        if (!hasParentWithClass(elem, 'modal')) {
-            elem.src = elem.getAttribute('data-lazy-src');
-            elem.removeAttribute('data-lazy-src');
-        }
     });
 });
