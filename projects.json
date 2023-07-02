@@ -1,0 +1,132 @@
+[
+    {
+        "id": "tfg_al",
+        "cat_id": "ia",
+        "media": "https://www.youtube-nocookie.com/embed/D7Q-SgApXpY",
+        "thumbnail": "/assets/portfolio/tfg-plot.jpg",
+        "strings": {
+            "ES": {
+                "title": "Investigación sobre Active Learning",
+                "category": "Machine Learning",
+                "html": "<p>En mi Trabajo de Fin de Grado, titulado <q>A review of Active Learning methods for classification problems</q>, tuve la oportunidad de investigar el estado del arte de <i>Active Learning</i>.</p><p>Active Learning es un conjunto de técnicas de Machine Learning últiles en situaciones donde no se dispone de suficientes datos etiquetados, cuyo objetivo es optimizar el proceso de obtención de nuevas etiquetas.</p>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Research on Active Learning",
+                "category": "Machine Learning",
+                "html": "<p>In my Bachelor's Thesis, under the title <q>A review of Active Learning methods for classification problems</q>, I had the opportunity of researching on the state of the art of <i>Active Learning</i>.</p><p>Active Learning is a Machine Learning technique suitable for scenarios where there isn't enough labelled data, which aims to optimize the labelling process.</p>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "Python",
+            "SciKit-Learn",
+            "pyTorch",
+            "MatPlotLib",
+            "NumPy",
+            "Pandas",
+            "LaTeX"
+        ],
+        "url": "https://www.youtube.com/watch?v=D7Q-SgApXpY"
+    },
+    {
+        "id": "msc_cv_nlp",
+        "cat_id": "ia",
+        "media": "/assets/portfolio/cv-hd.jpeg",
+        "strings": {
+            "ES": {
+                "title": "Visión Artificial y Procesamiento del Lenguaje Natural",
+                "category": "Deep Learning",
+                "html": "<p>Como parte del Máster en Ingeniería Informática, he podido realizar proyectos de <i>Computer Vision</i> y <i>Natural Language Processing</i> de forma grupal.<p><ul><li><b>Clasificador de imágenes</b> de frutas utilizando redes como <i>ResNet</i> o <i>VGG</i>, además de calcular mapas de atención, mapas de activación, etc.</li><li>Aplicación de mejoras sobre un traductor de inglés a francés utilizando <b>redes recurrentes <i>seq2seq</i></b>, obtención de métricas mediante <i>BLEU score</i>, <i>ROUGE score</i>...</li></ul>"
+            },
+            "EN": {
+                "title": "Computer Vision and Natural Language Processing",
+                "category": "Deep Learning",
+                "html": "<p>As part of the Master's Degree in Computer Engineering, I have been able to work on group projects related to <i>Computer Vision</i> and <i>Natural Language Processing</i>.<p><ul><li>Fruit <b>image classifier</b> using networks such as <i>ResNet</i> or <i>VGG</i>, as well as computing attention maps, activation maps, etc.</li><li>Improvements on an English to French translator using <b><i>seq2seq</i> recurrent networks</b>, obtaining metrics using <i>BLEU score</i>, <i>ROUGE score</i>...</li></ul>"
+            }
+        },
+        "technologies": [
+            "Python",
+            "pyTorch",
+            "MatPlotLib",
+            "NumPy"
+        ],
+        "url": null
+    },
+    {
+        "id": "web_app_store",
+        "cat_id": "software",
+        "media": "https://www.youtube-nocookie.com/embed/Kt-AMsBFXaA",
+        "thumbnail": "/assets/portfolio/web-tienda-bruned.jpg",
+        "strings": {
+            "ES": {
+                "title": "Desarrollo y mantenimiento de aplicación web a medida para PYME",
+                "title_long": "Desarrollo y mantenimiento de tienda online a medida para productos de alimentación",
+                "category": "Desarrollo web",
+                "html": "<p>Este proyecto consistió en el desarrollo desde cero de una página web a medida para reparto a domicilio de productos de alimentación.</p><p>Entre otras características, destacan la interconexión con el software de gestión utilizado por la empresa, actualización automática de precios, diseño \"responsive\" de modo que la página sea totalmente funcional en prácticamente cualquier dispositivo, desarrollo de una app para Android, implementación de servicio de notificaciones por correo electrónico y notificaciones push en los dispositivos, posicionamiento SEO, etc.</p>",
+                "btn_text": "Acceder a la web"
+            },
+            "EN": {
+                "title": "Development and maintenance of a custom web app for an SME",
+                "title_long": "Development and maintenance of a custom online store for food products",
+                "category": "Web development",
+                "html": "<p>This is a project for an SME which involved developing a custom web app for food delivery from scratch.</p><p>Among other features, some stand out, such as the interconnection with the management software used by the company, automatic price updates, responsive design so that the page is fully functional in any device, development of an Android app, implementation of email notifications and push notifications on the devices, SEO positioning, etc.</p>",
+                "btn_text": "Enter website"
+            }
+        },
+        "technologies": [
+            "PHP",
+            "MySQL",
+            "HTML",
+            "CSS",
+            "Bootstrap",
+            "JavaScript",
+            "jQuery",
+            "Android",
+            "CURL",
+            "Firebase"
+        ],
+        "url": "https://www.frutasbruned.es/pedidos"
+    },
+    {
+        "id": "lan",
+        "cat_id": "infr",
+        "media": "/assets/portfolio/rack-lan_hd.jpg",
+        "thumbnail": "/assets/portfolio/rack-lan.jpg",
+        "strings": {
+            "ES": {
+                "title": "Instalación de red local en naves industriales",
+                "category": "Hardware y redes",
+                "html": "<p>Proyecto consistente en desplegar a lo largo de varias naves industriales una red local a 1 Gbps con armario rack, cableado Cat6 y alrededor de 20 dispositivos conectados.</p><p>Destacan el despliegue de redes WiFi (tanto red privada como red pública sin acceso a la red local, ambas con tecnología dual band), instalación de puntos de acceso, conexión mediante fibra óptica a 500Mbps, etc.</p><p>También configuré un servidor DHCP con direcciones estáticas para los dispositivos fijos, manteniendo la configuración de los servidores de impresión e instalé un servidor de archivos NAS con RAID 1 para aumentar la seguridad de los datos gracias a la redundancia.</p>"
+            },
+            "EN": {
+                "title": "Deployment of Local Area Network over various warehouses",
+                "category": "Hardware & Networks",
+                "html": "<p>This project consisted in deploying a Local Area Network (LAN) at 1 Gbps over several warehouses. The installation included a Rack Cabinet, Cat6 wiring and more than 20 wired devices.</p><p>I also set up WiFi networks (both a public guest network and a secure private, using Dual Band) using several Access Points and optical fiber Internet access.</p><p>The network configuration included as well a DHCP server (with static addresses for permanent hosts), a print server, a NAS file server with redundancy, etc.</p>"
+            }
+        },
+        "technologies": "TODO"
+    },
+    {
+        "id": "web_fb",
+        "cat_id": "web",
+        "media": "/assets/portfolio/web-homepage_hd.jpg",
+        "thumbnail": "/assets/portfolio/web-homepage.jpg",
+        "strings": {
+            "ES": {
+                "title": "Creación, posicionamiento y mantenimiento de web y servidor de correo para PYME",
+                "category": "Desarrollo web",
+                "html": "<p>Creación y mantenimiento de una página web para una PYME basada en HTML, CSS (con Bootstrap) y JavaScript (con jQuery). Uso de PHP en el backend para proporcionar contenido dinámico y datos actualizados y para la zona de clientes.</p><p>Este proyecto destaca por el posicionamiento SEO en buscadores (la página alcanzó el primer puesto en Google en apenas unas semanas), la creación de un servidor de correo con dominio propio, uso de certificado SSL para conexiones seguras mediante HTTPS...</p><p>Así mismo, mejoré la presencia de la empresa en Internet mediante el completado de las diferentes tiendas en Google Maps, técnicas SEO (tanto SEO técnico como on-page y off-page), etc.</p>",
+                "btn_text": "Acceder a la web"
+            },
+            "EN": {
+                "title": "Creation, SEO and maintenance of web and mail servers for an SME",
+                "category": "Web development",
+                "html": "<p>Initial configuration and also maitenance of a webpage for a SME, using HTML, CSS (with Bootstrap), JavaScript (with jQuery) and PHP in the backend so as to serve dynamic content, update data and a client zone.</p><p>Some highlits include SEO positioning (the page reached the 1st Google spot in just a few weeks), a mail server with custom domain, SSL certificate for secure connections...</p><p>The business' online presence improved dramatically thanks to the addition of the different stores in Google Maps and Search Engine Optimization techiques (techical SEO, SEO on-page, SEO off-page), etc.</p>",
+                "btn_text": "Enter website"
+            }
+        },
+        "technologies": "TODO",
+        "url": "https://www.frutasbruned.es/"
+    }
+]

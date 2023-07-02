@@ -1,4 +1,5 @@
 from hashlib import md5
+import json
 import os
 import re
 from sys import argv
@@ -6,19 +7,19 @@ from typing import Tuple
 from jinja2 import Template
 from markdown import markdown
 
-def build_blog_post(template: str, content: str, asset_hashes: dict):
+def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
     Build a blog post from a template and content
     - template: post template (in HTML with Jinja2)
     - content: content of the blog post (in Markdown)
-    - asset_hashes: dictionary of hashes for the assets
+    - asset_hashes: callable to compute the function to compute the dictionary of hashes for the assets
     """
     # Get the metadata from the markdown comment
     metadata, content = extract_metadata(content)
     metadata = process_metadata(metadata)
     metadata["content"] = parse_content(content)
     # Return the rendered template
-    return Template(template).render(post=metadata, hashes=asset_hashes), metadata
+    return Template(template).render(post=metadata, hashes=asset_hashes()), metadata
 
 def extract_metadata(content: str) -> Tuple[dict, str]:
     """
@@ -142,13 +143,13 @@ def process_tag(tag: str) -> dict:
         "url": urlify(tag)
     }
 
-def build_blog_posts(template_path: str, content_path: str, output_path: str, asset_hashes: dict):
+def build_blog_posts(template_path: str, content_path: str, output_path: str, asset_hashes: callable):
     """
     Build all blog posts from a template and content
     - template: path to the template (HTML with Jinja2)
     - content: path to the Markdown files
     - output_path: route to the build folder
-    - asset_hashes: dictionary of hashes for the assets
+    - asset_hashes: callable to compute the dictionary of hashes for the assets
     """
     if not os.path.exists(content_path) or not os.path.isdir(content_path):
         print("The content path doesn't exist or isn't a directory")
@@ -184,14 +185,14 @@ def parse_date(date: str) -> str:
         date = date.replace(i, "")
     return sum([int(x) * 10 ** i for i, x in enumerate(reversed(date))])
 
-def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_file: str, asset_hashes: dict):
+def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_file: str, asset_hashes: callable):
     """
     Build the blog index from a template and content
     - template: path to the template (HTML with Jinja2)
     - posts: list of posts (as returned by build_blog_posts)
     - index_file: path to the output index file
     - sitemap_file: path to the output sitemap file
-    - asset_hashes: dictionary of hashes for the assets
+    - asset_hashes: callable to compute the dictionary of hashes for the assets
     """
     if not os.path.exists(template_path) or not os.path.isfile(template_path):
         print("The template path doesn't exist or isn't a file")
@@ -214,25 +215,91 @@ def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_f
         f.write(Template(template).render(
             posts=sorted(posts, key=lambda p: parse_date(p["date"]), reverse=True),
             tags=list(tags.values()),
-            hashes=asset_hashes
+            hashes=asset_hashes()
         ))
     print(f"> Built index")
     # Build the sitemap
     pass
 
-def build_index(template: str, index_file: str, asset_hashes: dict):
+DEFAULT_LANG = "es" # Lowercase!
+
+def process_project(project: dict) -> dict:
+    """
+    Process a project's metadata
+    """
+    if "id" not in project:
+        print("> Skipping project (no ID)")
+        return None
+    for required_attr in ["cat_id", "media", "strings"]:
+        if required_attr not in project or project[required_attr] is None:
+            print(f"> Skipping project {project['id']} (no {required_attr})")
+            return None
+    if "thumbnail" not in project:
+        if "youtube" in project["media"]:
+            project["thumbnail"] = get_youtube_thumbnail(project["media"])
+        else:
+            project["thumbnail"] = project["media"] # TODO: compress image
+    project["is_media_iframe"] = "youtube" in project["media"]
+    project["media"] = project["media"].replace("youtube.com/embed", "youtube-nocookie.com/embed")
+    langs = project["strings"].keys()
+    # Move the default language to the first position
+    if DEFAULT_LANG in langs:
+        langs = [DEFAULT_LANG] + [lang.lower() for lang in langs if lang != DEFAULT_LANG]
+    strings = {
+        key: {} for key in project["strings"]
+    }
+    for lang in langs:
+        for attr in ["title", "html", "category", "btn_text"]:
+            if attr in project["strings"][lang]:
+                string_id = project["id"] + "_" + attr
+                strings[lang][string_id] = project["strings"][lang][attr]
+                if lang == DEFAULT_LANG or attr not in project:
+                    project[attr] = {
+                        "string_id": string_id,
+                        "static_value": project["strings"][lang][attr]
+                    }
+    for required_attr in ["title", "html"]:
+        if required_attr not in project:
+            print(f"> Skipping project {project['id']} (no {required_attr} string in any language)")
+            return None
+    project["strings"] = strings
+    return project
+
+def build_index(template: str, index_file: str, asset_hashes: callable, projects_json: str, strings_template: str, strings_file: str):
     """
     Build the home page from a template
     - template: path to the template (HTML with Jinja2)
     - index_file: path to the output index file
-    - asset_hashes: dictionary of hashes
+    - asset_hashes: callable to compute the dictionary of hashes
+    - projects_json: path to the projects JSON file
+    - strings_template: path to the strings template (JS with Jinja2)
+    - strings_file: path to the output strings file
     """
     if not os.path.exists(template) or not os.path.isfile(template):
         print("The template path doesn't exist or isn't a file")
         return
+    if not os.path.exists(projects_json) or not os.path.isfile(projects_json):
+        print("The projects JSON path doesn't exist or isn't a file")
+        return
+    with open(projects_json, "r") as f:
+        projects = json.loads(f.read())
+    projects = [process_project(project) for project in projects]
+    # Remove empty projects
+    projects = [project for project in projects if project is not None]
+    string_translations = {}
+    for project in projects:
+        for lang in project["strings"]:
+            # Add the string translations to the global dictionary
+            if lang not in string_translations:
+                string_translations[lang] = {}
+            string_translations[lang].update(project["strings"][lang])
+        del project["strings"]
+    strings_template = open(strings_template, "r").read()
+    with open(strings_file, "w") as f:
+        f.write(Template(strings_template).render(strings=string_translations))
     template = open(template, "r").read()
     with open(index_file, "w") as f:
-        f.write(Template(template).render(hashes=asset_hashes))
+        f.write(Template(template).render(projects=projects, hashes=asset_hashes()))
     print(f"> Built index")
 
 def file_hash(file: str):
@@ -253,26 +320,34 @@ if __name__ == "__main__":
     POST_TEMPLATE = "post.html"
     BLOG_TEMPLATE = "blog.html"
     INDEX_TEMPLATE = "index.html"
+    STRINGS_TEMPLATE = "strings.js"
+    PROJECTS_JSON = "projects.json"
     # Local assets filenames and hashes
     asset_paths = {
         'icon': os.path.join(ASSETS_PATH, 'img', 'favicon.ico'),
         'style': os.path.join(ASSETS_PATH, 'style.css'),
-        'script': os.path.join(ASSETS_PATH, 'script.js')
+        'script': os.path.join(ASSETS_PATH, 'script.js'),
+        'script': os.path.join(ASSETS_PATH, 'strings.js')
     }
-    asset_hashes = {
-        name: file_hash(path)
-        for name, path in asset_paths.items()
-    }
+    def asset_hashes():
+        return {
+            name: file_hash(path)
+            for name, path in asset_paths.items()
+        }
     # Remote URLs
     BLOG_URL = "blog"
     SITEMAP_URL = "sitemap.xml"
     INDEX_URL = "index.html"
+    STRINGS_URL = os.path.join("assets", "strings.js")
     # Build
     print("Building index...")
     build_index(
         os.path.join(TEMPLATES_FOLDER, INDEX_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, INDEX_URL),
-        asset_hashes
+        asset_hashes,
+        os.path.join(BASE_PATH, PROJECTS_JSON),
+        os.path.join(TEMPLATES_FOLDER, STRINGS_TEMPLATE),
+        os.path.join(OUTPUT_FOLDER, STRINGS_URL)
     )
     print("Building blog posts...")
     posts = build_blog_posts(

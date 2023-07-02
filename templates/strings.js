@@ -1,5 +1,14 @@
+const extra_strings = {
+    {% for lang, translations in strings.items() %}
+        {{ lang|lower }}: {
+            {% for key, value in translations.items() %}
+                {{ key }}: {{ value|tojson }},
+            {% endfor %}
+        },
+    {% endfor %}
+}
 let ES = null; // Hardcoded in the HTML (TODO: use english as default)
-const EN = {
+const EN = Object.assign({}, extra_strings.en, {
 	description: 'I am Jorge Bruned, a Computer Science student who is passionate about Artificial Intelligence and Software Development',
     about_me: 'About me',
     education: 'Education',
@@ -161,5 +170,5 @@ const EN = {
     blog_tag_interesting: "Interesting topics",
     more_blog_posts: "More blog posts",
     about_the_author: "About the author"
-};
+});
 export { ES, EN };

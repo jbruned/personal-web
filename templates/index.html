@@ -386,115 +386,56 @@
                     </div>
 					<div class="grid">
                         <!--<div class="grid-sizer"></div>-->
-						<div class="grid-item grid-item-small ia">
+                        {% for project in projects %}
+                        <div class="grid-item grid-item-small {{ project.cat_id }}">
                             <div class="grid-box">
                                 <figure class="portfolio-figure">
-                                    <img src="/assets/portfolio/tfg-plot.jpg" alt="Gráfico mostrando un proceso de Active Learning">
+                                    <img src="{{ project.thumbnail }}" alt="{{ project.title.static_value }}">
                                     <figcaption class="portfolio-caption">
                                         <div class="portfolio-caption-inner">
-                                            <h3 class="portfolio-title" data-string="proj_0">Investigación sobre Active Learning</h3>
-                                            <h4 class="portfolio-cat">Machine Learning</h4>
+                                            <h3 class="portfolio-title" data-string="{{ project.title.string_id }}">{{ project.title.static_value }}</h3>
+                                            {% if project.category %}
+                                            <h4 class="portfolio-cat" data-string="{{ project.category.string_id }}">{{ project.category.static_value }}</h4>
+                                            {% endif %}
                                             <p class="text-center mb-2">
-                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-0"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
+                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-{{ project.id }}"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
                                             </p>
                                         </div>
                                     </figcaption>
                                 </figure>
                             </div>
                         </div>
-                        <div class="modal fade" id="portfolio-details-0" tabindex="-1" aria-labelledby="portfolio-details-0-title" aria-hidden="true">
+                        <div class="modal fade" id="portfolio-details-{{ project.id }}" tabindex="-1" aria-labelledby="portfolio-details-{{ project.id }}-title" aria-hidden="true">
                             <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <p class="modal-title" id="portfolio-details-0-title" data-string="proj_0">Investigación sobre Active Learning</p>
+                                        <p class="modal-title" id="portfolio-details-{{ project.id }}-title" data-string="{{ project.title.string_id }}">{{ project.title.static_value }}</p>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="media-container">
-                                        <iframe data-lazy-src="https://www.youtube.com/embed/D7Q-SgApXpY" title="Explicación de mi TFG de Active Learning en 3 minutos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>Cargando</iframe>
-                                        <!-- <img data-lazy-src="/assets/portfolio/tfg-plot_hd.jpg" alt="Gráfico mostrando un proceso de Active Learning"> -->
+                                        {% if project.is_media_iframe %}
+                                        <iframe data-lazy-src="{{ project.media }}" title="{{ project.title.static_value }}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>Cargando</iframe>
+                                        {% else %}
+                                        <img data-lazy-src="{{ project.media }}" alt="{{ project.title.static_value }}">
+                                        {% endif %}
                                     </div>
                                     <div class="modal-body">
-                                        <p><span data-string="proj_0_1_1">En mi Trabajo de Fin de Grado, titulado</span> <q>A review of Active Learning methods for classification problems</q>, <span data-string="proj_0_1_2">investigué sobre el estado del arte de</span> <i>Active Learning</i>.</p>
-                                        <p data-string="proj_0_2">Active Learning es una técnica aplicable a Machine Learning en situaciones donde no se dispone de suficientes datos etiquetados, cuyo objetivo es optimizar el proceso de obtención de etiquetas.</p>
-                                        <p><b data-string="used_technologies">Tecnologías utilizadas:</b><br>Python, SciKit-Learn, pyTorch, MatPlotLib, NumPy, Pandas, LaTeX...</p>
+                                        <div data-string="{{ project.html.string_id }}" class="html-content">
+                                            {{ project.html.static_value }}
+                                        </div>
+                                        {% if project.technologies and project.technologies|length > 0 %}
+                                        <p><b data-string="used_technologies">Tecnologías utilizadas:</b><br>{{ project.technologies|join(', ') }}</p>
+                                        {% endif %}
                                     </div>
+                                    {% if project.url %}
                                     <div class="modal-footer">
-                                        <a href="https://www.youtube.com/watch?v=D7Q-SgApXpY" rel="noreferrer" target="_blank" class="btn btn-upper mibg text-white"><i class="me-1 icon-web"></i>Ver en YouTube</a>
+                                        <a href="{{ project.url }}" rel="noreferrer" target="_blank" class="btn btn-upper mibg text-white"><i class="me-1 icon-web"></i><span data-string="{{ project.btn_text.string_id }}">{{ project.btn_text.static_value }}</span></a>
                                     </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
-                        <div class="grid-item grid-item-small web">
-                            <div class="grid-box">
-                                <figure class="portfolio-figure">
-                                    <img src="/assets/portfolio/web-tienda-bruned.jpg" alt="Tienda Online de Frutas Bruned">
-                                    <figcaption class="portfolio-caption">
-                                        <div class="portfolio-caption-inner">
-                                            <h3 class="portfolio-title" data-string="proj_1">Desarrollo y mantenimiento de tienda online a medida para productos de alimentación</h3>
-                                            <h4 class="portfolio-cat" data-string="web_dev">Desarrollo web</h4>
-                                            <p class="text-center mb-2">
-                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-1"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
-                                            </p>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="portfolio-details-1" tabindex="-1" aria-labelledby="portfolio-details-1-title" aria-hidden="true">
-                            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <p class="modal-title" id="portfolio-details-1-title" data-string="proj_1">Desarrollo y mantenimiento de tienda online a medida para productos de alimentación</p>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="media-container">
-                                        <img data-lazy-src="/assets/portfolio/web-tienda-bruned_hd.jpg" alt="Tienda online de Frutas Bruned">
-                                    </div>
-                                    <div class="modal-body">
-                                        <p data-string="proj_1_1">Este proyecto consistió en el desarrollo desde cero de una página web a medida para reparto a domicilio de productos de alimentación.</p>
-                                        <p data-string="proj_1_2">Entre otras características, destacan la interconexión con el software de gestión utilizado por la empresa, actualización automática de precios, diseño "responsive" de modo que la página sea totalmente funcional en prácticamente cualquier dispositivo, desarrollo de una app para Android, implementación de servicio de notificaciones por correo electrónico y notificaciones push en los dispositivos, posicionamiento SEO, etc.</p>
-                                        <p><b data-string="used_technologies">Tecnologías utilizadas:</b><br>PHP, CURL, JSON, MySQL (backend); HTML, CSS, Bootstrap, JavaScript, jQuery, AJAX (frontend).</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <a href="https://www.frutasbruned.es/pedidos" rel="noreferrer" target="_blank" class="btn btn-upper mibg text-white"><i class="me-1 icon-web"></i><span data-string="access_web">Acceder a la web</span></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="grid-item grid-item-small infr">
-                            <div class="grid-box">
-                                <figure class="portfolio-figure">
-                                    <img src="/assets/portfolio/rack-lan.jpg" alt="Armario rack de la red local de una PYME">
-                                    <figcaption class="portfolio-caption">
-                                        <div class="portfolio-caption-inner">
-                                            <h3 class="portfolio-title" data-string="proj_2">Instalación de red local en nave industrial</h3>
-                                            <h4 class="portfolio-cat" data-string="tag_hw">Hardware y redes</h4>
-                                            <p class="text-center mb-2">
-                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-2"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
-                                            </p>
-                                        </div>
-                                    </figcaption>
-                                </figure>
-                            </div>
-                        </div>
-                        <div class="modal fade" id="portfolio-details-2" tabindex="-1" aria-labelledby="portfolio-details-2-title" aria-hidden="true">
-                            <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <p class="modal-title" id="portfolio-details-2-title" data-string="proj_2">Instalación de red local en nave industrial</p>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="media-container">
-                                        <img data-lazy-src="/assets/portfolio/rack-lan_hd.jpg" alt="Armario RACK de red local LAN">
-                                    </div>
-                                    <div class="modal-body">
-                                        <p data-string="proj_2_1">Proyecto consistente en desplegar a lo largo de varias naves industriales una red local a 1 Gbps con armario rack, cableado Cat6 y alrededor de 20 dispositivos conectados.</p>
-                                        <p data-string="proj_2_2">Destacan el despliegue de redes WiFi (tanto red privada como red pública sin acceso a la red local, ambas con tecnología dual band), instalación de puntos de acceso, conexión mediante fibra óptica a 500Mbps, etc.</p>
-                                        <p data-string="proj_2_3">También configuré un servidor DHCP con direcciones estáticas para los dispositivos fijos, manteniendo la configuración de los servidores de impresión e instalé un servidor de archivos NAS con RAID 1 para aumentar la seguridad de los datos gracias a la redundancia.</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        {% endfor %}
                         <div class="grid-item grid-item-small web">
                             <div class="grid-box">
                                 <figure class="portfolio-figure">
