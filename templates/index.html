@@ -375,9 +375,9 @@
                         <div class="filter-inner">
                             <div class="filter-btn-group">
                                 <button class="portfolio-filter" data-filter="*" data-string="tag_all">Todos</button>
-                                <button class="portfolio-filter" data-filter=".web" data-string="tag_soft">Desarrollo de software</button>
+                                <button class="portfolio-filter" data-filter=".sw" data-string="tag_soft">Desarrollo de software</button>
                                 <button class="portfolio-filter" data-filter=".ia" data-string="tag_ai">Inteligencia artificial</button>
-                                <button class="portfolio-filter" data-filter=".infr" data-string="tag_hw">Hardware y redes</button>
+                                <button class="portfolio-filter" data-filter=".hw" data-string="tag_hw">Hardware y redes</button>
                             </div>
                             <div class="filter-bar">
                                 <span id="portfolio-tag-indicator" class="filter-bar-line"></span>
@@ -390,7 +390,7 @@
                         <div class="grid-item grid-item-small {{ project.cat_id }}">
                             <div class="grid-box">
                                 <figure class="portfolio-figure">
-                                    <img src="{{ project.thumbnail }}" alt="{{ project.title.static_value }}">
+                                    <img data-lazy-src="{{ project.thumbnail }}" alt="{{ project.title.static_value }}">
                                     <figcaption class="portfolio-caption">
                                         <div class="portfolio-caption-inner">
                                             <h3 class="portfolio-title" data-string="{{ project.title.string_id }}">{{ project.title.static_value }}</h3>

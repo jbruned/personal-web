@@ -93,7 +93,7 @@
     },
     {
         "id": "lan",
-        "cat_id": "infr",
+        "cat_id": "hw",
         "media": "/assets/portfolio/rack-lan_hd.jpg",
         "thumbnail": "/assets/portfolio/rack-lan.jpg",
         "strings": {
@@ -122,7 +122,7 @@
     },
     {
         "id": "web_fb",
-        "cat_id": "web",
+        "cat_id": "sw",
         "media": "/assets/portfolio/web-homepage_hd.jpg",
         "thumbnail": "/assets/portfolio/web-homepage.jpg",
         "strings": {
@@ -156,7 +156,7 @@
     },
     {
         "id": "cctv",
-        "cat_id": "infr",
+        "cat_id": "hw",
         "media": "/assets/portfolio/camaras-cctv_hd.jpg",
         "thumbnail": "/assets/portfolio/camaras-cctv.jpg",
         "strings": {
@@ -202,7 +202,7 @@
     },                  
     {
         "id": "android_app_fittastic",
-        "cat_id": "web",
+        "cat_id": "sw",
         "media": "https://www.youtube.com/embed/OptetubquGg",
         "thumbnail": "/assets/portfolio/android-app-fittastic.jpg",
         "strings": {
@@ -233,7 +233,7 @@
     },
     {
         "id": "web_recetas",
-        "cat_id": "web",
+        "cat_id": "sw",
         "media": "https://www.youtube.com/embed/xlK8Y2LqGzA",
         "thumbnail": "/assets/portfolio/web-recetas.jpg",
         "strings": {
@@ -267,7 +267,7 @@
     },
     {
         "id": "arduino",
-        "cat_id": "infr",
+        "cat_id": "hw",
         "media": "https://www.youtube.com/embed/wDHCzSO8o-E",
         "thumbnail": "/assets/portfolio/arduino.jpg",
         "strings": {
