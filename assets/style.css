@@ -1,5 +1,5 @@
 /*
- * Import custom icon font & print stylesheet
+ * Custom icon font & print stylesheet
  */
 @import "fonts/jbruned-icons.css";
 @import "print.css" print;
@@ -50,8 +50,6 @@ section h2 {
     text-align: center;
 }
 #blog h1 {
-    /*color: white;
-    font-weight: 500;*/
     font-size: 40px;
     text-align: center;
 }
@@ -84,7 +82,7 @@ p, .modal-title, .modal-body {
     line-height: 1.2;
     color: #3d4451;
 }
-.modal-body p {
+.modal-body p, .modal-body .html-content {
     margin-bottom: 12px;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -142,9 +140,6 @@ small {
 big {
     font-size: 125%;
 }
-/*.timeline a:hover {
-    color: currentColor !important;
-}*/
 
 /*
  * General elements
@@ -314,12 +309,6 @@ textarea {
 .navbar-top i, .navbar-top .top-only {
     display: inline-block !important;
 }
-/* .navbar i, .navbar .top-only {
-    display: none;
-}
-.navbar-top .scrolling-only {
-    display: none !important;
-} */
 .navbar .scrolling-only {
     display: inline-block;
 }
@@ -488,32 +477,6 @@ textarea {
     font-weight: 600 !important;
     white-space: nowrap;
 }
-/*.ripple {
-    overflow: hidden;
-    position: relative;
-    user-select: none;
-    display: inline-block;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-transform: translate3d(0, 0, 0);
-    -moz-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-}
-.ripple-effect {
-    margin: 0;
-    padding: 0;
-    position: absolute;
-    user-select: none;
-    pointer-events: none;
-    background-color: rgba(0, 0, 0, 0.15);
-    -webkit-transform: translate3d(-50%, -50%, 0);
-    -moz-transform: translate3d(-50%, -50%, 0);
-    transform: translate3d(-50%, -50%, 0);
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
-}*/
 
 /*
  * Scroll Animations
@@ -656,7 +619,6 @@ header {
 .header-bg {
     height: 100%;
     width: 100%;
-    /* background from url fill entire width */
     background: url('img/bg.jpg');
     background-size: cover;
     background-position: top;
@@ -738,7 +700,6 @@ header {
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
-    /*color: #9da0a7;*/
 }
 #about ul>li a {
     color: inherit;
@@ -802,7 +763,6 @@ header {
     content: '\e819';
     margin: -5px 5px 0 -35px;
     display: inline;
-    /*color: #f00;*/
 }
 .timeline {
     position: relative;
@@ -987,7 +947,9 @@ header {
     }
 }
 
-/* Skills Section */
+/*
+ * Skills Section
+ */
 #skills .section-box {
     padding-bottom: 60px;
 }
@@ -1063,7 +1025,7 @@ header {
 }
 
 /*
- * Portfolio Section
+ * Portfolio Section & Grid Layout
  */
 .grid:before, .grid:after {
     content: " ";
@@ -1136,7 +1098,6 @@ header {
     width: 72px;
     height: 24px;
     vertical-align: middle;
-    /*background: url("img/ajax-loader.gif");*/
 }
 .filter {
     text-align: center;
@@ -1415,15 +1376,23 @@ header {
     width: 100%;
     height: 0;
     padding-bottom: 56.25%;
+    overflow: hidden;
 }
 .media-container, .grid-more .ajax-loader, .portfolio-figure {
     background: url('img/ajax-loader.gif') center center no-repeat;
 }
-.media-container iframe, .media-container img {
+.media-container iframe {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+}
+.media-container img {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 .modal-content iframe {
     height: 100%;
@@ -1431,9 +1400,11 @@ header {
 .section-txt-btn p:last-child,
 .section-text .section-box *:last-child {
     margin-bottom: 0; }
+.justified {
+    text-align: justify; }
 
 /*
- * Colors
+ * Colors 
  */
 a,
 blockquote:before,
@@ -1629,9 +1600,11 @@ body::-webkit-scrollbar-thumb:active {
 .lang-switch input.check-toggle-round-flat:checked + label:after {
   margin-left: 30px;
 }
-/* BLOG-SPECIFIC STYLES */
+
+/* 
+ * Blog page
+ */
 #blog .portfolio-filter {
-    /*color: #888888;*/
     color: #555;
     transition: color 0.3s ease-in-out 0.1s;
 }
@@ -1643,7 +1616,6 @@ body::-webkit-scrollbar-thumb:active {
     transition: color 0.3s ease-in-out 0.1s;
 }
 #blog .filter-bar {
-    /*background-color: #dadada;*/
     background-color: #f4f4f4;
 }
 #blog .filter {
@@ -1660,18 +1632,14 @@ body::-webkit-scrollbar-thumb:active {
 	width: 100%;
 	height: 40px;
     top: -17px;
-    /* height: 36px;
-    top: -15px; */
 	position: absolute;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
 }
 #blog .filter-bar, #blog .filter-bar .filter-bar-line {
-	/* border-radius: 18px; */
 	border-radius: 20px;
 }
 #blog .filter-btn-group button {
     padding: 0 16px;
-    /* padding: 0 14px; */
 }
 #blog .filter-btn-group button:not(:first-child) {
     margin: 0 0 0 -8px;
@@ -1739,7 +1707,10 @@ body::-webkit-scrollbar-thumb:active {
     background-color: #ff9901a6 !important;
     color: #fff !important;
 }
-/* CUSTOM SCROLLBAR */
+
+/*
+ * Custom scrollbar
+ */
 body::-webkit-scrollbar {
     width: 20px;
 }

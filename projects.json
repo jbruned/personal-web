@@ -1,0 +1,437 @@
+[
+    {
+        "show": false,
+        "id": "unique_project_id",
+        "cat_id": "sw/ia/hw",
+        "media": "img or youtube url",
+        "thumbnail": "img url (optional, otherwise media or youtube thumbnail wil be used)",
+        "strings": {
+            "ES": {
+                "title": "Título del proyecto",
+                "category": "Categoría (opcional)",
+                "html": "<p>Descripción del proyecto</p>",
+                "btn_text": "Texto del botón (opcional)"
+            },
+            "EN": {
+                "title": "Project title",
+                "category": "Category (optional)",
+                "html": "<p>Project description</p>",
+                "btn_text": "Button text (optional)"
+            }
+        },
+        "technologies": [
+            "Optional",
+            "List of technologies",
+            "..."
+        ],
+        "url": "Project url (optional)"
+    },
+    {
+        "id": "cv",
+        "cat_id": "sw",
+        "media": "/assets/portfolio/cv.jpeg",
+        "strings": {
+            "ES": {
+                "title": "Diseño de esta web personal",
+                "category": "Desarrollo web",
+                "html": "<p>Esta web no deja de ser un proyecto más, que he desarrollado desde cero utilizando HTML, CSS y JavaScript, además de librerías como <em>Bootstrap</em>.</p><p>Además de aplicar buenas prácticas, he automatizado el despliegue de la web mediante <em>pipelines</em>. También es destacable el script de <em>Python</em> que he desarrollado para construir automáticamente la web a partir de información almacenada en ficheros JSON y Markdown, lo que me permite añadir nuevos proyectos y posts de forma sencilla y evitar código redundante y repetitivo.</p><p>Descarté usar un CMS como <em>Wordpress</em> o un <em>framework</em>/librería como <em>React</em> porque quería tener un mayor control sobre el código y la arquitectura de la web, creando una solución <em>ad hoc</em>. Además, uno de mis principales objetivos era poner en práctica y ampliar mis conocimientos; de hecho, incluso he creado mis propios scripts para construir y publicar la web.</p><p>Por último, pero no menos importante, ¡es <em>open source</em>! Es decir, que puedes ver todo el código fuente en el repositorio de <em>GitHub</em>.</p>",
+                "btn_text": "Ver código en GitHub"
+            },
+            "EN": {
+                "title": "Design of this personal website",
+                "category": "Web development",
+                "html": "<p>This website is just another project, which I have developed from scratch using HTML, CSS and JavaScript, as well as libraries such as <em>Bootstrap</em>.</p><p>In addition to applying good practices, I've automated the deployment of the website using <em>pipelines</em>. It is also worth mentioning the <em>Python</em> script that I have developed to automatically build the website from information stored in JSON and Markdown files. This allows me to easily add new projects and blog posts while avoiding redundant and repetitive code.</p><p>I didn't use a CMS such as <em>Wordpress</em> or a <em>framework</em>/library such as <em>React</em> because I wanted to have full control over the code and the architecture of the website, creating an <em>ad hoc</em> solution. In addition, one of my main objectives was to put into practice and expand my knowledge; in fact, I have even created my own scripts to build and publish the website.</p><p>Last but not least, it's <em>open source</em>! That is, you can see all the source code in the <em>GitHub</em> repository.</p>",
+                "btn_text": "See code on GitHub"
+            }
+        },
+        "url": "https://github.com/jbruned/personal-web"
+    },
+    {
+        "show": false,
+        "id": "android_mvvm",
+        "cat_id": "sw",
+        "media": "/assets/portfolio/mvvm.png",
+        "strings": {
+            "ES": {
+                "title": "Desarrollo de aplicación Android con arquitectura MVVM",
+                "category": "Desarrollo nativo",
+                "html": "<p>Realicé el desarrollo de una aplicación interna en <em>Veridas</em> utilizando para ello el patrón <em>Model-View-ViewModel</em>, el lenguaje <em>Kotlin</em> y librerías como <em>Material</em>, <em>Glide</em>, etc.</p><p>Cabe destacar la presencia de fuentes de datos tanto locales (<em>Room</em>) como remotas (<em>API REST</em>), así como el uso de <em>Corrutinas</em> para la gestión de hilos y provisión de objetos mediante inyección de dependencias.</p>"
+            },
+            "EN": {
+                "title": "Android app with MVVM architecture",
+                "category": "Native development",
+                "html": "<p>I developed an internal app in <em>Veridas</em> using the <em>Model-View-ViewModel</em> pattern, the <em>Kotlin</em> language and libraries such as <em>Material</em>, <em>Glide</em>, etc.</p><p>It is worth mentioning the presence of both local (<em>Room</em>) and remote (<em>REST API</em>) data sources, as well as the use of <em>Coroutines</em> for thread management and object provision through dependency injection.</p>"
+            }
+        },
+        "technologies": [
+            "Android",
+            "Kotlin",
+            "ViewModels",
+            "Room DB",
+            "Coroutines",
+            "Hilt",
+            "OkHttp",
+            "Glide"
+        ]
+    },
+    {
+        "id": "active_learning",
+        "cat_id": "ia",
+        "media": "https://www.youtube-nocookie.com/embed/D7Q-SgApXpY",
+        "thumbnail": "/assets/portfolio/tfg-plot.jpg",
+        "strings": {
+            "ES": {
+                "title": "Investigación sobre Active Learning",
+                "category": "Machine Learning",
+                "html": "<p>En mi Trabajo de Fin de Grado, titulado <q>A review of Active Learning methods for classification problems</q>, tuve la oportunidad de investigar el estado del arte de <i>Active Learning</i>.</p><p>Active Learning es un conjunto de técnicas de Machine Learning últiles en situaciones donde no se dispone de suficientes datos etiquetados, cuyo objetivo es optimizar el proceso de obtención de nuevas etiquetas.</p>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Research on Active Learning",
+                "category": "Machine Learning",
+                "html": "<p>In my Bachelor's Thesis, under the title <q>A review of Active Learning methods for classification problems</q>, I had the opportunity of researching on the state of the art of <i>Active Learning</i>.</p><p>Active Learning is a Machine Learning technique suitable for scenarios where there isn't enough labelled data, which aims to optimize the labelling process.</p>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "Python",
+            "scikit-learn",
+            "pyTorch",
+            "MatPlotLib",
+            "numPy",
+            "Pandas",
+            "LaTeX"
+        ],
+        "url": "https://www.youtube.com/watch?v=D7Q-SgApXpY"
+    },
+    {
+        "id": "cv_nlp",
+        "cat_id": "ia",
+        "media": "/assets/portfolio/cv-hd.jpeg",
+        "thumbnail": "/assets/portfolio/cv5-hd.jpeg",
+        "strings": {
+            "ES": {
+                "title": "Visión Artificial y Procesamiento del Lenguaje Natural",
+                "category": "Deep Learning",
+                "html": "<p>Como parte del Máster en Ingeniería Informática, he podido realizar proyectos de <i>Computer Vision</i> y <i>Natural Language Processing</i> de forma grupal.<p><ul><li><b>Clasificador de imágenes</b> de frutas utilizando redes como <i>ResNet</i> o <i>VGG</i>, además de calcular mapas de atención, mapas de activación, etc.</li><li>Aplicación de mejoras sobre un traductor de inglés a francés utilizando <b>redes recurrentes <i>seq2seq</i></b>, obtención de métricas mediante <i>BLEU score</i>, <i>ROUGE score</i>...</li></ul>",
+                "btn_text": "Ver dataset en Kaggle"
+            },
+            "EN": {
+                "title": "Computer Vision and Natural Language Processing",
+                "category": "Deep Learning",
+                "html": "<p>As part of the Master's Degree in Computer Engineering, I have been able to work on group projects related to <i>Computer Vision</i> and <i>Natural Language Processing</i>.<p><ul><li>Fruit <b>image classifier</b> using networks such as <i>ResNet</i> or <i>VGG</i>, as well as computing attention maps, activation maps, etc.</li><li>Improvements on an English to French translator using <b><i>seq2seq</i> recurrent networks</b>, obtaining metrics using <i>BLEU score</i>, <i>ROUGE score</i>...</li></ul>",
+                "btn_text": "View dataset on Kaggle"
+            }
+        },
+        "technologies": [
+            "Python",
+            "pyTorch",
+            "MatPlotLib",
+            "numPy"
+        ],
+        "url": "https://www.kaggle.com/datasets/aelchimminut/fruits262"
+    },
+    {
+        "id": "app_fb",
+        "cat_id": "software",
+        "media": "https://www.youtube-nocookie.com/embed/Kt-AMsBFXaA",
+        "thumbnail": "/assets/portfolio/web-tienda-bruned.jpg",
+        "strings": {
+            "ES": {
+                "title": "Desarrollo y mantenimiento de aplicación web a medida para PYME",
+                "title_long": "Desarrollo y mantenimiento de tienda online a medida para productos de alimentación",
+                "category": "Desarrollo web",
+                "html": "<p>Este proyecto consistió en el desarrollo desde cero de una página web a medida para reparto a domicilio de productos de alimentación.</p><p>Entre otras características, destacan la interconexión con el software de gestión utilizado por la empresa, actualización automática de precios, diseño \"responsive\" de modo que la página sea totalmente funcional en prácticamente cualquier dispositivo, desarrollo de una app para Android, implementación de servicio de notificaciones por correo electrónico y notificaciones push en los dispositivos, posicionamiento SEO, etc.</p>",
+                "btn_text": "Acceder a la web"
+            },
+            "EN": {
+                "title": "Development and maintenance of a custom web app for an SME",
+                "title_long": "Development and maintenance of a custom online store for food products",
+                "category": "Web development",
+                "html": "<p>This is a project for an SME which involved developing a custom web app for food delivery from scratch.</p><p>Among other features, some stand out, such as the interconnection with the management software used by the company, automatic price updates, responsive design so that the page is fully functional in any device, development of an Android app, implementation of email notifications and push notifications on the devices, SEO positioning, etc.</p>",
+                "btn_text": "Enter website"
+            }
+        },
+        "technologies": [
+            "PHP",
+            "MySQL",
+            "HTML",
+            "CSS",
+            "Bootstrap",
+            "JavaScript",
+            "jQuery",
+            "Android",
+            "CURL",
+            "Firebase"
+        ],
+        "url": "https://www.frutasbruned.es/pedidos"
+    },
+    {
+        "id": "lan",
+        "cat_id": "hw",
+        "media": "/assets/portfolio/rack-lan_hd.jpg",
+        "thumbnail": "/assets/portfolio/rack-lan.jpg",
+        "strings": {
+            "ES": {
+                "title": "Instalación de red local en naves industriales",
+                "category": "Hardware y redes",
+                "html": "<p>Proyecto consistente en desplegar a lo largo de varias naves industriales una red local a 1 Gbps con armario rack, cableado Cat6 y alrededor de 20 dispositivos conectados.</p><p>Destacan el despliegue de redes WiFi (tanto red privada como red pública sin acceso a la red local, ambas con tecnología dual band), instalación de puntos de acceso, conexión mediante fibra óptica a 500Mbps, etc.</p><p>También configuré un servidor DHCP con direcciones estáticas para los dispositivos fijos, manteniendo la configuración de los servidores de impresión e instalé un servidor de archivos NAS con RAID 1 para aumentar la seguridad de los datos gracias a la redundancia.</p>"
+            },
+            "EN": {
+                "title": "Deployment of Local Area Network over various warehouses",
+                "category": "Hardware & Networks",
+                "html": "<p>This project consisted in deploying a Local Area Network (LAN) at 1 Gbps over several warehouses. The installation included a Rack Cabinet, Cat6 wiring and more than 20 wired devices.</p><p>I also set up WiFi networks (both a public guest network and a secure private, using Dual Band) using several Access Points and optical fiber Internet access.</p><p>The network configuration included as well a DHCP server (with static addresses for permanent hosts), a print server, a NAS file server with redundancy, etc.</p>"
+            }
+        },
+        "technologies": [
+            "Rack",
+            "Cat6",
+            "RJ45",
+            "DHCP",
+            "NAS",
+            "RAID",
+            "WiFi",
+            "DNS",
+            "Routing"
+        ]
+    },
+    {
+        "id": "web_fb",
+        "cat_id": "sw",
+        "media": "/assets/portfolio/web-homepage_hd.jpg",
+        "thumbnail": "/assets/portfolio/web-homepage.jpg",
+        "strings": {
+            "ES": {
+                "title": "Creación, posicionamiento y mantenimiento de web y servidor de correo para PYME",
+                "category": "Desarrollo web",
+                "html": "<p>Creación y mantenimiento de una página web para una PYME basada en HTML, CSS (con Bootstrap) y JavaScript (con jQuery). Uso de PHP en el backend para proporcionar contenido dinámico y datos actualizados y para la zona de clientes.</p><p>Este proyecto destaca por el posicionamiento SEO en buscadores (la página alcanzó el primer puesto en Google en apenas unas semanas), la creación de un servidor de correo con dominio propio, uso de certificado SSL para conexiones seguras mediante HTTPS...</p><p>Así mismo, mejoré la presencia de la empresa en Internet mediante el completado de las diferentes tiendas en Google Maps, técnicas SEO (tanto SEO técnico como on-page y off-page), etc.</p>",
+                "btn_text": "Acceder a la web"
+            },
+            "EN": {
+                "title": "Creation, SEO and maintenance of web and mail servers for an SME",
+                "category": "Web development",
+                "html": "<p>Initial configuration and also maitenance of a webpage for a SME, using HTML, CSS (with Bootstrap), JavaScript (with jQuery) and PHP in the backend so as to serve dynamic content, update data and a client zone.</p><p>Some highlits include SEO positioning (the page reached the 1st Google spot in just a few weeks), a mail server with custom domain, SSL certificate for secure connections...</p><p>The business' online presence improved dramatically thanks to the addition of the different stores in Google Maps and Search Engine Optimization techiques (techical SEO, SEO on-page, SEO off-page), etc.</p>",
+                "btn_text": "Enter website"
+            }
+        },
+        "technologies": [
+            "HTML",
+            "CSS",
+            "Bootstrap",
+            "JavaScript",
+            "Apache",
+            "SSL",
+            "SEO",
+            "PHP",
+            "Google Search Console",
+            "Google My Business",
+            "Google Analytics"
+        ],
+        "url": "https://www.frutasbruned.es/"
+    },
+    {
+        "id": "cctv",
+        "cat_id": "hw",
+        "media": "/assets/portfolio/camaras-cctv_hd.jpg",
+        "thumbnail": "/assets/portfolio/camaras-cctv.jpg",
+        "strings": {
+            "ES": {
+                "title": "Despliegue de red CCTV de vigilancia para una PYME",
+                "category": "Hardware y redes",
+                "html": "<p>Diseño, planificación y despliegue de una red de más de 20 cámaras de videovigilancia analógicas a lo largo de 3 naves industriales mediante cable UTP, además de cámaras IP en diferentes sucursales de la empresa.</p><p>Aunque las fases de diseño, adquisición de material y configuración las realicé de forma autónoma, trabajé junto con otra persona durante las fases de cableado y fijación de las cámaras a la pared. Así mismo, llevé a cabo la configuración del sistema NVR, protección mediante firewall, grabación de imágenes, acceso externo, etc.</p>"
+            },
+            "EN": {
+                "title": "Deployment of CCTV surveillance system for an SME",
+                "category": "Hardware & Networks",
+                "html": "<p>Design, planning and deployment of a network of more than 20 analog CCTV cameras along 3 industrial warehouses using UTP cable, as well as IP cameras in different branches of the company.</p><p>Although I carried out the design, material acquisition and configuration phases autonomously, I worked together with another person during the cabling and fixing of the cameras to the wall. Likewise, I carried out the configuration of the NVR system, protection by firewall, image recording, external access, etc.</p>"
+            }
+        }
+    },                  
+    {
+        "id": "signal_detector",
+        "cat_id": "ia",
+        "media": "https://www.youtube.com/embed/qJqlGgRcqwI",
+        "thumbnail": "/assets/portfolio/signal-detector.jpg",
+        "strings": {
+            "ES": {
+                "title": "Entrenamiento de un detector y clasificador de señales de tráfico",
+                "category": "Visión artificial",
+                "html": "<p>Dentro del entorno universitario, destaca este proyecto que realicé de forma individual en la asignatura de Visión Artificial.</p><p>El proyecto, realizado en 2020, consistió en el desarrollo de una serie de modelos de inteligencia artificial capaces de detectar las señales de tráfico que aparezcan en imágenes reales y clasificarlas, distinguiendo entre 43 tipos diferentes de señales.</p><p>Aunque los modelos utilizados fueron relativamente básicos, fue una buena primera toma de contacto con el mundo de la visión artificial.</p>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Training of a traffic sign detector and classifier",
+                "category": "Artificial vision",
+                "html": "<p>Within the university environment, this project that I carried out individually in the subject of Artificial Vision stands out.</p><p>The project, carried out in 2020, consisted of the development of a series of artificial intelligence models capable of detecting the traffic signs that appear in real images and classifying them, distinguishing between 43 different types of signs.</p><p>Even though the used models were relatively basic, it was a good first contact with the artificial vision field.</p>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "Python",
+            "scikit-learn (SVMs, NNs...)",
+            "numPy",
+            "MatPlotLib",
+            "Jupyter"
+        ],
+        "url": "https://www.youtube.com/watch?v=qJqlGgRcqwI"
+    },                  
+    {
+        "id": "android_app_fittastic",
+        "cat_id": "sw",
+        "media": "https://www.youtube.com/embed/OptetubquGg",
+        "thumbnail": "/assets/portfolio/android-app-fittastic.jpg",
+        "strings": {
+            "ES": {
+                "title": "Desarrollo de app para Android con servidor REST",
+                "category": "Desarrollo de software",
+                "html": "<p>También como parte del grado universitario, he desarrollado una aplicación para Android de forma individual. La aplicación, llamada <em>FitTastic</em>, permite al usuario llevar un seguimiento de la ingesta y el consumo de calorías de forma sencilla e intuitiva.</p><p>Destaca el uso de la cámara para lectura de códigos de barras, la persistencia mediante un servidor REST basado en MongoDB y la librería ParseServer y el almacenamiento local mediante la API <em>SharedPreferences</em>.</p><p>Así mismo, cabe resaltar la conexión a la API de <em>OpenFoodFacts</em> para el autocompletado de la información nutricional de los productos solo con escanear el código de barras.</p>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Development of an Android app with REST server",
+                "category": "Software development",
+                "html": "<p>Also as part of the university degree, I have developed an application for Android individually. The application, called <em>FitTastic</em>, allows the user to keep track of calorie intake and consumption in a simple and intuitive way.</p><p>It stands out the use of the camera for reading barcodes, the persistence through a REST server based on MongoDB and the ParseServer library and the local storage through the <em>SharedPreferences</em> API.</p><p>It is also worth mentioning the connection to the <em>OpenFoodFacts</em> API for the autocompletion of the nutritional information of the products just by scanning the barcode.</p>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "Android Studio",
+            "Java",
+            "MongoDB",
+            "ParseServer",
+            "Heroku",
+            "REST",
+            "JSON",
+            "Google Play Services Vision..."
+        ],
+        "url": "https://www.youtube.com/watch?v=OptetubquGg"
+    },
+    {
+        "id": "web_recetas",
+        "cat_id": "sw",
+        "media": "https://www.youtube.com/embed/xlK8Y2LqGzA",
+        "thumbnail": "/assets/portfolio/web-recetas.jpg",
+        "strings": {
+            "ES": {
+                "title": "Aplicación web para la publicación de recetas",
+                "category": "Desarrollo web",
+                "html": "<p>Como parte de la asignatura <em>Ingeniería Web</em>, desarrollé otra aplicación web para la publicación de recetas de cocina utilizando el patrón Modelo-Vista-Controlador.</p>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Web application for publishing recipes",
+                "category": "Web development",
+                "html": "<p>As part of the <em>Web Engineering</em> subject, I developed another web application for publishing recipes using the Model-View-Controller pattern.</p><p>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "HTML",
+            "CSS",
+            "Bootstrap",
+            "JavaScript",
+            "jQuery",
+            "AJAX",
+            "Fetch API",
+            "MarkDown",
+            "PHP",
+            "MVC",
+            "MySQL"
+        ],
+        "url": "https://www.youtube.com/watch?v=xlK8Y2LqGzA"
+    },
+    {
+        "id": "arduino",
+        "cat_id": "hw",
+        "media": "https://www.youtube.com/embed/wDHCzSO8o-E",
+        "thumbnail": "/assets/portfolio/arduino.jpg",
+        "strings": {
+            "ES": {
+                "title": "Dispositivo Arduino para controlar videojuegos de conducción",
+                "category": "Hardware y desarrollo de software",
+                "html": "<p>Como parte de la asignatura <em>Sistemas Multimedia y Diseño Centrado en el Usuario</em>, desarrollé un dispositivo basado en una placa <em>Arduino</em> que permite controlar videojuegos de conducción de una forma más sencilla y divertida.</p><p>El dispositivo está compuesto por unos pedales impresos en 3D que se conectan por USB, y una aplicación para Android que utiliza el giroscopio para controlar el volante a través de una conexión WiFi.</p><p>En este proyecto se ha tenido especialmente en cuenta la usabilidad, accesibilidad, etc. La interfaz de usuario se ha desarrollado en <em>Processing</em> utilizando <em>Java</em> como lenguaje de programación.</p><p>El proyecto destaca por tener un fuerte componente de <em>hardware</em> y electrónica, ya que utiliza numerosos componentes como, por ejemplo, transistores.</p>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Arduino device to control driving video games",
+                "category": "Hardware and software development",
+                "html": "<p>As part of a uni subject, I developed an <em>Arduino</em>-based device that allows the user to control driving videogames in a simple and enjoyable way.</p><p>The device is composed of 3D-printed pedals that connect via USB, and an Android application that uses the gyroscope to control the steering wheel through a WiFi connection.</p><p>In this project, usability, accessibility, etc. have been particularly taken into account. The user interface has been developed in Processing using Java as the programming language.</p><p>The project stands out for having a strong hardware and electronics component, as it uses numerous components such as transistors.</p>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "Arduino",
+            "TinkerCad (circuits and 3D)",
+            "Processing",
+            "Arduino IDE",
+            "oscP5 (network communication)",
+            "serial monitor (communication with Arduino via USB)",
+            "Android Studio",
+            "Java"
+        ],
+        "url": "https://www.youtube.com/watch?v=wDHCzSO8o-E"
+    },
+    {
+        "id": "kdd_stroke",
+        "cat_id": "ia",
+        "media": "https://www.youtube.com/embed/2Z3Q3Z3QZ3Q",
+        "thumbnail": "/assets/portfolio/kdd.jpg",
+        "strings": {
+            "ES": {
+                "title": "Explotación de un dataset desbalanceado mediante el proceso KDD",
+                "category": "Minería de datos",
+                "html": "<p>Este proyecto, realizado de forma grupal con otros dos compañeros como parte de la asignatura <em>Minería de Datos</em>, consistió en la explotación de un dataset desbalanceado para predicción de ictus.</p><p>Para llevar a cabo esta tarea, aplicamos distintas fases del proceso conocido como KDD (<em>Knowledge Discovery from Databases</em>). Cabe destacar:</p><ul><li><b>Imputación de valores perdidos</b> mediante modelos entrenados con el resto de variables</li><li>Detección y tratamiento de <b>outliers</b></li><li>Normalización de datos</li><li><b>Instance Selection para hacer frente al problema del desbalanceo</b>: concretamente implementé de una variante de RMHC que incrementó el <em>f-score</em> drásticamente</li><li>Optimización de hiperparámetros</li><li>Integración en una <b>pipeline</b></li><li>Análisis de la importancia de las variables</li></ul>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Exploitation of an unbalanced dataset through the KDD process",
+                "category": "Data mining",
+                "html": "<p>This project, carried out as a group with two other classmates as part of the <em>Data Mining</em> subject, consisted of the exploitation of an unbalanced dataset for stroke prediction.</p><p>To carry out this task, we applied different phases of the process known as KDD (<em>Knowledge Discovery from Databases</em>). It is worth mentioning:</p><ul><li><b>Imputation of missing values</b> using models trained with the rest of the variables</li><li>Detection and treatment of <b>outliers</b></li><li>Data normalization</li><li><b>Instance Selection to deal with the imbalance problem</b>: specifically, I implemented a variant of RMHC that drastically increased the <em>f-score</em></li><li>Hyperparameter optimization</li><li>Integration into a <b>pipeline</b></li><li>Analysis of the importance of the variables</li></ul>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "techologies": [
+            "Python",
+            "scikit-learn",
+            "pandas",
+            "NumPy",
+            "Matplotlib",
+            "Seaborn"
+        ],
+        "url": "https://www.youtube.com?watch=2Z3Q3Z3QZ3Q"
+    },
+    {
+        "id": "juegos_red",
+        "cat_id": "soft",
+        "media": "https://www.youtube.com/embed/2Z3Q3Z3QZ3Q",
+        "thumbnail": "/assets/portfolio/juegos-red.jpg",
+        "strings": {
+            "ES": {
+                "title": "Implementación de juegos distribuidos en red",
+                "category": "Desarrollo de software",
+                "html": "<p>De forma individual, desarrollé dos aplicaciones de juegos distribuidas en red, utilizando una arquitectura cliente-servidor.</p><ul><li>En primer lugar, desarrollé utilizando Java y el IDE <em>NetBeans</em> una <b>sala de juegos distribuida en red</b>, con una interfaz de usuario (GUI) basada en <b><em>Java Swing</em></b>. Esta aplicación destaca por la gran abstracción que permite implementar nuevos juegos de forma muy sencilla tan solo implementando los métodos pertinentes de interfaces y clases abstractas.</li><li>Por otro lado, implementé un <b>parchís en C</b> que permite a los jugadores conectarse al servidor desde sus casas e iniciar partidas conforme se vayan conectando otros jugadores. Cabe destacar que programé este parchís desde cero, gestionando todo el envío de mensajes a través de <em>buffers</em> y tareas similares, con una estructura de código modularizada e intuitiva, emulando clases. Así mismo, diseñé una interfaz que permitía ver el tablero utilizando solo carácteres ASCII.</li></ul>",
+                "btn_text": "Ver en YouTube"
+            },
+            "EN": {
+                "title": "Implementation of distributed games over a network",
+                "category": "Software development",
+                "html": "<p>Individually, I developed two distributed games applications over a network, using a client-server architecture.</p><ul><li>Firstly, I developed a <b>distributed game room</b> using Java and the <em>NetBeans</em> IDE, with a user interface (GUI) based on <b><em>Java Swing</em></b>. This application stands out for the great abstraction that allows to implement new games very easily by implementing the relevant methods of interfaces and abstract classes.</li><li>On the other hand, I implemented a <b>parcheesi in C</b> that allows players to connect to the server from their homes and start games as other players connect. It is worth mentioning that I programmed this parcheesi from scratch, managing all the message sending through buffers and similar tasks, with a modularized and intuitive code structure, emulating classes. Likewise, I designed an interface that allowed to see the board using only ASCII characters.</li></ul>",
+                "btn_text": "Watch on YouTube"
+            }
+        },
+        "technologies": [
+            "Java",
+            "C",
+            "NetBeans",
+            "Java Swing",
+            "Sockets",
+            "TCP",
+            "UDP",
+            "Multithreading",
+            "Client-server architecture",
+            "ASCII art",
+            "Linux"
+        ],
+        "url": "https://www.youtube.com?watch=2Z3Q3Z3QZ3Q"
+    }
+]

@@ -7,11 +7,8 @@ from hashlib import md5
 import pysftp
 import dotenv
 
-VERBOSE_NONE = 0
-VERBOSE_ERROR = 1
-VERBOSE_WARNING = 2
-VERBOSE_INFO = 3
-VERBOSE_ALL = 4
+from common import VERBOSE_ALL, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, file_hash, log
+
 DEFAULT_DEPLOYMENT_STATUS_FILE = "deployment_status.txt"
 
 def publish(
@@ -201,21 +198,6 @@ def remove_file(sftp, file: str, verbose: int = VERBOSE_INFO, dry_run: bool = Fa
     if not dry_run:
         sftp.remove(file)
     log(f"Deleted {file}", verbose=verbose, dry_run=dry_run)
-
-def log(message: str, level: int = VERBOSE_INFO, verbose: int = VERBOSE_INFO, dry_run: bool = False, header: bool = False):
-    """
-    Log a message
-    """
-    if verbose >= level:
-        prefix = f"{'dry' if dry_run else ''}> " if not header else ''
-        print(f"{prefix}{message}")
-
-def file_hash(file: str):
-    """
-    Get the hash of a file
-    """
-    with open(file, "rb") as f:
-        return md5(f.read()).hexdigest()
 
 def is_ignored(file: str, ignore: list):
     """
