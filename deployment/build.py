@@ -7,6 +7,8 @@ from typing import Tuple
 from jinja2 import Template
 from markdown import markdown
 
+from common import VERBOSE_ALL, VERBOSE_ERROR, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, abort, file_hash, log
+
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
     Build a blog post from a template and content
@@ -152,18 +154,16 @@ def build_blog_posts(template_path: str, content_path: str, output_path: str, as
     - asset_hashes: callable to compute the dictionary of hashes for the assets
     """
     if not os.path.exists(content_path) or not os.path.isdir(content_path):
-        print("The content path doesn't exist or isn't a directory")
-        return
+        abort("The content path doesn't exist or isn't a directory")
     if not os.path.exists(template_path) or not os.path.isfile(template_path):
-        print("The template path doesn't exist or isn't a file")
-        return
+        abort("The template path doesn't exist or isn't a file")
     if not os.path.exists(output_path) or not os.path.isdir(output_path):
         os.mkdir(output_path)
     template = open(template_path, "r").read()
     posts = []
     for filename in os.listdir(content_path):
         if not filename.endswith(".md"):
-            print(f"> Skipping {filename} (not a Markdown file)")
+            log(f"Skipping {filename} (not a Markdown file)")
             continue
         with open(os.path.join(content_path, filename), "r") as f:
             content = f.read()
@@ -172,9 +172,9 @@ def build_blog_posts(template_path: str, content_path: str, output_path: str, as
             posts.append(metadata)
             with open(os.path.join(output_path, f"{metadata['url']}.html"), "w") as f:
                 f.write(rendered)
-            print(f"> Built {metadata['url']}")
+            log(f"Built {metadata['url']}")
         else:
-            print(f"> Skipped {metadata['url']} (set as not public)")
+            log(f"Skipped {metadata['url']} (set as not public)")
     return posts
 
 def parse_date(date: str) -> str:
@@ -195,10 +195,9 @@ def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_f
     - asset_hashes: callable to compute the dictionary of hashes for the assets
     """
     if not os.path.exists(template_path) or not os.path.isfile(template_path):
-        print("The template path doesn't exist or isn't a file")
-        return
+        abort("The template path doesn't exist or isn't a file")
     if len(posts) == 0:
-        print("[Warning] No posts found")
+        log("[Warning] No posts found", VERBOSE_WARNING, header=True)
     # Aggregate the tags
     tags = {}
     for post in posts:
@@ -208,7 +207,7 @@ def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_f
         if tag["id"] not in tags:
             tags[tag["id"]] = tag
     if len(tags) == 0:
-        print("[Warning] No tags found")
+        log("[Warning] No tags found", VERBOSE_WARNING, header=True)
     # Build the index
     template = open(template_path, "r").read()
     with open(index_file, "w") as f:
@@ -217,7 +216,7 @@ def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_f
             tags=list(tags.values()),
             hashes=asset_hashes()
         ))
-    print(f"> Built index")
+    log("Built index")
     # Build the sitemap
     pass
 
@@ -228,11 +227,11 @@ def process_project(project: dict) -> dict:
     Process a project's metadata
     """
     if "id" not in project:
-        print("> Skipping project (no ID)")
+        log("Skipping project (no ID)", VERBOSE_WARNING)
         return None
     for required_attr in ["cat_id", "media", "strings"]:
         if required_attr not in project or project[required_attr] is None:
-            print(f"> Skipping project {project['id']} (no {required_attr})")
+            log(f"Skipping project {project['id']} (no {required_attr})", VERBOSE_WARNING)
             return None
     if "thumbnail" not in project:
         if "youtube" in project["media"]:
@@ -260,7 +259,7 @@ def process_project(project: dict) -> dict:
                     }
     for required_attr in ["title", "html"]:
         if required_attr not in project:
-            print(f"> Skipping project {project['id']} (no {required_attr} string in any language)")
+            log(f"Skipping project {project['id']} (no {required_attr} string in any language)", VERBOSE_WARNING)
             return None
     project["strings"] = strings
     return project
@@ -276,11 +275,9 @@ def build_index(template: str, index_file: str, asset_hashes: callable, projects
     - strings_file: path to the output strings file
     """
     if not os.path.exists(template) or not os.path.isfile(template):
-        print("The template path doesn't exist or isn't a file")
-        return
+        abort("The template path doesn't exist or isn't a file")
     if not os.path.exists(projects_json) or not os.path.isfile(projects_json):
-        print("The projects JSON path doesn't exist or isn't a file")
-        return
+        abort("The projects JSON path doesn't exist or isn't a file")
     with open(projects_json, "r") as f:
         projects = json.loads(f.read())
     projects = [process_project(project) for project in projects]
@@ -300,14 +297,7 @@ def build_index(template: str, index_file: str, asset_hashes: callable, projects
     template = open(template, "r").read()
     with open(index_file, "w") as f:
         f.write(Template(template).render(projects=projects, hashes=asset_hashes()))
-    print(f"> Built index")
-
-def file_hash(file: str):
-    """
-    Get the hash of a file
-    """
-    with open(file, "rb") as f:
-        return md5(f.read()).hexdigest()
+    log("Built index")
 
 if __name__ == "__main__":
     # Local directories
@@ -340,7 +330,7 @@ if __name__ == "__main__":
     INDEX_URL = "index.html"
     STRINGS_URL = os.path.join("assets", "strings.js")
     # Build
-    print("Building index...")
+    log("Building index...", header=True)
     build_index(
         os.path.join(TEMPLATES_FOLDER, INDEX_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, INDEX_URL),
@@ -349,14 +339,14 @@ if __name__ == "__main__":
         os.path.join(TEMPLATES_FOLDER, STRINGS_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, STRINGS_URL)
     )
-    print("Building blog posts...")
+    log("Building blog posts...", header=True)
     posts = build_blog_posts(
         os.path.join(TEMPLATES_FOLDER, POST_TEMPLATE),
         POSTS_FOLDER,
         os.path.join(OUTPUT_FOLDER, BLOG_URL),
         asset_hashes
     )
-    print("Building blog index...")
+    log("Building blog index...", header=True)
     build_blog_index(
         os.path.join(TEMPLATES_FOLDER, BLOG_TEMPLATE),
         posts,
@@ -364,4 +354,4 @@ if __name__ == "__main__":
         os.path.join(OUTPUT_FOLDER, SITEMAP_URL),
         asset_hashes
     )
-    print("Done!")
+    log("Done!", header=True)
