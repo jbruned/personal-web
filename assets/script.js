@@ -10,7 +10,7 @@ import { EN, ES } from './strings.js';
 const translations = {
     'en': EN,
     'es': ES
-};
+}, DEBUG = false;
 const HTML_HARDCODED_LANG = 'es';
 function curr_lang() {
     return document.documentElement.lang;
@@ -37,14 +37,13 @@ function translate(lang = 'en') {
             translations[HTML_HARDCODED_LANG][string_name] = elem_translate.innerHTML;
         if (strings[string_name] !== undefined)
             elem_translate.innerHTML = strings[string_name];
-        else
+        else if (DEBUG)
             console.log("Translation not found for " + string_name)
     }
     const email_revealed = !strings['email_addr'].includes('*');
     document.querySelectorAll('.mailto_link').forEach(elem => {
         if (email_revealed) {
             if (!elem.hasAttribute('href')) {
-                console.log("a");
                 setTimeout(() => {
                     elem.href = 'mailto:' + strings['email_addr'] + '@jorgebruned.com';
                     elem.target = '_blank';
@@ -189,38 +188,18 @@ $(window).on("load", function() {
     callbackActiveFilter = setActiveFilter;
 
     // Modal fix and lazy load media on modal show
+    function lazy_load(elem) {
+        if (elem.getAttribute('data-lazy-src') == null)
+            return;
+        console.log("Lazy loading " + elem.getAttribute('data-lazy-src'));
+        elem.src = elem.getAttribute('data-lazy-src');
+        elem.removeAttribute('data-lazy-src');
+    }
     $('.modal').on('show.bs.modal', function() {
         $(this).insertAfter($('body'));
         $(this).find('[data-lazy-src]').each(function() {
-            this.src = this.getAttribute('data-lazy-src');
-            this.removeAttribute('data-lazy-src');
+            lazy_load(this);
         });
-    });
-
-    // Open project modal if needed
-    const index_proyecto = [
-        'proyecto-active-learning',
-		'proyecto-tienda-online',
-        'proyecto-red-lan',
-        'proyecto-web-pyme',
-        'proyecto-vigilancia-cctv',
-        'proyecto-traffic-signals',
-        'proyecto-app-android',
-        'proyecto-web-recetas',
-        'proyecto-arduino',
-        'proyecto-mineria-dataset-desbalanceado',
-        'proyecto-aplicaciones-distribuidas'
-    ].indexOf(hash_url);
-    if (index_proyecto > -1)
-        $(document.getElementById('portfolio-details-' + index_proyecto)).modal('show');
-    else if (hash_url === 'print') {
-        $('head').append('<link rel="stylesheet" type="text/css" href="/assets/print.css">');
-        know_bars.forEach((elem, i) => elem.style = 'width:' + elem.getAttribute('data-width'));
-    }
-
-    // Initialize tooltips
-    [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
     });
 
     // Run animations and reveal email on print
@@ -229,28 +208,37 @@ $(window).on("load", function() {
         reveal_email();
     };
 
+    // Open project modal or apply print styles if needed
+    if (hash_url === 'print') {
+        $('head').append('<link rel="stylesheet" type="text/css" href="/assets/print.css">');
+        window.onbeforeprint();
+    } else {
+        const modal = document.getElementById('portfolio-details-' + idify(hash_url));
+        if (modal != null)
+            $(modal).modal('show');
+    }
+
+    // Initialize tooltips
+    [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]')).map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
+
     // Lazy load images
     function hasParentWithClass(node, classname) {
         if (node == null)
             return false;
         if (node.classList && node.classList.contains(classname))
             return true;
-        return hasParentWithClass(node.parent, classname);
+        return hasParentWithClass(node.parentNode, classname);
     }
     document.querySelectorAll('[data-lazy-src]').forEach(elem => {
         if (!hasParentWithClass(elem, 'modal')) {
-            elem.src = elem.getAttribute('data-lazy-src');
-            elem.removeAttribute('data-lazy-src');
+            lazy_load(elem);
         }
     });
 
     // Add full-screen link to images in .post-content
     document.querySelectorAll('.post-content img').forEach(elem => {
-        // Lazy load image
-        /*if (elem.hasAttribute('data-lazy-src')) {
-            elem.src = elem.getAttribute('data-lazy-src');
-            elem.removeAttribute('data-lazy-src');
-        }*/
         // Put image inside a link
         const a = document.createElement('a');
         a.classList.add('img-full-screen');
@@ -264,11 +252,6 @@ $(window).on("load", function() {
 
     // Put iframes inside a div with class .iframe-container inside a .media-container
     document.querySelectorAll('.post-content iframe').forEach(elem => {
-        // Lazy load iframe
-        /*if (elem.hasAttribute('data-lazy-src')) {
-            elem.src = elem.getAttribute('data-lazy-src');
-            elem.removeAttribute('data-lazy-src');
-        };*/
         // Put iframe inside the necessary divs
         const div = document.createElement('div');
         div.classList.add('iframe-container');
