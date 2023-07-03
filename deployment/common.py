@@ -14,6 +14,13 @@ SITEMAP_URL = "sitemap.xml"
 INDEX_URL = "index.html"
 STRINGS_URL = os.path.join("assets", "strings.js")
 
+# Local directories
+DEFAULT_BASE_PATH = ".."
+POSTS_DIR_NAME = "posts"
+TEMPLATES_DIR_NAME = "templates"
+ASSETS_DIR_NAME = "assets"
+PROJECTS_FILE_NAME = "projects.json"
+
 def file_hash(file: str):
     """
     Get the hash of a file

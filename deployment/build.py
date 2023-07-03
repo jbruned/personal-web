@@ -1,13 +1,16 @@
-from hashlib import md5
 import json
 import os
 import re
 from sys import argv
+from time import sleep
 from typing import Tuple
 from jinja2 import Template
 from markdown import markdown
+from watchdog.observers import Observer
+from watchdog.events import FileSystemEventHandler
 
-from common import VERBOSE_WARNING, abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL
+from common import VERBOSE_WARNING, abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL, \
+    PROJECTS_FILE_NAME, POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, DEFAULT_BASE_PATH
 
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
@@ -302,9 +305,11 @@ def build_index(template: str, index_file: str, asset_hashes: callable, projects
         f.write(Template(template).render(projects=projects, hashes=asset_hashes()))
     log("Built index")
 
-if __name__ == "__main__":
+def build(BASE_PATH: str):
+    """
+    Run the build process
+    """
     # Local directories
-    BASE_PATH = argv[1] if len(argv) > 1 else ".."
     POSTS_FOLDER = os.path.join(BASE_PATH, "posts")
     TEMPLATES_FOLDER = os.path.join(BASE_PATH, "templates")
     OUTPUT_FOLDER = os.path.join(BASE_PATH)
@@ -314,7 +319,6 @@ if __name__ == "__main__":
     BLOG_TEMPLATE = "blog.html"
     INDEX_TEMPLATE = "index.html"
     STRINGS_TEMPLATE = "strings.js"
-    PROJECTS_JSON = "projects.json"
     # Local assets filenames and hashes
     asset_paths = {
         'icon': os.path.join(ASSETS_PATH, 'img', 'favicon.ico'),
@@ -333,7 +337,7 @@ if __name__ == "__main__":
         os.path.join(TEMPLATES_FOLDER, INDEX_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, INDEX_URL),
         asset_hashes,
-        os.path.join(BASE_PATH, PROJECTS_JSON),
+        os.path.join(BASE_PATH, PROJECTS_FILE_NAME),
         os.path.join(TEMPLATES_FOLDER, STRINGS_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, STRINGS_URL)
     )
@@ -353,3 +357,41 @@ if __name__ == "__main__":
         asset_hashes
     )
     log("Done!", header=True)
+
+if __name__ == "__main__":
+    # Live mode
+    if "--live" in argv:
+        # class EventHandler(pyinotify.ProcessEvent):
+        #     def process_IN_MODIFY(self, event):
+        #         print('File changed: ', event.pathname)
+        #         build("..")
+        # wm = pyinotify.WatchManager()
+        # handler = EventHandler()
+        # notifier = pyinotify.Notifier(wm, handler)
+        # for dir in ["../posts", "../templates", "../assets", "../projects.json"]:
+        #     wm.add_watch(dir, pyinotify.IN_MODIFY)
+        # notifier.loop()
+        class MyHandler(FileSystemEventHandler):
+            def on_modified(self, event):
+                if STRINGS_URL in event.src_path:
+                    return
+                log(f'\n=> BUILD TRIGGERED BY {event.event_type} on {event.src_path}', header=True)
+                build(DEFAULT_BASE_PATH)
+        observer = Observer()
+        for dir in [POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, PROJECTS_FILE_NAME]:
+            path = os.path.join(DEFAULT_BASE_PATH, dir)
+            observer.schedule(
+                MyHandler(),
+                path,
+                recursive=True
+            )
+        log("Watching for changes...", header=True)
+        observer.start()
+        try:
+            while True:
+                sleep(1)
+        except KeyboardInterrupt:
+            observer.stop()
+        observer.join()
+    else:
+        build(argv[1] if len(argv) > 1 else DEFAULT_BASE_PATH)
