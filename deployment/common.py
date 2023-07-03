@@ -1,10 +1,18 @@
 from hashlib import md5
+import os
 
+# Verbose levels
 VERBOSE_NONE = 0
 VERBOSE_ERROR = 1
 VERBOSE_WARNING = 2
 VERBOSE_INFO = 3
 VERBOSE_ALL = 4
+
+# Remote URLs
+BLOG_URL = "blog"
+SITEMAP_URL = "sitemap.xml"
+INDEX_URL = "index.html"
+STRINGS_URL = os.path.join("assets", "strings.js")
 
 def file_hash(file: str):
     """

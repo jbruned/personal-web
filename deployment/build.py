@@ -7,7 +7,7 @@ from typing import Tuple
 from jinja2 import Template
 from markdown import markdown
 
-from common import VERBOSE_ALL, VERBOSE_ERROR, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, abort, file_hash, log
+from common import VERBOSE_WARNING, abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL
 
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
@@ -327,11 +327,6 @@ if __name__ == "__main__":
             name: file_hash(path)
             for name, path in asset_paths.items()
         }
-    # Remote URLs
-    BLOG_URL = "blog"
-    SITEMAP_URL = "sitemap.xml"
-    INDEX_URL = "index.html"
-    STRINGS_URL = os.path.join("assets", "strings.js")
     # Build
     log("Building index...", header=True)
     build_index(
