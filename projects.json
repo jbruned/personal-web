@@ -1,5 +1,32 @@
 [
     {
+        "show": false,
+        "id": "unique_project_id",
+        "cat_id": "sw/ia/hw",
+        "media": "img or youtube url",
+        "thumbnail": "img url (optional, otherwise media or youtube thumbnail wil be used)",
+        "strings": {
+            "ES": {
+                "title": "Título del proyecto",
+                "category": "Categoría (opcional)",
+                "html": "<p>Descripción del proyecto</p>",
+                "btn_text": "Texto del botón (opcional)"
+            },
+            "EN": {
+                "title": "Project title",
+                "category": "Category (optional)",
+                "html": "<p>Project description</p>",
+                "btn_text": "Button text (optional)"
+            }
+        },
+        "technologies": [
+            "Optional",
+            "List of technologies",
+            "..."
+        ],
+        "url": "Project url (optional)"
+    },
+    {
         "id": "active_learning",
         "cat_id": "ia",
         "media": "https://www.youtube-nocookie.com/embed/D7Q-SgApXpY",

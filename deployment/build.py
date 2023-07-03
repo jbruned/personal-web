@@ -226,6 +226,9 @@ def process_project(project: dict) -> dict:
     """
     Process a project's metadata
     """
+    if "show" in project and not project["show"]:
+        log(f"Skipping project {project['id']} (set as not shown)", VERBOSE_WARNING)
+        return None
     if "id" not in project:
         log("Skipping project (no ID)", VERBOSE_WARNING)
         return None
