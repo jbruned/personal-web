@@ -9,8 +9,9 @@ from markdown import markdown
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from common import VERBOSE_WARNING, abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL, \
-    PROJECTS_FILE_NAME, POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, DEFAULT_BASE_PATH
+from common import abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL, \
+    PROJECTS_FILE_NAME, POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, DEFAULT_BASE_PATH, \
+    VERBOSE_INFO, VERBOSE_WARNING, VERBOSE_NONE, set_log_level
 
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
@@ -375,7 +376,7 @@ if __name__ == "__main__":
             def on_modified(self, event):
                 if STRINGS_URL in event.src_path:
                     return
-                log(f'\n=> BUILD TRIGGERED BY {event.event_type} on {event.src_path}', header=True)
+                log(f'\n=> BUILD TRIGGERED BY {event.event_type} on {event.src_path}', header=True, verbose=VERBOSE_INFO)
                 build(DEFAULT_BASE_PATH)
         observer = Observer()
         for dir in [POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, PROJECTS_FILE_NAME]:
@@ -386,6 +387,7 @@ if __name__ == "__main__":
                 recursive=True
             )
         log("Watching for changes...", header=True)
+        set_log_level(VERBOSE_WARNING)
         observer.start()
         try:
             while True:

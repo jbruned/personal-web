@@ -7,8 +7,8 @@ from hashlib import md5
 import pysftp
 import dotenv
 
-from common import VERBOSE_ALL, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, \
-    POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, file_hash, log
+from common import VERBOSE_ALL, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, get_log_level, \
+    POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, file_hash, log, set_log_level
 
 DEFAULT_DEPLOYMENT_STATUS_FILE = "deployment_status.txt"
 
@@ -23,8 +23,7 @@ def publish(
     status_file: str = "status.txt",
     ignore: list = [],
     remove_unmatched: bool = False,
-    dry_run: bool = True,
-    verbose: int = VERBOSE_INFO
+    dry_run: bool = True
 ):
     """
     Publish the files to the remote directory. Flags.
@@ -36,7 +35,7 @@ def publish(
     public_key = public_key.strip() if public_key is not None else ""
     cnopts = pysftp.CnOpts()
     for should_be_ignored in [
-        POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME,
+        POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, status_file,
         'deployment', '.gitignore', '.git', 'README.md', '.github'
     ]:
         if should_be_ignored not in ignore:
@@ -66,36 +65,35 @@ def publish(
         new_status = {}
 
         # Fetch all file paths
-        remote_files = get_all_remote_files(sftp, verbose=verbose, ignore=ignore)
+        remote_files = get_all_remote_files(sftp, ignore=ignore)
         for file in list(curr_status.keys()):
             if file not in remote_files:
                 curr_status.pop(file)            
-        local_files = get_all_local_files(verbose=verbose, ignore=ignore)
-        ignore.append(status_file)
+        local_files = get_all_local_files(ignore=ignore)
 
         # Publish the files
-        log(f"Publishing files...", verbose=verbose, dry_run=dry_run, header=True, level=VERBOSE_ALL)
+        log(f"Publishing files...", dry_run=dry_run, header=True, level=VERBOSE_INFO)
         for file in remote_files.union(local_files):
             if is_ignored(file, ignore):
-                log(f"Ignored {file} (it's in the ignore list).", verbose=verbose, dry_run=dry_run)
+                log(f"Ignored {file} (it's in the ignore list).", dry_run=dry_run)
                 continue
             if file in remote_files and file not in local_files:
                 if remove_unmatched:
-                    remove_file(sftp, file, verbose=verbose, dry_run=dry_run)
+                    remove_file(sftp, file, dry_run=dry_run)
                 elif file in curr_status:
                     raise Exception(f"File {file} is in the remote status but not in the local directory. "
                                     "Use the --remove_unmatched flag if you wish to continue.")
                 # else:
                 #     log(f"Skipped {file} (it's in the remote directory but not in the status file).",
-                #         verbose=verbose, dry_run=dry_run)
+                #         dry_run=dry_run)
                 continue
             published_hash = curr_status.get(file) if file in curr_status else None
             local_hash = file_hash(file)
             new_status[file] = local_hash
             if published_hash != local_hash:
-                upload_file(sftp, file, verbose=verbose, dry_run=dry_run)
+                upload_file(sftp, file, dry_run=dry_run)
             else:
-                log(f"Already up to date: {file}", verbose=verbose, dry_run=dry_run)
+                log(f"Already up to date: {file}", dry_run=dry_run)
 
         # Warn if the status file is not forbidden
         if '.htaccess' not in local_files or not file_contains('.htaccess', status_file):
@@ -108,9 +106,9 @@ def publish(
                 f"{filename} {hash}"
                 for filename, hash in new_status.items()
             ]))
-        upload_file(sftp, status_file, verbose=verbose, dry_run=dry_run)
+        upload_file(sftp, status_file, dry_run=dry_run)
         os.remove(status_file)
-    log("Done publishing!", verbose=verbose, dry_run=dry_run, header=True)
+    log("Done publishing!", dry_run=dry_run, header=True)
 
 def init(sftp, remote_path, local_path, status_file):
     """
@@ -140,49 +138,53 @@ def get_status(status_file):
             )
         }
 
-def get_all_remote_files(sftp, relative_path: str = None, verbose: int = VERBOSE_INFO, ignore: list = []):
+def get_all_remote_files(sftp, relative_path: str = None, first_call: bool = True, ignore: list = []):
     """
     Get all files from the remote directory, recursively
     """
-    log(f"Indexing remote files...", verbose=verbose, header=verbose == VERBOSE_ALL)
+    if first_call:
+        log(f"Indexing remote files...", header=True)
     all_files = set()
     for file in sftp.listdir_attr():
         path = (f"{relative_path}/" if relative_path is not None else '') + file.filename
         if is_ignored(path, ignore):
-            log(f"Ignored {path} (it's in the ignore list).", verbose=verbose, level=VERBOSE_ALL)
+            log(f"Ignored {path} (it's in the ignore list).", level=VERBOSE_WARNING)
             continue
         if stat.S_ISDIR(file.st_mode):
             sftp.chdir(file.filename)
-            log(f"Listing {file.filename}", verbose=verbose, level=VERBOSE_ALL)
+            if first_call:
+                log(f"Listing {file.filename}", level=VERBOSE_INFO)
             all_files.update(
-                get_all_remote_files(sftp, relative_path=path, verbose=VERBOSE_NONE)
+                get_all_remote_files(sftp, relative_path=path, first_call=False)
             )
             sftp.chdir("..")
         else:
             all_files.add(path)
     return all_files
 
-def get_all_local_files(local_path: str = None, verbose: int = VERBOSE_INFO, ignore: list = []):
+def get_all_local_files(local_path: str = None, first_call: bool = True, ignore: list = []):
     """
     Get all files from the local directory, recursively
     """
-    log(f"Indexing local files...", verbose=verbose, header=verbose == VERBOSE_ALL)
+    if first_call:
+        log(f"Indexing local files...", header=True)
     all_files = set()
     for file in os.listdir(local_path if local_path is not None else '.'):
         path = (f"{local_path}/" if local_path is not None else '') + file
         if is_ignored(path, ignore):
-            log(f"Ignored {path} (it's in the ignore list).", verbose=verbose, level=VERBOSE_ALL)
+            log(f"Ignored {path} (it's in the ignore list).", level=VERBOSE_WARNING)
             continue
         if os.path.isdir(path):
-            log(f"Listing {file}", verbose=verbose, level=VERBOSE_ALL)
+            if first_call:
+                log(f"Listing {file}", level=VERBOSE_INFO)
             all_files.update(
-                get_all_local_files(path, verbose=VERBOSE_NONE)
+                get_all_local_files(path, first_call=False)
             )
         else:
             all_files.add(path)
     return all_files
 
-def upload_file(sftp, file: str, verbose: int = VERBOSE_INFO, dry_run: bool = False):
+def upload_file(sftp, file: str, dry_run: bool = False):
     """
     Upload a file to the remote directory
     """
@@ -193,15 +195,15 @@ def upload_file(sftp, file: str, verbose: int = VERBOSE_INFO, dry_run: bool = Fa
     already_existed = sftp.exists(file)
     if not dry_run:
         sftp.put(file, file)
-    log(f"{'Updated' if already_existed else 'Created'} {file}", verbose=verbose, dry_run=dry_run)
+    log(f"{'Updated' if already_existed else 'Created'} {file}", dry_run=dry_run)
 
-def remove_file(sftp, file: str, verbose: int = VERBOSE_INFO, dry_run: bool = False):
+def remove_file(sftp, file: str, dry_run: bool = False):
     """
     Remove a file from the remote directory
     """
     if not dry_run:
         sftp.remove(file)
-    log(f"Deleted {file}", verbose=verbose, dry_run=dry_run)
+    log(f"Deleted {file}", dry_run=dry_run)
 
 def is_ignored(file: str, ignore: list):
     """
@@ -232,7 +234,8 @@ if __name__ == '__main__':
         verbose_level = VERBOSE_INFO
     if "--verbose_all" in sys.argv or "-vv" in sys.argv:
         verbose_level = VERBOSE_ALL
-    log(f"Publishing...{' (dry run)' if dry_run else ''}", verbose=verbose_level, header=True)
+    set_log_level(verbose_level)
+    log(f"Publishing...{' (dry run)' if dry_run else ''}", header=True)
     publish(
         username=os.getenv("FTP_USER"),
         password=os.getenv("FTP_PASS"),
@@ -244,6 +247,5 @@ if __name__ == '__main__':
         status_file=os.getenv("STATUS_FILE", DEFAULT_DEPLOYMENT_STATUS_FILE),
         ignore=os.getenv("IGNORED_PATHS", "").split(","),
         remove_unmatched="--remove_unmatched" in sys.argv or "-f" in sys.argv,
-        dry_run=dry_run,
-        verbose=verbose_level
+        dry_run=dry_run
     )
