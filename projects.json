@@ -32,13 +32,13 @@
         "media": "/assets/portfolio/cv.jpeg",
         "strings": {
             "ES": {
-                "title": "Desarrollo de mi web personal con CI/CD",
+                "title": "Desarrollo de mi web personal desde cero",
                 "category": "Desarrollo web",
                 "html": "<p>Esta web no deja de ser un proyecto más, que he desarrollado desde cero utilizando HTML, CSS y JavaScript, además de librerías como <em>Bootstrap</em>.</p><p>Además de aplicar buenas prácticas, he automatizado el despliegue de la web mediante <em>pipelines</em>. También es destacable el script de <em>Python</em> que he desarrollado para construir automáticamente la web a partir de información almacenada en ficheros JSON y Markdown, lo que me permite añadir nuevos proyectos y posts de forma sencilla y evitar código redundante y repetitivo.</p><p>Descarté usar un CMS como <em>Wordpress</em> o un <em>framework</em>/librería como <em>React</em> porque quería tener un mayor control sobre el código y la arquitectura de la web, creando una solución <em>ad hoc</em>. Además, uno de mis principales objetivos era poner en práctica y ampliar mis conocimientos; de hecho, incluso he creado mis propios scripts para construir y publicar la web.</p><p>Por último, pero no menos importante, ¡es <em>open source</em>! Es decir, que puedes ver todo el código fuente en el repositorio de <em>GitHub</em>.</p>",
                 "btn_text": "Ver código en GitHub"
             },
             "EN": {
-                "title": "Development of my personal website with CI/CD",
+                "title": "Development of my personal website from scratch",
                 "category": "Web development",
                 "html": "<p>This website is just another project, which I have developed from scratch using HTML, CSS and JavaScript, as well as libraries such as <em>Bootstrap</em>.</p><p>In addition to applying good practices, I've automated the deployment of the website using <em>pipelines</em>. It is also worth mentioning the <em>Python</em> script that I have developed to automatically build the website from information stored in JSON and Markdown files. This allows me to easily add new projects and blog posts while avoiding redundant and repetitive code.</p><p>I didn't use a CMS such as <em>Wordpress</em> or a <em>framework</em>/library such as <em>React</em> because I wanted to have full control over the code and the architecture of the website, creating an <em>ad hoc</em> solution. In addition, one of my main objectives was to put into practice and expand my knowledge; in fact, I have even created my own scripts to build and publish the website.</p><p>Last but not least, it's <em>open source</em>! That is, you can see all the source code in the <em>GitHub</em> repository.</p>",
                 "btn_text": "See code on GitHub"
