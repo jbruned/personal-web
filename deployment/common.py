@@ -21,6 +21,7 @@ POSTS_DIR_NAME = "posts"
 TEMPLATES_DIR_NAME = "templates"
 ASSETS_DIR_NAME = "assets"
 PROJECTS_FILE_NAME = "projects.json"
+SKILLS_FILE_NAME = "skills.json"
 
 def file_hash(file: str):
     """

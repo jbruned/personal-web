@@ -1,0 +1,202 @@
+[
+    {
+        "title": {
+            "ES": "Áreas de conocimiento",
+            "EN": "Knowledge areas"
+        },
+        "skills": [
+            {
+                "name": {
+                    "ES": "Desarrollo Web",
+                    "EN": "Web development"
+                },
+                "percent": 85
+            },
+            {
+                "name": {
+                    "ES": "Desarrollo de aplicaciones para Android",
+                    "EN": "Android applications development"
+                },
+                "percent": 90
+            },
+            {
+                "name": {
+                    "ES": "Machine Learning",
+                    "EN": "Machine Learning"
+                },
+                "percent": 80
+            },
+            {
+                "name": {
+                    "ES": "Deep Learning",
+                    "EN": "Deep Learning"
+                },
+                "percent": 70
+            },
+            {
+                "name": {
+                    "ES": "Visión Artificial",
+                    "EN": "Computer Vision"
+                },
+                "percent": 75
+            },
+            {
+                "name": {
+                    "ES": "Minería de Datos",
+                    "EN": "Data Mining"
+                },
+                "percent": 85
+            },
+            {
+                "name": {
+                    "ES": "Redes de ordenadores",
+                    "EN": "Computer networks"
+                },
+                "percent": 88
+            },
+            {
+                "name": {
+                    "ES": "Seguridad informática",
+                    "EN": "Computer security"
+                },
+                "percent": 75
+            },
+            {
+                "name": {
+                    "ES": "Desarrollo de Videojuegos",
+                    "EN": "Video games development"
+                },
+                "percent": 80
+            },
+            {
+                "name": {
+                    "ES": "Edición Multimedia (fotografía, vídeo...)",
+                    "EN": "Multimedia editing (photography, video...)"
+                },
+                "percent": 80
+            },
+            {
+                "name": {
+                    "ES": "Arquitectura de Software",
+                    "EN": "Software architecture"
+                },
+                "percent": 90
+            },
+            {
+                "name": {
+                    "ES": "Bases de Datos",
+                    "EN": "Databases"
+                },
+                "percent": 95
+            }
+        ]
+    },
+    {
+        "title": {
+            "ES": "Lenguajes y tecnologías",
+            "EN": "Languages & technologies"
+        },
+        "skills": [
+            {
+                "name": {
+                    "ES": "Python",
+                    "EN": "Python"
+                },
+                "percent": 99
+            },
+            {
+                "name": {
+                    "ES": "Java",
+                    "EN": "Java"
+                },
+                "percent": 96
+            },
+            {
+                "name": {
+                    "ES": "HTML & CSS (frontend)",
+                    "EN": "HTML & CSS (frontend)"
+                },
+                "percent": 96
+            },
+            {
+                "name": {
+                    "ES": "JavaScript & jQuery (frontend)",
+                    "EN": "JavaScript & jQuery (frontend)"
+                },
+                "percent": 92
+            },
+            {
+                "name": {
+                    "ES": "PHP & MySQL (backend)",
+                    "EN": "PHP & MySQL (backend)"
+                },
+                "percent": 96
+            },
+            {
+                "name": {
+                    "ES": "Git",
+                    "EN": "Git"
+                },
+                "percent": 78
+            },
+            {
+                "name": {
+                    "ES": "Android Studio",
+                    "EN": "Android Studio"
+                },
+                "percent": 85
+            },
+            {
+                "name": {
+                    "ES": "Unity",
+                    "EN": "Unity"
+                },
+                "percent": 85
+            },
+            {
+                "name": {
+                    "ES": "C",
+                    "EN": "C"
+                },
+                "percent": 95
+            },
+            {
+                "name": {
+                    "ES": "Arduino",
+                    "EN": "Arduino"
+                },
+                "percent": 90
+            }
+        ]
+    },
+    {
+        "title": {
+            "ES": "Idiomas",
+            "EN": "Languages"
+        },
+        "skills": [
+            {
+                "name": {
+                    "ES": "Español",
+                    "EN": "Spanish"
+                },
+                "level": {
+                    "ES": "Nativo",
+                    "EN": "Native"
+                },
+                "percent": 99
+            },
+            {
+                "name": {
+                    "ES": "Inglés",
+                    "EN": "English"
+                },
+                "level": {
+                    "ES": "Nivel C1",
+                    "EN": "C1 Level"
+                },
+                "percent": 85
+            }
+        ]
+    }
+]

@@ -11,7 +11,7 @@ from watchdog.events import FileSystemEventHandler
 
 from common import abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL, \
     PROJECTS_FILE_NAME, POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, DEFAULT_BASE_PATH, \
-    VERBOSE_INFO, VERBOSE_WARNING, VERBOSE_NONE, set_log_level
+    SKILLS_FILE_NAME, VERBOSE_INFO, VERBOSE_WARNING, set_log_level
 
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
@@ -271,24 +271,42 @@ def process_project(project: dict) -> dict:
     project["strings"] = strings
     return project
 
-def build_index(template: str, index_file: str, asset_hashes: callable, projects_json: str, strings_template: str, strings_file: str):
+def get_static_string(string: dict, name: str) -> dict:
+    """
+    Get the static dict from a JSON object with format {"lang": "value"}
+    Returns a dict with format {"string_id": "...", "static_value": "..."}
+    """
+    string = {
+        lang.lower(): value for lang, value in string.items()
+    }
+    static_value = string[DEFAULT_LANG] or next(string.values(), None)
+    if static_value is None:
+        abort(f"String {name} has no value in any language")
+    return {
+        "string_id": idify(name),
+        "static_value": static_value
+    }
+    
+
+def build_index(template: str, index_file: str, asset_hashes: callable,
+                projects_json: str, skills_json: str, strings_template: str, strings_file: str):
     """
     Build the home page from a template
     - template: path to the template (HTML with Jinja2)
     - index_file: path to the output index file
     - asset_hashes: callable to compute the dictionary of hashes
     - projects_json: path to the projects JSON file
+    - skills_json: path to the skills JSON file
     - strings_template: path to the strings template (JS with Jinja2)
     - strings_file: path to the output strings file
     """
-    if not os.path.exists(template) or not os.path.isfile(template):
-        abort("The template path doesn't exist or isn't a file")
-    if not os.path.exists(projects_json) or not os.path.isfile(projects_json):
-        abort("The projects JSON path doesn't exist or isn't a file")
+    for required_file in [template, projects_json, skills_json, strings_template]:
+        if not os.path.exists(template) or not os.path.isfile(template):
+            abort(f"{required_file} path doesn't exist or isn't a file")
+    # Read the projects
     with open(projects_json, "r") as f:
         projects = json.loads(f.read())
     projects = [process_project(project) for project in projects]
-    # Remove empty projects
     projects = [project for project in projects if project is not None]
     string_translations = {}
     for project in projects:
@@ -298,12 +316,36 @@ def build_index(template: str, index_file: str, asset_hashes: callable, projects
                 string_translations[lang] = {}
             string_translations[lang].update(project["strings"][lang])
         del project["strings"]
+    # Read the skills
+    with open(skills_json, "r") as f:
+        skills = json.loads(f.read())
+    sect_id = 0
+    skill_id = 0
+    for section in skills:
+        sect_id += 1
+        static_string = get_static_string(section["title"], f"skills_{sect_id}")
+        for lang, value in section["title"].items():
+            string_translations[lang][static_string["string_id"]] = value
+        section["title"] = static_string
+        for skill in section["skills"]:
+            skill_id += 1
+            static_string = get_static_string(skill["name"], f"skill_{skill_id}")
+            for lang, value in skill["name"].items():
+                string_translations[lang][static_string["string_id"]] = value
+            skill["name"] = static_string
+            if "level" in skill and skill["level"] is not None:
+                static_string = get_static_string(skill["level"], f"skill_{skill_id}_level")
+                for lang, value in skill["level"].items():
+                    string_translations[lang][static_string["string_id"]] = value
+                skill["level"] = static_string
+    # Build the strings file
     strings_template = open(strings_template, "r").read()
     with open(strings_file, "w") as f:
         f.write(Template(strings_template).render(strings=string_translations))
+    # Build the index file
     template = open(template, "r").read()
     with open(index_file, "w") as f:
-        f.write(Template(template).render(projects=projects, hashes=asset_hashes()))
+        f.write(Template(template).render(projects=projects, skills=skills, hashes=asset_hashes()))
     log("Built index")
 
 def build(BASE_PATH: str):
@@ -339,6 +381,7 @@ def build(BASE_PATH: str):
         os.path.join(OUTPUT_FOLDER, INDEX_URL),
         asset_hashes,
         os.path.join(BASE_PATH, PROJECTS_FILE_NAME),
+        os.path.join(BASE_PATH, SKILLS_FILE_NAME),
         os.path.join(TEMPLATES_FOLDER, STRINGS_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, STRINGS_URL)
     )
@@ -379,7 +422,7 @@ if __name__ == "__main__":
                 log(f'\n=> BUILD TRIGGERED BY {event.event_type} on {event.src_path}', header=True, verbose=VERBOSE_INFO)
                 build(DEFAULT_BASE_PATH)
         observer = Observer()
-        for dir in [POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, PROJECTS_FILE_NAME]:
+        for dir in [POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME]:
             path = os.path.join(DEFAULT_BASE_PATH, dir)
             observer.schedule(
                 MyHandler(),

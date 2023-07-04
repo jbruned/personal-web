@@ -7,8 +7,9 @@ from hashlib import md5
 import pysftp
 import dotenv
 
-from common import VERBOSE_ALL, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, get_log_level, \
-    POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, file_hash, log, set_log_level
+from common import VERBOSE_ALL, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, \
+    POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME, \
+    file_hash, log, get_log_level, set_log_level
 
 DEFAULT_DEPLOYMENT_STATUS_FILE = "deployment_status.txt"
 
@@ -35,8 +36,8 @@ def publish(
     public_key = public_key.strip() if public_key is not None else ""
     cnopts = pysftp.CnOpts()
     for should_be_ignored in [
-        POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, status_file,
-        'deployment', '.gitignore', '.git', 'README.md', '.github'
+        POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME,
+        'deployment', '.gitignore', '.git', 'README.md', '.github', status_file
     ]:
         if should_be_ignored not in ignore:
             ignore.append(should_be_ignored)
