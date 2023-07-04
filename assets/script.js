@@ -191,7 +191,8 @@ $(window).on("load", function() {
     function lazy_load(elem) {
         if (elem.getAttribute('data-lazy-src') == null)
             return;
-        console.log("Lazy loading " + elem.getAttribute('data-lazy-src'));
+        if (DEBUG)
+            console.log("Lazy loading " + elem.getAttribute('data-lazy-src'));
         elem.src = elem.getAttribute('data-lazy-src');
         elem.removeAttribute('data-lazy-src');
     }
