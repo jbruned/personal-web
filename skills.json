@@ -14,8 +14,15 @@
             },
             {
                 "name": {
-                    "ES": "Desarrollo de aplicaciones para Android",
-                    "EN": "Android applications development"
+                    "ES": "Desarrollo para Android",
+                    "EN": "Android development"
+                },
+                "percent": 95
+            },
+            {
+                "name": {
+                    "ES": "Pipelines y CI/CD",
+                    "EN": "Pipelines & CI/CD"
                 },
                 "percent": 90
             },
@@ -24,54 +31,47 @@
                     "ES": "Machine Learning",
                     "EN": "Machine Learning"
                 },
-                "percent": 80
+                "percent": 90
             },
             {
                 "name": {
                     "ES": "Deep Learning",
                     "EN": "Deep Learning"
                 },
-                "percent": 70
+                "percent": 80
             },
             {
                 "name": {
                     "ES": "Visión Artificial",
                     "EN": "Computer Vision"
                 },
-                "percent": 75
+                "percent": 82
             },
             {
                 "name": {
                     "ES": "Minería de Datos",
                     "EN": "Data Mining"
                 },
-                "percent": 85
+                "percent": 92
             },
             {
                 "name": {
-                    "ES": "Redes de ordenadores",
+                    "ES": "Redes de Ordenadores",
                     "EN": "Computer networks"
                 },
-                "percent": 88
+                "percent": 90
             },
             {
                 "name": {
-                    "ES": "Seguridad informática",
+                    "ES": "Seguridad Informática",
                     "EN": "Computer security"
-                },
-                "percent": 75
-            },
-            {
-                "name": {
-                    "ES": "Desarrollo de Videojuegos",
-                    "EN": "Video games development"
                 },
                 "percent": 80
             },
             {
                 "name": {
-                    "ES": "Edición Multimedia (fotografía, vídeo...)",
-                    "EN": "Multimedia editing (photography, video...)"
+                    "ES": "Edición Multimedia",
+                    "EN": "Multimedia editing"
                 },
                 "percent": 80
             },
@@ -102,70 +102,84 @@
                     "ES": "Python",
                     "EN": "Python"
                 },
-                "percent": 99
+                "percent": 95
+            },
+            {
+                "name": {
+                    "ES": "Kotlin",
+                    "EN": "Kotlin"
+                },
+                "percent": 98
             },
             {
                 "name": {
                     "ES": "Java",
                     "EN": "Java"
                 },
-                "percent": 96
+                "percent": 95
             },
             {
                 "name": {
-                    "ES": "HTML & CSS (frontend)",
+                    "ES": "HTML + CSS (frontend)",
                     "EN": "HTML & CSS (frontend)"
                 },
                 "percent": 96
             },
             {
                 "name": {
-                    "ES": "JavaScript & jQuery (frontend)",
-                    "EN": "JavaScript & jQuery (frontend)"
+                    "ES": "JavaScript + Frameworks (frontend)",
+                    "EN": "JavaScript & Frameworks (frontend)"
                 },
                 "percent": 92
             },
             {
                 "name": {
-                    "ES": "PHP & MySQL (backend)",
+                    "ES": "PHP + MySQL (backend)",
                     "EN": "PHP & MySQL (backend)"
                 },
                 "percent": 96
             },
             {
                 "name": {
-                    "ES": "Git",
-                    "EN": "Git"
+                    "ES": "Git y Pipelines",
+                    "EN": "Git & Pipelines"
                 },
-                "percent": 78
+                "percent": 95
             },
             {
                 "name": {
                     "ES": "Android Studio",
                     "EN": "Android Studio"
                 },
-                "percent": 85
+                "percent": 95
             },
             {
                 "name": {
-                    "ES": "Unity",
-                    "EN": "Unity"
+                    "ES": "Despliegue <i>Cloud</i>",
+                    "EN": "Cloud deployment"
                 },
-                "percent": 85
+                "percent": 95
+            },
+            {
+                "name": {
+                    "ES": "Bash y Makefile",
+                    "EN": "Bash & Makefile"
+                },
+                "percent": 80
             },
             {
                 "name": {
                     "ES": "C",
                     "EN": "C"
                 },
-                "percent": 95
+                "percent": 90
             },
             {
                 "name": {
-                    "ES": "Arduino",
-                    "EN": "Arduino"
+                    "ES": "UNIX y Linux",
+                    "EN": "UNIX & Linux"
                 },
-                "percent": 90
+                "percent": 80
             }
         ]
     },
