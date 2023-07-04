@@ -447,13 +447,16 @@
                     <p class="txt-center subtitle" data-string="knowledge_brief">A continuación enumero una serie de aptitudes y destrezas que considero que soy capaz de llevar a cabo de forma satisfactoria</p>
                     <div class="section-box p-5">
                         {% for section in skills %}
-                        <h3 style="font-weight:bold" data-string="{{ section.title.string_id }}">{{ section.title.static_value }}</h3>
+                        <h3 class="fw-bold" data-string="{{ section.title.string_id }}">{{ section.title.static_value }}</h3>
                         <div class="row">
                             {% for skill in section.skills %}
-                            <div class="col-sm-6">
+                            <div class="col-sm-6{% if section.skills|length > 2 %} col-lg-4{% endif %}">
                                 <div class="knowledge-bar">
                                     <div class="bar-data">
                                         <span class="bar-title" data-string="{{ skill.name.string_id }}">{{ skill.name.static_value }}</span>
+                                        {%if skill.level %}
+                                        <span class="bar-value" data-string="{{ skill.level.string_id }}">{{ skill.level.static_value }}</span>
+                                        {% endif %}
                                     </div>
                                     <div class="bar-line">
                                         <span class="bar-fill" data-width="{{ skill.percent or '100' }}%"></span>
