@@ -14,6 +14,8 @@ BLOG_URL = "blog"
 SITEMAP_URL = "sitemap.xml"
 INDEX_URL = "index.html"
 STRINGS_URL = os.path.join("assets", "strings.js")
+SCRIPT_URL = os.path.join("assets", "script.js")
+STYLE_URL = os.path.join("assets", "style.css")
 
 # Local directories
 DEFAULT_BASE_PATH = ".."

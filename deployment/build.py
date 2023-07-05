@@ -11,7 +11,7 @@ from watchdog.events import FileSystemEventHandler
 
 from common import abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL, \
     PROJECTS_FILE_NAME, POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, DEFAULT_BASE_PATH, \
-    SKILLS_FILE_NAME, VERBOSE_INFO, VERBOSE_WARNING, set_log_level
+    SCRIPT_URL, STYLE_URL, SKILLS_FILE_NAME, VERBOSE_INFO, VERBOSE_WARNING, set_log_level
 
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
@@ -288,20 +288,27 @@ def get_static_string(string: dict, name: str) -> dict:
     }
     
 
-def build_index(template: str, index_file: str, asset_hashes: callable,
-                projects_json: str, skills_json: str, strings_template: str, strings_file: str):
+def build_index(index_template: str, index_file: str, asset_hashes: callable,
+                projects_json: str, skills_json: str,
+                strings_template: str, strings_file: str,
+                script_template: str, script_file: str,
+                style_template: str, style_file: str):
     """
     Build the home page from a template
-    - template: path to the template (HTML with Jinja2)
+    - index_template: path to the template (HTML with Jinja2)
     - index_file: path to the output index file
     - asset_hashes: callable to compute the dictionary of hashes
     - projects_json: path to the projects JSON file
     - skills_json: path to the skills JSON file
     - strings_template: path to the strings template (JS with Jinja2)
     - strings_file: path to the output strings file
+    - script_template: path to the script template (JS with Jinja2)
+    - script_file: path to the output script file
+    - style_template: path to the style template (CSS with Jinja2)
+    - style_file: path to the output style file
     """
-    for required_file in [template, projects_json, skills_json, strings_template]:
-        if not os.path.exists(template) or not os.path.isfile(template):
+    for required_file in [index_template, projects_json, skills_json, strings_template]:
+        if not os.path.exists(index_template) or not os.path.isfile(index_template):
             abort(f"{required_file} path doesn't exist or isn't a file")
     # Read the projects
     with open(projects_json, "r") as f:
@@ -342,10 +349,17 @@ def build_index(template: str, index_file: str, asset_hashes: callable,
     strings_template = open(strings_template, "r").read()
     with open(strings_file, "w") as f:
         f.write(Template(strings_template).render(strings=string_translations))
+    # Build the script and style files (update imports' hashes)
+    script_template = open(script_template, "r").read()
+    with open(script_file, "w") as f:
+        f.write(Template(script_template).render(hashes=asset_hashes()))
+    style_template = open(style_template, "r").read()
+    with open(style_file, "w") as f:
+        f.write(Template(style_template).render(hashes=asset_hashes()))
     # Build the index file
-    template = open(template, "r").read()
+    index_template = open(index_template, "r").read()
     with open(index_file, "w") as f:
-        f.write(Template(template).render(projects=projects, skills=skills, hashes=asset_hashes()))
+        f.write(Template(index_template).render(projects=projects, skills=skills, hashes=asset_hashes()))
     log("Built index")
 
 def build(BASE_PATH: str):
@@ -362,12 +376,16 @@ def build(BASE_PATH: str):
     BLOG_TEMPLATE = "blog.html"
     INDEX_TEMPLATE = "index.html"
     STRINGS_TEMPLATE = "strings.js"
+    SCRIPT_TEMPLATE = "script.js"
+    STYLE_TEMPLATE = "style.css"
     # Local assets filenames and hashes
     asset_paths = {
         'icon': os.path.join(ASSETS_PATH, 'img', 'favicon.ico'),
         'style': os.path.join(ASSETS_PATH, 'style.css'),
         'script': os.path.join(ASSETS_PATH, 'script.js'),
-        'script': os.path.join(ASSETS_PATH, 'strings.js')
+        'strings': os.path.join(ASSETS_PATH, 'strings.js'),
+        'icons_font': os.path.join(ASSETS_PATH, 'fonts', 'jbruned-icons.css'),
+        'print_css': os.path.join(ASSETS_PATH, 'print.css')
     }
     def asset_hashes():
         return {
@@ -383,7 +401,11 @@ def build(BASE_PATH: str):
         os.path.join(BASE_PATH, PROJECTS_FILE_NAME),
         os.path.join(BASE_PATH, SKILLS_FILE_NAME),
         os.path.join(TEMPLATES_FOLDER, STRINGS_TEMPLATE),
-        os.path.join(OUTPUT_FOLDER, STRINGS_URL)
+        os.path.join(OUTPUT_FOLDER, STRINGS_URL),
+        os.path.join(TEMPLATES_FOLDER, SCRIPT_TEMPLATE),
+        os.path.join(OUTPUT_FOLDER, SCRIPT_URL),
+        os.path.join(ASSETS_PATH, STYLE_TEMPLATE),
+        os.path.join(OUTPUT_FOLDER, STYLE_URL),
     )
     log("Building blog posts...", header=True)
     posts = build_blog_posts(
@@ -403,23 +425,13 @@ def build(BASE_PATH: str):
     log("Done!", header=True)
 
 if __name__ == "__main__":
-    # Live mode
     if "--live" in argv:
-        # class EventHandler(pyinotify.ProcessEvent):
-        #     def process_IN_MODIFY(self, event):
-        #         print('File changed: ', event.pathname)
-        #         build("..")
-        # wm = pyinotify.WatchManager()
-        # handler = EventHandler()
-        # notifier = pyinotify.Notifier(wm, handler)
-        # for dir in ["../posts", "../templates", "../assets", "../projects.json"]:
-        #     wm.add_watch(dir, pyinotify.IN_MODIFY)
-        # notifier.loop()
+        # Live mode (watch for changes and rebuild)
         class MyHandler(FileSystemEventHandler):
             def on_modified(self, event):
                 if STRINGS_URL in event.src_path:
                     return
-                log(f'\n=> BUILD TRIGGERED BY {event.event_type} on {event.src_path}', header=True, verbose=VERBOSE_INFO)
+                log(f'\n=> REBUILDING ({event.event_type} {event.src_path})', header=True, verbose=VERBOSE_INFO)
                 build(DEFAULT_BASE_PATH)
         observer = Observer()
         for dir in [POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME]:

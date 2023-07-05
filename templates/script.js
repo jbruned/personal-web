@@ -6,7 +6,7 @@ function reveal_email() {
 }
 
 /** TRANSLATION **/
-import { EN, ES } from './strings.js';
+import { EN, ES } from './strings.js?{{ hashes.strings|default("") }}';
 const translations = {
     'en': EN,
     'es': ES
