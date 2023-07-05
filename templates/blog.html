@@ -68,32 +68,6 @@
                         <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_1">En esta sección encontrarás todo tipo de contenido, desde actualizaciones de estado hasta proyectos personales, temas que me han resultado interesantes, etc.</p>
                         <p class="text-center pt-2 px-3 mb-3" data-string="blog_desc_2">Intento publicar nuevo contenido con regularidad, ¡así que nos vemos por aquí!</p>
                     </div>
-                    <!--<div class="card-footer pb-1 no-print" id="links">
-                        <div class="row">
-                            <div class="col-sm-4 text-center">
-                                <a class="btn-link micolor" href="/blog" data-string="more_info">
-                                    Ir a mi blog
-                                    <i class="icon-blog"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <a class="btn-link micolor bigger" href="#links" data-string="more_info">
-                                    Continuar viendo mi CV
-                                    <i class="icon-down"></i>
-                                </a>
-                            </div>
-                            <div class="col-sm-4 text-center">
-                                <a class="btn-link micolor" href="https://github.com/jbruned/personal-web" data-string="more_info" target="_blank">
-                                    Ver esta página en GitHub
-                                    <i class="icon-github"></i>
-                                </a>
-                            </div>
-                        </div>
-                    </div>-->
-                    <!-- Create a div aligned with the bottom border and in the center -->
-                    <!--<a class="btn icon-btn section-btn mibg no-print" href="#btn-scroll" id="btn-scroll">
-                        <i class="icon-down"></i>
-                    </a>-->
                     {% if tags|length > 1 %}
                     <div class="filter">
                         <div class="filter-inner">
@@ -110,9 +84,7 @@
                     </div>
                     {% endif %}
                 </div>
-                <!--<h1 class="section-title display-1">Blog</h1>-->
                 <div class="grid">
-                    <!--<div class="grid-sizer"></div>-->
                     {% for post in posts %}
                     <div class="grid-item grid-item-small {{ post.tag.id if post.tag else '' }}">
                         <div class="grid-box">
@@ -125,9 +97,6 @@
                                             <hr>
                                             <h4 class="portfolio-cat mb-0">{{ post.tag.name }}</h4>
                                             {% endif %}
-                                            <!--<p class="text-center mb-2">
-                                                <a class="btn btn-upper mibg" data-bs-toggle="modal" data-bs-target="#portfolio-details-0"><i class="me-1 icon-info"></i><span data-string="project_info">Ver proyecto</span></a>
-                                            </p>-->
                                         </a>
                                     </figcaption>
                                 </a>
