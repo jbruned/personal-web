@@ -1,16 +1,20 @@
 header, .btn-upper, .filter {
     display: none !important;
+    transition: unset !important;
 }
 .portfolio-figure .portfolio-caption, .portfolio-figure .portfolio-title, .portfolio-figure .portfolio-cat {
     opacity: unset !important;
+    transition: unset !important;
 }
 .portfolio-figure .portfolio-caption-inner {
     -webkit-transform: unset !important;
     -moz-transform: unset !important;
     transform: unset !important;
+    transition: unset !important;
 }
 .portfolio-figure .portfolio-caption {
     background-color: rgba(32, 39, 52, 0.6) !important;
+    transition: unset !important;
 }
 .animate-down, .animate-left, .animate-right, .animate-up {
     opacity: 1 !important;
@@ -27,9 +31,11 @@ header, .btn-upper, .filter {
 }
 .only-print {
     display: initial !important;
+    transition: unset !important;
 }
 .no-print {
     display: none !important;
+    transition: unset !important;
 }
 .knowledge-bar .bar-fill {
     -webkit-transition: unset !important;
@@ -38,8 +44,9 @@ header, .btn-upper, .filter {
 }
 body {
     background-color: unset !important;
+    transition: unset !important;
 }
-#estudios>*, #experiencia, #portfolio, #skills, #contact {
+#estudios>*, #experiencia, #portfolio, #skills, #contact, .grid-box, .grid, .portfolio-figure, .portfolio-caption, .portfolio-caption-inner, .grid-item {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
 }
@@ -60,4 +67,26 @@ body {
 ::-moz-scrollbar {
     width: 0px !important;
     height: 0px !important;
+}
+#certificaciones {
+    padding-top: 60px !important;
+}
+.grid {
+    margin-top: 250px !important;
+}
+.grid-box {
+    padding-top: 0 !important;
+    height: 212px !important;
+    margin-top: -212px !important;
+    margin-bottom: 212px !important;
+    translate: translateY(212px);
+    transition: unset !important;
+}
+.grid .grid-item-small {
+    width: 33.33% !important;
+    transition: unset !important;
+}
+.col-print-4 {
+    width:33%;
+    float:left;
 }

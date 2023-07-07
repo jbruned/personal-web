@@ -146,6 +146,7 @@ $(window).on("load", function() {
         layoutMode: 'masonry',
         masonry: {
             columnWidth: '.grid-item-small'
+            //,fitWidth: true
         }
     }), indicator = document.getElementById("portfolio-tag-indicator");
     function moveIndicator(left, width) {
@@ -204,15 +205,38 @@ $(window).on("load", function() {
     });
 
     // Run animations and reveal email on print
-    window.onbeforeprint = () => {
-        animate_on_scroll(true);
+    function prepare_print() {
+        // Change isotope item height
+        $('.grid-box').addClass('grid-box-print');
+        setActiveFilter();
         reveal_email();
+        animate_on_scroll(true);
+        setTimeout(() => {
+            if (hash_url !== 'print')
+                $('.grid-box').removeClass('grid-box-print');
+            setActiveFilter();
+        }, 1000);
+    }
+    window.onbeforeprint = () => {
+        prepare_print();
+        // Go to #print and force reload
+        if (window.location.hash !== '#print') {
+            alert("An optimized PDF version will be opened");
+            window.location.href = '/CV_Jorge_Bruned.pdf';
+            //window.location.hash = 'print';
+            //window.location.reload(true);
+        }
     };
 
     // Open project modal or apply print styles if needed
     if (hash_url === 'print') {
         $('head').append('<link rel="stylesheet" type="text/css" href="/assets/print.css">');
-        window.onbeforeprint();
+        prepare_print();
+        setTimeout(() => {
+            alert("For best results, use Chrome and set the scale to 70%, disable headers and footers, "
+                + "and enable background graphics in the print dialog.");
+            window.print();
+        }, 1000);
     } else {
         const modal = document.getElementById('portfolio-details-' + idify(hash_url));
         if (modal != null)
