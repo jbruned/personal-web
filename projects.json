@@ -111,13 +111,13 @@
         "thumbnail": "/assets/portfolio/cv5-hd.jpeg",
         "strings": {
             "ES": {
-                "title": "Visión Artificial y Procesamiento del Lenguaje Natural",
+                "title": "Proyectos de Visión Artificial y Procesamiento del Lenguaje Natural",
                 "category": "Deep Learning",
                 "html": "<p>Como parte del Máster en Ingeniería Informática, he podido realizar proyectos de <i>Computer Vision</i> y <i>Natural Language Processing</i> de forma grupal.<p><ul><li><b>Clasificador de imágenes</b> de frutas utilizando redes como <i>ResNet</i> o <i>VGG</i>, además de calcular mapas de atención, mapas de activación, etc.</li><li>Aplicación de mejoras sobre un traductor de inglés a francés utilizando <b>redes recurrentes <i>seq2seq</i></b>, obtención de métricas mediante <i>BLEU score</i>, <i>ROUGE score</i>...</li></ul>",
                 "btn_text": "Ver dataset en Kaggle"
             },
             "EN": {
-                "title": "Computer Vision and Natural Language Processing",
+                "title": "Computer Vision and Natural Language Processing projects",
                 "category": "Deep Learning",
                 "html": "<p>As part of the Master's Degree in Computer Engineering, I have been able to work on group projects related to <i>Computer Vision</i> and <i>Natural Language Processing</i>.<p><ul><li>Fruit <b>image classifier</b> using networks such as <i>ResNet</i> or <i>VGG</i>, as well as computing attention maps, activation maps, etc.</li><li>Improvements on an English to French translator using <b><i>seq2seq</i> recurrent networks</b>, obtaining metrics using <i>BLEU score</i>, <i>ROUGE score</i>...</li></ul>",
                 "btn_text": "View dataset on Kaggle"
@@ -133,7 +133,7 @@
     },
     {
         "id": "app_fb",
-        "cat_id": "software",
+        "cat_id": "sw",
         "media": "https://www.youtube-nocookie.com/embed/Kt-AMsBFXaA",
         "thumbnail": "/assets/portfolio/web-tienda-bruned.jpg",
         "strings": {
@@ -167,6 +167,44 @@
         "url": "https://www.frutasbruned.es/pedidos"
     },
     {
+        "id": "poll_infra",
+        "cat_id": "sw",
+        "media": "/assets/portfolio/pollapp5.png",
+        "thumbnail": "/assets/portfolio/pollapp1.png",
+        "strings": {
+            "ES": {
+                "title": "Aplicación basada en microservicios + despliegue en cloud desde CI/CD",
+                "category": "Infraestructura cloud",
+                "html": "<p>Este proyecto, desarrollado en grupo usando una metodología ágil, consistió en el desarrollo de una aplicación web basada en microservicios, con un sistema de CI/CD para despliegue automático en AWS.</p><p>La aplicación se compone de:</p><ul><li><b>Frontend</b>: UI desarrollada en React</li><li><b>Backend</b>: API desarrollada en Python</li><li><b>Base de datos relacional</b>: PostgreSQL</li><li><b>API Gateway</b>: Kong</li><li><b>Contenedores</b>: Docker</li></ul><p>Destaca el sistema automatizado de CI/CD, que realiza fases de <i>linting</i>, <i>testing</i>, <i>build</i>, <i>publish</i> y <i>deploy</i> de forma automática en diferentes entornos de AWS (desarrollo, preproducción y producción). Para ello, se hace uso de recursos como <i>ECR</i>, <i>ECS</i>, <i>RDS</i>, Balanceador de Carga <i>ELB</i>, <i>CloudWatch</i>, etc. Todo ello gestionado de forma centralizada mediante <i>Terraform</i>.</p></p><p>De forma alternativa, se puede desplegar la aplicación en local o en infraestructura propia, orquestando los contenedores mediante <i>Docker Compose</i>.</p><p>Por último, destaca la recogida de información en ADRs (<i>Architectural Decision Records</i>) y RFIs (<i>Request for Information</i>), así como la realización de demos en directo para el cliente.</p>",
+                "btn_text": "Ver código en GitHub"
+            },
+            "EN": {
+                "title": "Microservices-based app + cloud deployment from CI/CD",
+                "category": "Cloud infrastructure",
+                "html": "<p>This project, developed in a group using an agile methodology, consisted of developing a web app based on microservices, with a CI/CD system for automatic deployment on AWS.</p><p>The app is composed of:</p><ul><li><b>Frontend</b>: UI developed in React</li><li><b>Backend</b>: API developed in Python</li><li><b>Relational database</b>: PostgreSQL</li><li><b>API Gateway</b>: Kong</li><li><b>Containers</b>: Docker</li></ul><p>It is worth mentioning the automated CI/CD system, which performs <i>linting</i>, <i>testing</i>, <i>build</i>, <i>publish</i> and <i>deploy</i> phases automatically in different AWS environments (development, pre-production and production). To do this, resources such as <i>ECR</i>, <i>ECS</i>, <i>RDS</i>, <i>ELB</i> Load Balancer, <i>CloudWatch</i>, etc. are used. All this is managed centrally using <i>Terraform</i>.</p></p><p>Alternatively, the app can be deployed locally or on your own infrastructure, orchestrating the containers using <i>Docker Compose</i>.</p><p>Lastly, it is worth mentioning the collection of information in ADRs (<i>Architectural Decision Records</i>) and RFIs (<i>Request for Information</i>), as well as the live demos for the client.</p>",
+                "btn_text": "View code on GitHub"
+            }
+        },
+        "technologies": [
+            "React",
+            "Python",
+            "Flask",
+            "SQLAlchemy",
+            "PostgreSQL",
+            "Kong",
+            "Docker",
+            "Terraform",
+            "AWS",
+            "CI/CD",
+            "Git",
+            "GitHub Actions",
+            "ECS",
+            "ELB",
+            "RDS"
+        ],
+        "url": "https://github.com/jbruned/Poll-App"
+    },
+    {
         "id": "lan",
         "cat_id": "hw",
         "media": "/assets/portfolio/rack-lan_hd.jpg",
@@ -178,7 +216,7 @@
                 "html": "<p>Proyecto consistente en desplegar a lo largo de varias naves industriales una red local a 1 Gbps con armario rack, cableado Cat6 y alrededor de 20 dispositivos conectados.</p><p>Destacan el despliegue de redes WiFi (tanto red privada como red pública sin acceso a la red local, ambas con tecnología dual band), instalación de puntos de acceso, conexión mediante fibra óptica a 500Mbps, etc.</p><p>También configuré un servidor DHCP con direcciones estáticas para los dispositivos fijos, manteniendo la configuración de los servidores de impresión e instalé un servidor de archivos NAS con RAID 1 para aumentar la seguridad de los datos gracias a la redundancia.</p>"
             },
             "EN": {
-                "title": "Deployment of Local Area Network over various warehouses",
+                "title": "Installation of Local Area Network in industrial warehouse",
                 "category": "Hardware & Networks",
                 "html": "<p>This project consisted in deploying a Local Area Network (LAN) at 1 Gbps over several warehouses. The installation included a Rack Cabinet, Cat6 wiring and more than 20 wired devices.</p><p>I also set up WiFi networks (both a public guest network and a secure private, using Dual Band) using several Access Points and optical fiber Internet access.</p><p>The network configuration included as well a DHCP server (with static addresses for permanent hosts), a print server, a NAS file server with redundancy, etc.</p>"
             }
@@ -236,12 +274,12 @@
         "thumbnail": "/assets/portfolio/camaras-cctv.jpg",
         "strings": {
             "ES": {
-                "title": "Despliegue de red CCTV de vigilancia para una PYME",
+                "title": "Instalación de red CCTV de vigilancia para una PYME",
                 "category": "Hardware y redes",
                 "html": "<p>Diseño, planificación y despliegue de una red de más de 20 cámaras de videovigilancia analógicas a lo largo de 3 naves industriales mediante cable UTP, además de cámaras IP en diferentes sucursales de la empresa.</p><p>Aunque las fases de diseño, adquisición de material y configuración las realicé de forma autónoma, trabajé junto con otra persona durante las fases de cableado y fijación de las cámaras a la pared. Así mismo, llevé a cabo la configuración del sistema NVR, protección mediante firewall, grabación de imágenes, acceso externo, etc.</p>"
             },
             "EN": {
-                "title": "Deployment of CCTV surveillance system for an SME",
+                "title": "Installation of CCTV surveillance system for an SME",
                 "category": "Hardware & Networks",
                 "html": "<p>Design, planning and deployment of a network of more than 20 analog CCTV cameras along 3 industrial warehouses using UTP cable, as well as IP cameras in different branches of the company.</p><p>Although I carried out the design, material acquisition and configuration phases autonomously, I worked together with another person during the cabling and fixing of the cameras to the wall. Likewise, I carried out the configuration of the NVR system, protection by firewall, image recording, external access, etc.</p>"
             }
@@ -402,7 +440,7 @@
     },
     {
         "id": "juegos_red",
-        "cat_id": "soft",
+        "cat_id": "sw",
         "media": "https://www.youtube.com/embed/2Z3Q3Z3QZ3Q",
         "thumbnail": "/assets/portfolio/juegos-red.jpg",
         "strings": {
