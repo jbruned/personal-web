@@ -13,11 +13,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Install dependencies
-        run: cd deployment && source setup.sh --venv=false
+        run: make init_py
       - name: Build site
-        run: cd deployment && python build.py
+        run: make build
+      - name: Render PDF
+        run: make pdf
       - name: Publish via FTP
-        run: cd deployment && python publish.py -v
+        run: make publish
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USER: ${{ secrets.FTP_USER }}
