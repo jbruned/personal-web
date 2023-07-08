@@ -367,7 +367,11 @@ def build_index(index_template: str, index_file: str, asset_hashes: callable,
     # Build the index file
     index_template = open(index_template, "r").read()
     with open(index_file, "w") as f:
-        f.write(Template(index_template).render(projects=projects, skills=skills, hashes=asset_hashes()))
+        f.write(Template(index_template).render(
+            projects=projects,
+            skills=skills,
+            hashes=asset_hashes()
+        ))
     log("Built index")
 
 def build(BASE_PATH: str):
