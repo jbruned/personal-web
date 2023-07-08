@@ -384,7 +384,6 @@ textarea {
     cursor: pointer;
     padding: 6px 12px;
     margin-bottom: 0;
-    background-image: none;
 }
 .btn, .btn-outer {
     -webkit-border-radius: 10px;
@@ -1482,10 +1481,11 @@ mark,
 .timeline-box .dot,
 .timeline-box-compact .date span,
 .filter button.active,
-::-webkit-scrollbar-thumb:active,
-.widget_tag_cloud a:hover, .mibg, .nav-under {
+.widget_tag_cloud a:hover,
+.mibg,
+.nav-under {
     background-color: #ff9801; }
-body::-webkit-scrollbar-thumb:active {
+::-webkit-scrollbar-thumb:active, body::-webkit-scrollbar-thumb:active {
     background-color: #ff9801!important; }
 .mibg {
     color: #fff!important; }
