@@ -101,6 +101,12 @@
                                     <span class="cont" data-string="location_content">Sabiñánigo (Huesca)<br>Pamplona (Navarra)</span>
                                 </li>
                             </ul>
+                            <!--<div class="text-center mt-4">
+                                <a class="btn btn-border p-3" href="/CV_Jorge_Bruned.pdf" target="_blank" data-string="download_as_pdf">
+                                    <i class="icon-down me-2"></i>
+                                    Descargar como PDF
+                                </a>
+                            </div>-->
                         </div>
                     </div>
                     <a class="btn icon-btn section-btn mibg no-print" href="#btn-scroll" id="btn-scroll">
@@ -459,6 +465,24 @@
         </div>
         <a class="btn hidden-right mibg icon-btn" href="#top" id="btn-scroll-top"><i class="icon-up"></i></a>
     </main>
+
+    <!-- PRINT MODAL -->
+    <div class="modal fade" id="pdf-modal" tabindex="-1" aria-labelledby="pdf-modal-title" aria-hidden="true">
+        <div class="modal-dialog modal-fullscreen-md-down modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <p class="modal-title" id="pdf-modal-title" data-string="pdf_modal_title">Descargar como PDF</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center p-4">
+                    <p data-string="pdf_modal_text">
+                        Si quieres, puedes descargar una versión en PDF optimizada para imprimir haciendo clic en el siguiente enlace. No obstante, te recomiendo visitar esta página web, donde siempre encontrarás la versión más actualizada, ¡e interactiva!
+                    </p>
+                    <a target="_blank" class="btn btn-upper mibg text-white mt-3"><i class="me-1 icon-web"></i><span data-string="pdf_modal_title">Descargar como PDF</span></a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </body>
 <!-- JavaScript -->

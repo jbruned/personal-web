@@ -226,8 +226,15 @@ $(window).on("load", function() {
         prepare_print();
         // Go to #print and force reload
         if (window.location.hash !== '#print') {
-            const lang = curr_lang();
-            alert(translations[lang]['print_alert']);
+            const lang = curr_lang(),
+                  modal = document.getElementById('pdf-modal');
+            if (modal != null) {
+                // Get link from modal
+                modal.querySelector('a').href = `/CV_Jorge_Bruned_${lang.toUpperCase()}.pdf`;
+                $(modal).modal('show');
+            }
+            // Legacy way of printing (only works well in Chrome)
+            /*alert(translations[lang]['print_alert']);
             // Open the PDF in a new tab
             const link = document.createElement('a');
             link.href = `/CV_Jorge_Bruned_${lang.toUpperCase()}.pdf`;
@@ -236,7 +243,7 @@ $(window).on("load", function() {
             link.click();
             // Reload the current page to dismiss the print dialog
             // window.location.hash = 'print';
-            window.location.reload();
+            window.location.reload();*/
         }
     };
 
