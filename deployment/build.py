@@ -4,7 +4,7 @@ import re
 from sys import argv
 from time import sleep
 from typing import Tuple
-from jinja2 import Template
+from jinja2 import Environment
 from markdown import markdown
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
@@ -12,6 +12,14 @@ from watchdog.events import FileSystemEventHandler
 from common import abort, file_hash, log, INDEX_URL, BLOG_URL, SITEMAP_URL, STRINGS_URL, \
     PROJECTS_FILE_NAME, POSTS_DIR_NAME, TEMPLATES_DIR_NAME, ASSETS_DIR_NAME, DEFAULT_BASE_PATH, \
     SCRIPT_URL, STYLE_URL, SKILLS_FILE_NAME, VERBOSE_INFO, VERBOSE_WARNING, set_log_level
+
+JINJA_ENV = Environment(
+    loader=Environment().from_string(""),
+    trim_blocks=True,
+    lstrip_blocks=True
+)
+def Template(path: str):
+    return JINJA_ENV.from_string(path)
 
 def build_blog_post(template: str, content: str, asset_hashes: callable):
     """
@@ -425,6 +433,7 @@ def build(BASE_PATH: str):
     log("Done!", header=True)
 
 if __name__ == "__main__":
+    build(argv[1] if len(argv) > 1 and argv[1] != "--live" else DEFAULT_BASE_PATH)
     if "--live" in argv:
         # Live mode (watch for changes and rebuild)
         class MyHandler(FileSystemEventHandler):
@@ -450,5 +459,3 @@ if __name__ == "__main__":
         except KeyboardInterrupt:
             observer.stop()
         observer.join()
-    else:
-        build(argv[1] if len(argv) > 1 else DEFAULT_BASE_PATH)
