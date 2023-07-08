@@ -7,7 +7,7 @@ init_py:
 	cd deployment && source setup.sh --venv=false
 dev:
 	@echo "Starting development server..."
-	cd deployment && source build.py --live
+	cd deployment && python build.py --live
 build:
 	@echo "Building site..."
 	cd deployment && python build.py
