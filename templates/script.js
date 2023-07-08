@@ -271,6 +271,11 @@ $(window).on("load", function() {
     };
 
     // Open project modal or apply print styles if needed
+    const map_hash_url = {
+        'proyecto-tienda-online': 'app-fb',
+        'proyecto-red-lan': 'lan',
+        'proyecto-traffic-signals': 'signal-detector'
+    };
     if (hash_url === 'print') {
         $('head').append('<link rel="stylesheet" type="text/css" href="/assets/print.css">');
         prepare_print();
@@ -280,7 +285,7 @@ $(window).on("load", function() {
             window.print();
         }, 1000);*/
     } else {
-        const modal = document.getElementById('portfolio-details-' + idify(hash_url));
+        const modal = document.getElementById('portfolio-details-' + idify(map_hash_url[hash_url] || hash_url));
         if (modal != null)
             $(modal).modal('show');
     }
