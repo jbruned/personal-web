@@ -230,7 +230,7 @@ $(window).on("load", function() {
             alert(translations[lang]['print_alert']);
             // Open the PDF in a new tab
             const link = document.createElement('a');
-            link.href = `/CV_Jorge_Bruned_${lang}.pdf`;
+            link.href = `/CV_Jorge_Bruned_${lang.toUpperCase()}.pdf`;
             // link.download = 'CV_Jorge_Bruned.pdf';
             link.target = '_blank';
             link.click();
