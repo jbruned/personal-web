@@ -1,4 +1,4 @@
-const extra_strings = {
+const generated_strings = {
     {% for lang, translations in strings.items() %}
         {{ lang|lower }}: {
             {% for key, value in translations.items() %}
@@ -7,8 +7,10 @@ const extra_strings = {
         },
     {% endfor %}
 }
-let ES = null; // Hardcoded in the HTML (TODO: use english as default)
-const EN = Object.assign({}, extra_strings.en, {
+let ES = Object.assign({}, generated_strings.es, {
+    print_alert: "A continuación se abrirá una versión en PDF optimizada para imprimir",
+}); // Most strings are hardcoded in the HTML code (TODO: use english as default instead)
+const EN = Object.assign({}, generated_strings.en, {
 	description: 'I am Jorge Bruned, a Computer Science student who is passionate about Artificial Intelligence and Software Development',
     about_me: 'About me',
     education: 'Education',
@@ -57,7 +59,7 @@ const EN = Object.assign({}, extra_strings.en, {
 	msc_currently: "I'm currently taking this Master's degree while working part-time as a developer, which I would say is an excelent way of complementing university's more-theoretical approach.",
     vg_title: 'Videogame and Augmented Reality Application Development (Specialization Diploma)',
     vg_content: 'Six-semester-long program focused on videogame development and AR applications.',
-    vg_knowledge: 'Acquired skills',
+    vg_knowledge: 'Skills',
     vg_knowledge_1: 'Videogame programming (Unity, Unreal...)',
     vg_knowledge_2: 'Physics applied to videogames',
     vg_knowledge_3: '3D modelling & animation (Maya, Blender...)',
@@ -131,6 +133,7 @@ const EN = Object.assign({}, extra_strings.en, {
     blog_tag_projects: "Projects",
     blog_tag_interesting: "Interesting topics",
     more_blog_posts: "More blog posts",
-    about_the_author: "About the author"
+    about_the_author: "About the author",
+    print_alert: "An optimized PDF version will be opened"
 });
 export { ES, EN };

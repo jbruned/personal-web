@@ -10,18 +10,22 @@ import { EN, ES } from './strings.js?{{ hashes.strings|default("") }}';
 const translations = {
     'en': EN,
     'es': ES
-}, DEBUG = false;
-const HTML_HARDCODED_LANG = 'es';
+};
+const HTML_HARDCODED_LANG = 'es',
+      DEBUG = false;
+let loaded_hardcoded_lang = false;
 function curr_lang() {
-    return document.documentElement.lang;
+    return document.documentElement.lang.substring(0, 2).toLowerCase();
 }
 let callbackActiveFilter = null;
 function translate(lang = 'en') {
-    let first = translations[HTML_HARDCODED_LANG] === null;
-    if (first)
-        translations[HTML_HARDCODED_LANG] = {
+    if (!loaded_hardcoded_lang) {
+        if (translations[HTML_HARDCODED_LANG] === undefined)
+            translations[HTML_HARDCODED_LANG] = {};
+        Object.assign(translations[HTML_HARDCODED_LANG], {
             'description': document.querySelector('meta[name="description"]').getAttribute("content")
-        };
+        });
+    }
     lang = lang.substring(0, 2).toLowerCase();
     if (translations[lang] === undefined)
         return;
@@ -33,7 +37,7 @@ function translate(lang = 'en') {
     for (let i=0; i < list_translate.length; i++) {
         let elem_translate = list_translate[i],
             string_name = elem_translate.getAttribute("data-string");
-        if (first)
+        if (!loaded_hardcoded_lang)
             translations[HTML_HARDCODED_LANG][string_name] = elem_translate.innerHTML;
         if (strings[string_name] !== undefined)
             elem_translate.innerHTML = strings[string_name];
@@ -65,6 +69,7 @@ function translate(lang = 'en') {
             elem.setAttribute('data-bs-placement', 'bottom');
         }
     });
+    loaded_hardcoded_lang = true;
     if (callbackActiveFilter !== null)
         callbackActiveFilter();
 }
@@ -221,10 +226,16 @@ $(window).on("load", function() {
         prepare_print();
         // Go to #print and force reload
         if (window.location.hash !== '#print') {
-            alert("An optimized PDF version will be opened");
-            window.location.href = '/CV_Jorge_Bruned.pdf';
-            //window.location.hash = 'print';
-            //window.location.reload(true);
+            alert(translations[curr_lang()]['print_alert']);
+            // Open the PDF in a new tab
+            const link = document.createElement('a');
+            link.href = '/CV_Jorge_Bruned.pdf';
+            // link.download = 'CV_Jorge_Bruned.pdf';
+            link.target = '_blank';
+            link.click();
+            // Reload the current page to dismiss the print dialog
+            // window.location.hash = 'print';
+            window.location.reload();
         }
     };
 
