@@ -202,10 +202,33 @@ $(window).on("load", function() {
         elem.src = elem.getAttribute('data-lazy-src');
         elem.removeAttribute('data-lazy-src');
     }
+    function has_parent_with_tag(elem, tag) {
+        if (elem == null)
+            return false;
+        if (elem.tagName != undefined && elem.tagName.toUpperCase() == tag.toUpperCase())
+            return true;
+        return has_parent_with_tag(elem.parentNode, tag);
+    }
     $('.modal').on('show.bs.modal', function() {
-        $(this).insertAfter($('body'));
+        if (has_parent_with_tag(this, 'body'))
+            $(this).insertAfter($('body'));
         $(this).find('[data-lazy-src]').each(function() {
+            // Add ?enablejsapi=1 to YouTube videos to enable API
+            if (this.getAttribute('data-lazy-src').indexOf('youtube') > -1) {
+                if (this.getAttribute('data-lazy-src').indexOf('?') > -1)
+                    this.setAttribute('data-lazy-src', this.getAttribute('data-lazy-src') + '&enablejsapi=1');
+                else
+                    this.setAttribute('data-lazy-src', this.getAttribute('data-lazy-src') + '?enablejsapi=1');
+            }
+
             lazy_load(this);
+        });
+    });
+    // Stop iframe video on modal hide
+    $('.modal').on('hide.bs.modal', function() {
+        $(this).find('iframe').each(function() {
+            this.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            // this.contentWindow.postMessage('{"event":"command","func":"stopVideo","args":""}', '*');
         });
     });
 
