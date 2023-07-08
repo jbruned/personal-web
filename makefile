@@ -1,7 +1,7 @@
 no_default:
 	@echo "Available targets: init_py, build, publish, pdf, clean, dev"
 init_py:
-	@cho "Initializing python environment..."
+	@echo "Initializing python environment..."
 	cd deployment && source setup.sh --venv=false
 pdf:
 	@echo "Rendering PDF..."
