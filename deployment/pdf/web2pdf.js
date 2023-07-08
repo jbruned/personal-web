@@ -18,13 +18,15 @@ async function sleep(millis) {
 
     // Print the page as PDF
     console.log("Initializing puppeteer...");
-    const browser = await puppeteer.launch({headless: true});
+    const browser = await puppeteer.launch({
+        headless: true, // Legacy (new headless mode times out in GitHub actions)
+        // pipe: true
+    });
     const page = await browser.newPage();
     page.setViewport({width: 1280, height: 1280});
 
     console.log("Loading page...");
     await page.goto(
-        //"file://" + __dirname.replace("/deployment/pdf", "") + "/index.html",
         `http://localhost:${rand_port}#print`,
         {waitUntil: 'networkidle2'}
     );
@@ -36,11 +38,11 @@ async function sleep(millis) {
     await page.pdf({
         path: '../../CV_Jorge_Bruned.pdf',
         format: 'A4',
-        //margin: 0,
+        // margin: 0,
         printBackground: true,
         displayHeaderFooter: false,
         scale: 0.7,
-        //preferCSSPageSize: true
+        // preferCSSPageSize: true
     });
 
     console.log("Wrapping up...");
