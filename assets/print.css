@@ -90,3 +90,6 @@ body {
     width:33%;
     float:left;
 }
+.modal, .modal-backdrop {
+    display: none !important;
+}
