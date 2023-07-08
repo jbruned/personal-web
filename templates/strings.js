@@ -121,8 +121,9 @@ const EN = Object.assign({}, generated_strings.en, {
     know_fields: "Fields of Knowledge",
     contact_me: "Contact me!",
     contact_brief: "Don't hesitate to get in touch via email or LinkedIn.",
+    pdf_version_warning: "I'd recommend accessing my CV at <a href='https://jorgebruned.com'>jorgebruned.com</a>,<br>where you will always find the last version, and be able to interact with it.",
     pdf_modal_title: "Download as PDF",
-    pdf_modal_text: "If you want, you can download an optimized PDF version for printing. However, I recommend you to visit this website, where you will always find the most updated version, and interactive!",
+    pdf_modal_text: "If you want, you can download an optimized PDF version for printing. However, I recommend you to visit this website, where you will always find the last version, and in an interactive format.",
     // BLOG
     blog_desc_1: "In this section you will find all kinds of content, ranging from status updates to personal projects, topics I have found interesting, etc.",
     blog_desc_2: "I try to publish new content regularly, so stay tuned!",
