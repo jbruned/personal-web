@@ -311,6 +311,14 @@ textarea {
     line-height: 13px;
     vertical-align: middle;
 }
+.nav-link.nav-link-icon {
+    cursor: pointer;
+}
+.nav-link.nav-link-icon i {
+    font-size: 16px !important;
+    margin: 0;
+    padding: 0;
+}
 .navbar-top i, .navbar-top .top-only {
     display: inline-block !important;
 }
@@ -1743,4 +1751,8 @@ body::-webkit-scrollbar-thumb {
 body::-webkit-scrollbar-thumb:hover {
     background-color: #ff990181;
     opacity: 0.5 !important;
+}
+.modal-open, .modal-open .navbar {
+    overflow: inherit !important;
+    padding-right: 0 !important;
 }
