@@ -14,6 +14,8 @@ jobs:
         uses: actions/checkout@v3
       - name: Install dependencies
         run: make init_py
+      - name: Generate icon font
+        run: make font
       - name: Build site
         run: make build
       - name: Render PDF

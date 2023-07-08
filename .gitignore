@@ -7,3 +7,6 @@
 **__pycache__**
 **node_modules
 CV_Jorge_bruned*.pdf
+/assets/fonts/*
+!/assets/fonts/*.json
+**.fontello*

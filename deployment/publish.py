@@ -9,7 +9,7 @@ import dotenv
 
 from common import VERBOSE_ALL, VERBOSE_INFO, VERBOSE_NONE, VERBOSE_WARNING, \
     POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME, \
-    file_hash, log, get_log_level, set_log_level
+    file_hash, log, set_log_level
 
 DEFAULT_DEPLOYMENT_STATUS_FILE = "deployment_status.txt"
 
@@ -37,7 +37,8 @@ def publish(
     cnopts = pysftp.CnOpts()
     for should_be_ignored in [
         POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME,
-        'deployment', '.gitignore', '.git', 'README.md', '.github', status_file
+        'deployment', '.gitignore', '.git', 'README.md', '.github', status_file,
+        'assets/fonts/jbruned-icons.json'
     ]:
         if should_be_ignored not in ignore:
             ignore.append(should_be_ignored)
