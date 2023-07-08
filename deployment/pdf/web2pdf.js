@@ -14,7 +14,7 @@ async function sleep(millis) {
 
 (async () => {
     // Delay
-    sleep(1000);
+    await sleep(1000);
 
     // Print the page as PDF
     console.log("Initializing puppeteer...");
@@ -32,7 +32,7 @@ async function sleep(millis) {
     );
 
     // Delay
-    sleep(1000);
+    await sleep(1000);
 
     console.log("Rendering PDF...");
     await page.pdf({
