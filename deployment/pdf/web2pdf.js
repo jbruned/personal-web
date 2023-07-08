@@ -8,13 +8,17 @@ const app = express();
 app.use(express.static(__dirname.replace("/deployment/pdf", "")));
 app.listen(rand_port);
 
+async function sleep(millis) {
+    await new Promise(resolve => setTimeout(resolve, millis));
+}
+
 (async () => {
     // Delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    sleep(1000);
 
     // Print the page as PDF
     console.log("Initializing puppeteer...");
-    const browser = await puppeteer.launch({headless: "new"});
+    const browser = await puppeteer.launch({headless: true});
     const page = await browser.newPage();
     page.setViewport({width: 1280, height: 1280});
 
@@ -26,7 +30,7 @@ app.listen(rand_port);
     );
 
     // Delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    sleep(1000);
 
     console.log("Rendering PDF...");
     await page.pdf({
