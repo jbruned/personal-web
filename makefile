@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 no_default:
 	@echo "Available targets: init_py, build, publish, pdf, clean, dev"
 init_py:
