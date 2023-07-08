@@ -8,6 +8,9 @@ const app = express();
 app.use(express.static(__dirname.replace("/deployment/pdf", "")));
 app.listen(rand_port);
 
+// Get the lang from the command line arguments
+const lang = process.argv.length === 3 ? process.argv[2] : null;
+
 async function sleep(millis) {
     await new Promise(resolve => setTimeout(resolve, millis));
 }
@@ -27,7 +30,7 @@ async function sleep(millis) {
 
     console.log("Loading page...");
     await page.goto(
-        `http://localhost:${rand_port}#print`,
+        `http://localhost:${rand_port}${lang != null ? `?lang=${lang}` : ''}#print`,
         {waitUntil: 'networkidle2'}
     );
 
@@ -36,7 +39,7 @@ async function sleep(millis) {
 
     console.log("Rendering PDF...");
     await page.pdf({
-        path: '../../CV_Jorge_Bruned.pdf',
+        path: `../../CV_Jorge_Bruned${lang != null ? `_${lang.toUpperCase()}` : ''}.pdf`,
         format: 'A4',
         // margin: 0,
         printBackground: true,

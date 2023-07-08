@@ -7,7 +7,12 @@ init_py:
 	cd deployment && source setup.sh --venv=false
 pdf:
 	@echo "Rendering PDF..."
-	cd deployment && cd pdf && npm install && node web2pdf.js
+	@echo "> Installing dependencies..."
+	cd deployment && cd pdf && npm install
+	@cd deployment && cd pdf && for lang in 'en' 'es'; do \
+		echo "> Rendering $$lang"; \
+		node web2pdf.js $$lang; \
+	done
 dev:
 	@echo "Starting development server..."
 	cd deployment && source build.py --live

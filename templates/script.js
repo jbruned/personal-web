@@ -226,10 +226,11 @@ $(window).on("load", function() {
         prepare_print();
         // Go to #print and force reload
         if (window.location.hash !== '#print') {
-            alert(translations[curr_lang()]['print_alert']);
+            const lang = curr_lang();
+            alert(translations[lang]['print_alert']);
             // Open the PDF in a new tab
             const link = document.createElement('a');
-            link.href = '/CV_Jorge_Bruned.pdf';
+            link.href = `/CV_Jorge_Bruned_${lang}.pdf`;
             // link.download = 'CV_Jorge_Bruned.pdf';
             link.target = '_blank';
             link.click();
@@ -243,11 +244,11 @@ $(window).on("load", function() {
     if (hash_url === 'print') {
         $('head').append('<link rel="stylesheet" type="text/css" href="/assets/print.css">');
         prepare_print();
-        setTimeout(() => {
+        /*setTimeout(() => {
             alert("For best results, use Chrome and set the scale to 70%, disable headers and footers, "
                 + "and enable background graphics in the print dialog.");
             window.print();
-        }, 1000);
+        }, 1000);*/
     } else {
         const modal = document.getElementById('portfolio-details-' + idify(hash_url));
         if (modal != null)
