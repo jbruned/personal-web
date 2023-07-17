@@ -220,7 +220,6 @@ $(window).on("load", function() {
                 else
                     this.setAttribute('data-lazy-src', this.getAttribute('data-lazy-src') + '?enablejsapi=1');
             }
-
             lazy_load(this);
         });
     });
@@ -245,18 +244,18 @@ $(window).on("load", function() {
             setActiveFilter();
         }, 1000);
     }
+    const pdf_modal = document.getElementById('pdf-modal');
+    $(pdf_modal).on('show.bs.modal', function() {
+        // Update PDF download link according to current language
+        pdf_modal.querySelector('a').href = `/CV_Jorge_Bruned_${curr_lang().toUpperCase()}.pdf`;
+    });
     window.onbeforeprint = () => {
         prepare_print();
         // Go to #print and force reload
         if (window.location.hash !== '#print') {
-            const lang = curr_lang(),
-                  modal = document.getElementById('pdf-modal');
-            if (modal != null) {
-                // Get link from modal
-                modal.querySelector('a').href = `/CV_Jorge_Bruned_${lang.toUpperCase()}.pdf`;
-                $(modal).modal('show');
-            }
-            // Legacy way of printing (only works well in Chrome)
+            if (pdf_modal != null)
+                $(pdf_modal).modal('show');
+            // Legacy way of printing (only worked well in Chrome)
             /*alert(translations[lang]['print_alert']);
             // Open the PDF in a new tab
             const link = document.createElement('a');
