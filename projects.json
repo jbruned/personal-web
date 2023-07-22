@@ -412,7 +412,7 @@
     {
         "id": "kdd_stroke",
         "cat_id": "ia",
-        "media": "https://www.youtube.com/embed/2Z3Q3Z3QZ3Q",
+        "media": "/assets/portfolio/kdd_hd.jpg",
         "thumbnail": "/assets/portfolio/kdd.jpg",
         "strings": {
             "ES": {
@@ -441,7 +441,7 @@
     {
         "id": "juegos_red",
         "cat_id": "sw",
-        "media": "https://www.youtube.com/embed/2Z3Q3Z3QZ3Q",
+        "media": "/assets/portfolio/juegos-red_hd.jpg",
         "thumbnail": "/assets/portfolio/juegos-red.jpg",
         "strings": {
             "ES": {
