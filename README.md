@@ -4,6 +4,11 @@ In this repo, you can find the source code for my personal webpage. All of the c
 
 > This project is available online at [jorgebruned.com](https://jorgebruned.com)
 
+1. [Tech stack](#tech-stack)
+1. [CI/CD](#continuous-integration--deployment)
+1. [Relevant features](#relevant-features)
+1. [License](#license)
+
 ## Tech stack
 
 I have developed this project from scratch using HTML, CSS and JavaScript, as well as some libraries such as <em>Bootstrap</em> or <em>Isotope.JS</em>.
@@ -35,7 +40,15 @@ Some random features that I think are worth mentioning:
 - Most media is lazy-loaded using a custom *JavaScript* implementation. For example, images or videos for the projects are only loaded when the user opens the corresponding modal.
 - Thumbnails are automatically fetched from YouTube or the first image of a post.
 - The website is fully responsive, which makes it suitable for any device, and also for printing.
-- Most data is stored in *JSON* and *Markdown* files, which makes changes easier and quicker, and avoids redundant and repetitive code.
-- The website is available in both English and Spanish. The language can be dynamically changed by means of a switch in the navbar.
+- Most data is stored in *JSON* and *Markdown* files, which makes changes easier and quicker, and avoids redundant and repetitive code. The site is built automatically from these files, along with HTML templates.
+- A PDF version optimized for printing is automatically generated in the *pipeline*, so that I always have the last version available for sharing when necessary.
+- The website is available in both English and Spanish. The language can be dynamically changed without reloading the page by means of a switch in the navbar.
 - All of the generated files are built automatically, including the icon font, the rendered PDF, and all of the HTML files. There is also a custom *python* script to automatically build the project when changes are detected.
+- The entire build & deployment process is automated by means of pipelines.
 - Email is hidden from bots and only revealed when the user clicks on it.
+- Built from scratch using HTML, CSS and JavaScript. I didn't use a CMS like Wordpress or a UI framework like Angular because I wanted full control over the architecture, while developing my own ad-hoc solution. Furthermore, my objective was to practice and learn, which I definitely did!
+
+## License
+
+The author of this piece of software is Jorge Bruned. As per the [license](/license), you are allowed to fork, use and modify the source code, as long as you make the modifications public (open source) and keep all of the attributions to the original author unaltered (including those in the GUI; i.e., the webpage).
+
