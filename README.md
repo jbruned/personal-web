@@ -2,12 +2,12 @@
 
 In this repo, you can find the source code for my personal webpage. All of the code is public and the build & publish process is automated using pipelines.
 
-> This project is available online at [jorgebruned.com](https://jorgebruned.com)
-
 1. [Tech stack](#tech-stack)
 1. [CI/CD](#continuous-integration--deployment)
 1. [Relevant features](#relevant-features)
 1. [License](#license)
+
+> This project is available online at [jorgebruned.com](https://jorgebruned.com)
 
 ## Tech stack
 
