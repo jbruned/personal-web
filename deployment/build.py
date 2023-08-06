@@ -189,7 +189,7 @@ def build_blog_posts(template_path: str, content_path: str, output_path: str, as
             log(f"Skipped {metadata['url']} (set as not public)")
     return posts
 
-def parse_date(date: str) -> str:
+def date_as_int(date: str) -> str:
     """
     Parse a date in DD_MM_YYYY format to an integer YYYYMMDD
     """
@@ -197,16 +197,35 @@ def parse_date(date: str) -> str:
         date = date.replace(i, "")
     return sum([int(x) * 10 ** i for i, x in enumerate(reversed(date))])
 
-def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_file: str, asset_hashes: callable):
+def reverse_date(date: str, separator: str = "-") -> str:
+    """
+    Parse a date in DD/MM/YYYY format to YYYY-MM-DD
+    """
+    for i in ["-", "/", " ", "_", "."]:
+        date = date.replace(i, "")
+    # If the date is already in YYYY_MM_DD format, return it
+    if len(date) == 10 and date[4] == "_" and date[7] == "_":
+        return date
+    return date[4:] + separator + date[2:4] + separator + date[:2]
+
+def build_blog_index(
+    index_template_path: str,
+    sitemap_template_path: str,
+    posts: list,
+    index_file: str,
+    sitemap_file: str,
+    asset_hashes: callable
+):
     """
     Build the blog index from a template and content
-    - template: path to the template (HTML with Jinja2)
+    - index_template_path: path to the template (HTML with Jinja2)
+    - sitemap_template_path: path to the sitemap template (XML with Jinja2)
     - posts: list of posts (as returned by build_blog_posts)
     - index_file: path to the output index file
     - sitemap_file: path to the output sitemap file
     - asset_hashes: callable to compute the dictionary of hashes for the assets
     """
-    if not os.path.exists(template_path) or not os.path.isfile(template_path):
+    if not os.path.exists(index_template_path) or not os.path.isfile(index_template_path):
         abort("The template path doesn't exist or isn't a file")
     if len(posts) == 0:
         log("[Warning] No posts found", VERBOSE_WARNING, header=True)
@@ -220,17 +239,24 @@ def build_blog_index(template_path: str, posts: list, index_file: str, sitemap_f
             tags[tag["id"]] = tag
     if len(tags) == 0:
         log("[Warning] No tags found", VERBOSE_WARNING, header=True)
+    posts = sorted(posts, key=lambda p: date_as_int(p["date"]), reverse=True)
     # Build the index
-    template = open(template_path, "r").read()
+    template = open(index_template_path, "r").read()
     with open(index_file, "w") as f:
         f.write(Template(template).render(
-            posts=sorted(posts, key=lambda p: parse_date(p["date"]), reverse=True),
+            posts=posts,
             tags=list(tags.values()),
             hashes=asset_hashes()
         ))
     log("Built index")
+    # Change the date format to YYYY-MM-DD
+    for post in posts:
+        post["date"] = reverse_date(post["date"])
     # Build the sitemap
-    pass
+    template = open(sitemap_template_path, "r").read()
+    with open(sitemap_file, "w") as f:
+        f.write(Template(template).render(posts=posts))
+    
 
 DEFAULT_LANG = "es" # Lowercase!
 
@@ -386,6 +412,7 @@ def build(BASE_PATH: str):
     # Local template filenames
     POST_TEMPLATE = "post.html"
     BLOG_TEMPLATE = "blog.html"
+    SITEMAP_TEMPLATE = "sitemap.xml"
     INDEX_TEMPLATE = "index.html"
     STRINGS_TEMPLATE = "strings.js"
     SCRIPT_TEMPLATE = "script.js"
@@ -429,6 +456,7 @@ def build(BASE_PATH: str):
     log("Building blog index...", header=True)
     build_blog_index(
         os.path.join(TEMPLATES_FOLDER, BLOG_TEMPLATE),
+        os.path.join(TEMPLATES_FOLDER, SITEMAP_TEMPLATE),
         posts,
         os.path.join(OUTPUT_FOLDER, f"{BLOG_URL}.html"),
         os.path.join(OUTPUT_FOLDER, SITEMAP_URL),

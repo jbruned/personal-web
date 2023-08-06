@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /
+Allow: /$
+Allow: /blog
+Allow: /blog/
+Sitemap: https://jorgebruned.com/sitemap.xml
