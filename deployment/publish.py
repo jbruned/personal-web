@@ -38,7 +38,7 @@ def publish(
     for should_be_ignored in [
         POSTS_DIR_NAME, TEMPLATES_DIR_NAME, PROJECTS_FILE_NAME, SKILLS_FILE_NAME,
         'deployment', '.gitignore', '.git', 'README.md', '.github', status_file,
-        'assets/fonts/jbruned-icons.json'
+        'assets/fonts/jbruned-icons.json', 'LICENSE', 'makefile'
     ]:
         if should_be_ignored not in ignore:
             ignore.append(should_be_ignored)
