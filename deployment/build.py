@@ -189,13 +189,13 @@ def build_blog_posts(template_path: str, content_path: str, output_path: str, as
             log(f"Skipped {metadata['url']} (set as not public)")
     return posts
 
-def date_as_int(date: str) -> str:
+def date_as_int(date: str, date_separator = "-") -> str:
     """
     Parse a date in DD_MM_YYYY format to an integer YYYYMMDD
     """
     for i in ["-", "/", " ", "_", "."]:
-        date = date.replace(i, "")
-    return sum([int(x) * 10 ** i for i, x in enumerate(reversed(date))])
+        date = date.replace(i, date_separator)
+    return sum([int(x) * 10 ** i for i, x in enumerate(reversed(date.split(date_separator)))])
 
 def reverse_date(date: str, separator: str = "-") -> str:
     """
