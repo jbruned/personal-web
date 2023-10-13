@@ -1423,6 +1423,14 @@ header {
     margin-bottom: 0; }
 .justified {
     text-align: justify; }
+#post blockquote {
+    border-left-width: 4px;
+    border-left-style: solid;
+    padding: 10px 20px;
+    background-color: #f5f5f5;
+}
+#post blockquote>p:last-child {
+    margin-bottom: 0; }
 
 /*
  * Colors 
@@ -1505,6 +1513,7 @@ mark,
 .timeline-box-inner,
 .price-box.box-primary .btn,
 .widget_search .search-form,
+#post blockquote,
 .widget_tag_cloud a:hover {
     border-color: #ff9801; }
 .page-404 h2 span:before,
