@@ -94,7 +94,7 @@ def find_image_urls(content: str) -> list:
     youtube_thumbnails = [get_youtube_thumbnail(url) for url in youtube_urls]
     return [
         url[0] if url[0] else url[1].replace(")", "") for url in
-        re.findall(r'<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^"\s]+)[^)]*\)', content)
+        re.findall(r'<img[^>]*src="([^"]+)"[^>]*>|!\[[^\]]*\]\(([^"\)\s]+)[^)]*\)', content)
     ] + youtube_thumbnails
 
 def find_youtube_urls(content: str) -> list:
@@ -194,8 +194,14 @@ def date_as_int(date: str) -> str:
     Parse a date in DD_MM_YYYY format to an integer YYYYMMDD
     """
     for i in ["-", "/", " ", "_", "."]:
-        date = date.replace(i, "")
-    return sum([int(x) * 10 ** i for i, x in enumerate(date)])
+        date = date.replace(i, "-")
+    date = date.split("-")
+    is_reversed = len(date[0]) == 4
+    if not is_reversed:
+        date = date[::-1]
+    return int("".join(date))
+    # print(f"{date}: {sum([int(x) * 10 ** i for i, x in enumerate(date)])}")
+    # return sum([int(x) * 10 ** i for i, x in enumerate(date.split("-"))])
 
 def reverse_date(date: str, separator: str = "-") -> str:
     """
