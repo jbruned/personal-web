@@ -310,6 +310,9 @@ $(window).on("load", function() {
 
     // Add full-screen link to images in .post-content
     document.querySelectorAll('.post-content img').forEach(elem => {
+        // Check if the image is already inside a link
+        if (elem.parentNode.tagName.toUpperCase() === 'A')
+            return;
         // Put image inside a link
         const a = document.createElement('a');
         a.classList.add('img-full-screen');
