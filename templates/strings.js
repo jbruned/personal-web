@@ -11,7 +11,7 @@ let ES = Object.assign({}, generated_strings.es, {
     print_alert: "A continuación se abrirá una versión en PDF optimizada para imprimir",
 }); // Most strings are hardcoded in the HTML code (TODO: use english as default instead)
 const EN = Object.assign({}, generated_strings.en, {
-	description: 'I am Jorge Bruned, a Computer Science student who is passionate about Artificial Intelligence and Software Development',
+	description: 'I am Jorge Bruned, a Computer Scientist who is passionate about Artificial Intelligence and Software Development',
     about_me: 'About me',
     education: 'Education',
     experience: 'Experience',
