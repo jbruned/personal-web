@@ -106,7 +106,11 @@ const EN = Object.assign({}, generated_strings.en, {
     neuraptic_1: "During a semester as an intern, I had the great opportunity of getting to know how Artificial Intelligence solutions can be applied to real problems (mainly vision). " +
         "Some of my tasks were to replicate previous projects, make some improvements on them, integrate the training and deployment processes in pipelines, etc.",
     neuraptic_2: "I also started my BSc Thesis in the field of Active Learning, which has allowed me to review and implement some state-of-the-art models in the literature.",
-	veridas_1: "I'm currently working part-time as a frontend developer while I take my Master's degree, focusing on native apps.",
+	veridas_1: "During my first year, I worked part-time as a frontend developer while taking my Master's degree, focusing on native apps. Some of my tasks included:",
+    veridas_1_1: "Libraries and SDKs development, with advanced Kotlin and Gradle knowledge",
+    veridas_1_2: "Android apps creation, with MVVM architecture and dependency injection",
+    veridas_1_3: "Usage of CI/CD pipelines, shared version control, MRs, agile methodologies and so on",
+    veridas_2: "Currently, I'm working part-time as a Machine Learning Engineer focused on computer vision models while studying the MSc in Computer Science & Engineering. The project I'm working on will be my MSc Thesis.",
     portfolio: "Portfolio",
     portfolio_brief: "In this section, some of my projects are listed",
     more_info_web: ".<br>Detailed information about them can be found on my webpage.",
