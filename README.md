@@ -31,7 +31,7 @@ The pipeline is implemented by means of GitHub Actions. There is a single stage,
 1. Build the custom icon font using `fontello-cli`. Some advantages include the ability to use any icon I want, from different sources, and that only the icons I use are included in the font, which reduces the size of the font file.
 1. Build the project using a custom *python* script (see "Why not use a CMS or a frontend framework?"):
     - `jinjia2` is used as a template engine, and all necessary data is stored in *JSON* and *Markdown* files. This allows me to easily add new projects and blog posts while avoiding redundant and repetitive code.
-    - Hashes are calculated for any files which are prone to be cached by the browser, such as stylesheets or scripts. This prevents the client from using an outdated versions of the code, while easing cache management.
+    - Hashes are calculated for any files which are prone to be cached by the browser, such as stylesheets or scripts. This prevents the client from using outdated versions of the code, while easing cache management.
 1. Render the website as a static PDF. This is done by means of a headless browser using `puppeteer`. The main reason for this is that the print behaviour and styles are highly inconsistent across browsers, and this way I can ensure that the PDF will look as expected. Apart from the PDF being rendered only once in the server, this also provides me with an always up-to-date version of my CV in PDF format (so I don't have to create it manually every time I need it). 
 1. Publish the build to the server using FTP. Only the files that have changed are uploaded; this is also done by means of a custom *python* script based in the MD5 hashes of the files.
 
@@ -52,5 +52,5 @@ Some random features that I think are worth mentioning:
 
 ## License
 
-The author of this piece of software is Jorge Bruned. As per the [license](/license), you are allowed to fork, use and modify the source code, as long as you make the modifications public (open source) and keep all of the attributions to the original author unaltered (including those in the GUI; i.e., the webpage).
+The author of this piece of software is Jorge Bruned. As per the [license](/LICENSE), you are allowed to fork, use and modify the source code, as long as you make the modifications public (open source) and keep all of the attributions to the original author unaltered (including those in the GUI; i.e., the webpage).
 
