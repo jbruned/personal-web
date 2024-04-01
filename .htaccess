@@ -28,6 +28,14 @@ RewriteCond %{REQUEST_URI} !^/$
 RewriteCond %{REQUEST_URI} !\.html$
 RewriteRule ^(.*)$ /$1.html [NC,L]
 
+# Error pages
+ErrorDocument 400 /error.php
+ErrorDocument 401 /error.php
+ErrorDocument 403 /error.php
+ErrorDocument 404 /error.php
+ErrorDocument 500 /error.php
+ErrorDocument 503 /error.php
+
 # Disable directory listing and protect specific files
 Options All -Indexes
 <Files "deployment_status.txt">
