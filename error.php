@@ -45,7 +45,7 @@ $HTTP_CODES = [
 	505 => 'HTTP Version Not Supported',
 ];
 
-$error_code = empty($http_code) or !array_key_exists($http_code, $HTTP_CODES) ? '' : ' ' . $http_code;
+$error_code = (empty($http_code) or !array_key_exists(intval($http_code), $HTTP_CODES)) ? '' : (' ' . $http_code);
 $http_msg = $HTTP_CODES[$http_code] ?? 'Unexpected error';
 $error_msg = empty($http_code) ? 'n unexpected' : ' <i>' . $HTTP_CODES[$http_code] . '</i> HTTP';
 
@@ -66,6 +66,7 @@ header($_SERVER['SERVER_PROTOCOL'] . ' ' . $HTTP_CODES[$http_code]);
         <h1 class="d-inline"><i class="bi bi-exclamation-triangle-fill me-3"></i>Error<?= $error_code ?></h1>
         <p class="lead">Oops! Something went wrong</p>
         <p>While fetching the requested URL, a<?= $error_msg ?> error occurred. Sorry!</p>
+		<a href="/" class="btn btn-outline-dark btn-lg mt-2">Go home</a>
     </main>
     <p class="position-absolute w-100 bottom-0 text-center text-muted pb-2">
         <a href="https://jorgebruned.com" class="text-muted">Jorge Bruned</a>
