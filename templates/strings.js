@@ -31,9 +31,9 @@ const EN = Object.assign({}, generated_strings.en, {
     source: 'Source code',
     blog: 'Blog',
     location_content: 'Pamplona (Spain)<br>Sabiñánigo (Spain)',
-    welcome: 'Hi! I am Jorge Bruned, a Computer Scientist & Engineer currently taking the Computer Science MSc at Public University of Navarre',
+    welcome: 'Hi! I am Jorge Bruned, a Computer Scientist & Engineer who is passionate about Artificial Intelligence and Software Development.',
     welcome_2: "Although I specialize in Artificial Intelligence, I'm also passionate about Software Development, and have experience as a front-end developer. " +
-               "Among my most remarkable projects so far, the development and deployment of fully-customized web solutions for a SME stands out, along with my BSc and MSc theses on Machine Learning research. " +
+               "Among my most remarkable projects so far, the development and deployment of fully-customized web applications for a SME stands out, along with my BSc and MSc theses on Machine Learning research. " +
                "The latter involved the design and training of a computer vision model for a real application in product.",
     sabi: 'Sabiñánigo (Spain)',
     results: 'Results',
@@ -86,7 +86,7 @@ const EN = Object.assign({}, generated_strings.en, {
     eoi_sabi: "Official Language School (Spain)",
     cpm_sabi: "Professional Music School (Spain)",
     dgt_hue: "Spain",
-    experience_brief: "Although my career is getting started, I've carried out several projects, always with the objective of acquiring new knowledge and broadening my horizons",
+    experience_brief: "Throughout my career, I have carried out a wide variety of projects, always with the aim of acquiring new knowledge and broadening my horizons",
     project_info: "Project Info",
     m_jan: "January",
     m_feb: "Feburary",
@@ -116,7 +116,8 @@ const EN = Object.assign({}, generated_strings.en, {
     veridas_1_1: "Libraries and SDKs development, with advanced Kotlin and Gradle knowledge",
     veridas_1_2: "Android apps creation, with MVVM architecture and dependency injection",
     veridas_1_3: "Usage of CI/CD pipelines, shared version control, MRs, agile methodologies and so on",
-    veridas_2: "Currently, I'm working part-time as a Machine Learning Engineer focused on computer vision models while studying the MSc in Computer Science & Engineering. The project I'm working on will be my MSc Thesis.",
+    veridas2a: "Currently, I'm working part-time as a Machine Learning Engineer focused on computer vision models for identity document analysis, such as object detection, classification, etc.",
+    veridas2b: "My tasks range from researching and conceiving new models from scratch to their integration and evaluation in product.",
     portfolio: "Portfolio",
     portfolio_brief: "In this section, some of my projects are listed",
     more_info_web: ".<br>Detailed information about them can be found on my webpage.",
