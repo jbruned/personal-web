@@ -436,6 +436,7 @@ def build(BASE_PATH: str):
         return {
             name: file_hash(path)
             for name, path in asset_paths.items()
+            if os.path.exists(path)
         }
     # Build
     log("Building index...", header=True)
@@ -449,7 +450,7 @@ def build(BASE_PATH: str):
         os.path.join(OUTPUT_FOLDER, STRINGS_URL),
         os.path.join(TEMPLATES_FOLDER, SCRIPT_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, SCRIPT_URL),
-        os.path.join(ASSETS_PATH, STYLE_TEMPLATE),
+        os.path.join(TEMPLATES_FOLDER, STYLE_TEMPLATE),
         os.path.join(OUTPUT_FOLDER, STYLE_URL),
     )
     log("Building blog posts...", header=True)
