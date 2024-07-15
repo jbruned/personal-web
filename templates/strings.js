@@ -34,7 +34,7 @@ const EN = Object.assign({}, generated_strings.en, {
     welcome: 'Hi! I am Jorge Bruned, a Computer Scientist & Engineer who is passionate about Artificial Intelligence and Software Development.',
     welcome_2: "Although I specialize in Artificial Intelligence, I'm also passionate about Software Development, and have experience as a front-end developer. " +
                "Among my most remarkable projects so far, the development and deployment of fully-customized web applications for a SME stands out, along with my BSc and MSc theses on Machine Learning research. " +
-               "The latter involved the design and training of a computer vision model for a real application in product.",
+               "The latter involved the design and training of a computer vision model with a real application in product.",
     sabi: 'Sabiñánigo (Spain)',
     results: 'Results',
     bach_title: 'Science & Techology "Bachillerato"',
