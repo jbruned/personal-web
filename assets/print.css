@@ -93,3 +93,11 @@ body {
 .modal, .modal-backdrop {
     display: none !important;
 }
+.col-print-8 {
+    width: 66%;
+    transition: unset !important;
+}
+.offset-sm-2 {
+    margin: 0% !important;
+    transition: unset !important;
+}

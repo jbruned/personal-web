@@ -19,7 +19,7 @@ const EN = Object.assign({}, generated_strings.en, {
     porfolio: 'Portfolio',
     knowledge: 'Skills',
     contact: 'Contact',
-    role_short: 'Computer Scientist & Engineer',
+    role_short: 'Computer Scientist & Machine Learning Engineer',
     age: 'Age',
     role: 'Computer Scientist & Engineer',
     years_old: 'years old',
@@ -30,15 +30,15 @@ const EN = Object.assign({}, generated_strings.en, {
     cv: 'CV',
     source: 'Source code',
     blog: 'Blog',
-    location_content: 'Sabiñánigo (Spain)<br>Pamplona (Spain)',
+    location_content: 'Pamplona (Spain)<br>Sabiñánigo (Spain)',
     welcome: 'Hi! I am Jorge Bruned, a Computer Scientist & Engineer currently taking the Computer Science MSc at Public University of Navarre',
-    welcome_2: "Although I took the Artificial Intelligence track in my degree, I'm also passionate about Software Development. " +
-               "Among my most remarkable projects so far, the development of a customized web application from scratch for a SME and my BSc thesis on Active Learning (a Machine Learning technique) stand out, " +
-        "along with several and diverse projects as part of my degree (both individually and in group work environments): signal detector, distributed applications...",
+    welcome_2: "Although I specialize in Artificial Intelligence, I'm also passionate about Software Development, and have experience as a front-end developer. " +
+               "Among my most remarkable projects so far, the development and deployment of fully-customized web solutions for a SME stands out, along with my BSc and MSc theses on Machine Learning research. " +
+               "The latter involved the design and training of a computer vision model for a real application in product.",
     sabi: 'Sabiñánigo (Spain)',
     results: 'Results',
     bach_title: 'Science & Techology "Bachillerato"',
-    bach_content: '"Bachillerato" corresponds to the last two years of high school in Spain, where you are prepared for University.',
+    bach_content: 'Last two years of high school in Spain, where you are prepared for University.',
     bach_honors: 'Graduated with honors (Cum Laude)',
     avg_score: 'GPA',  // 'Average score',
     upna: 'Public University of Navarre (Spain)',

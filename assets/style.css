@@ -63,6 +63,20 @@ section h2 {
     filter: opacity(1);
     -webkit-filter:opacity(1);
 }
+.timeline-box p, .timeline-box ul {
+    margin-bottom: 15px !important;
+}
+.timeline-box hr {
+    /* display: none !important; */
+    margin-top: 20px !important;
+    margin-bottom: 30px !important;
+}
+.timeline-box h3 {
+    margin-bottom: 10px !important;
+}
+.timeline-box h4 {
+    margin-bottom: 25px !important;
+}
 @media (max-width: 767px) {
     .section {
         padding-top: 40px;
@@ -717,6 +731,9 @@ header {
     color: inherit;
 }
 @media (max-width: 480px) {
+    #about .section-box {
+        padding: 0 !important;
+    }
     #about {
         padding-top: 0 !important;
     }
@@ -832,10 +849,10 @@ header {
     text-align: center;
     margin-bottom: 15px;
 }
-.timeline-box-compact .date, .timeline-box-compact h3, .timeline-box-compact h4 {
+/* .timeline-box-compact .date, .timeline-box-compact h3, .timeline-box-compact h4 {
     text-align: left;
-}
-.timeline-box-compact .date span {
+} */
+.timeline-box .date span {
     color: #fff;
     font-size: 14px;
     font-weight: 700;
@@ -847,7 +864,7 @@ header {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
-.timeline-box-compact .date span:before {
+/* .timeline-box-compact .date span:before {
     content: '';
     width: 0;
     height: 0;
@@ -858,6 +875,13 @@ header {
     border-style: solid;
     border-width: 0 0 8px 8px;
     border-color: transparent;
+} */
+.timeline-box .date {
+    margin-top: -22px;
+}
+.timeline-box .date span {
+    padding: 5px 16px;
+    border-radius: 0 0 16px 16px;
 }
 .timeline-box-inner {
     padding: 20px 5%;
@@ -1335,7 +1359,7 @@ header {
     }
     #about .section-box>.p-5 {
         padding: 32px !important;
-    }    
+    }
     #blog .section-box>.p-5 {
         padding: 0 !important;
     }
@@ -1495,7 +1519,7 @@ mark,
 .pagination .page-numbers.prev:active,
 .timeline-bar,
 .timeline-box .dot,
-.timeline-box-compact .date span,
+.timeline-box .date span,
 .filter button.active,
 .widget_tag_cloud a:hover,
 .mibg,
@@ -1518,7 +1542,7 @@ mark,
     border-color: #ff9801; }
 .page-404 h2 span:before,
 .profile-preword span:before,
-.timeline-box-compact .date span:before {
+.timeline-box .date span:before {
     border-left-color: #ff9801; }
 .price-box.box-primary .price-box-top:before {
     border-top-color: #ff9801; }
