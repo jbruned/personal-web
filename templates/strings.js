@@ -86,7 +86,7 @@ const EN = Object.assign({}, generated_strings.en, {
     eoi_sabi: "Official Language School (Spain)",
     cpm_sabi: "Professional Music School (Spain)",
     dgt_hue: "Spain",
-    experience_brief: "Throughout my career, I have carried out a wide variety of projects, always with the aim of acquiring new knowledge and broadening my horizons",
+    experience_brief: "Throughout my career, I have worked on a wide range of projects, always with the aim of acquiring new knowledge and broadening my horizons",
     project_info: "Project Info",
     m_jan: "January",
     m_feb: "Feburary",
