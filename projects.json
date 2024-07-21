@@ -27,6 +27,37 @@
         "url": "Project url (optional)"
     },
     {
+        "id": "tfm_od_is",
+        "cat_id": "ia",
+        "media": "/assets/portfolio/tfm_od_is.jpeg",
+        "thumbnail": "/assets/portfolio/tfm_od_is_thumb.jpeg",
+        "strings": {
+            "ES": {
+                "title": "Investigación y aplicación de técnicas de segmentación de instancias",
+                "category": "Deep Learning",
+                "html": "<p>Mi TFM, centrado en modelos de detección de objetos y segmentación de instancias, tiene dos principales componentes:</p><ul><li>Componente académico: <b>revisión del estado del arte</b> sobre técnicas de detección y segmentación de instancias y comparativa de diversos modelos.</li><li>Componente aplicado: desarrollo de un modelo de segmentación de instancias para resolver un caso de uso real para la empresa <em>Veridas</em>.</li></ul><p>Se abarcaron todas las etapas de un proyecto de Machine Learning: recopilación de datos, preprocesamiento, entrenamiento del modelo, evaluación, optimización, despliegue, etc.</p><p><i>Nota: los documentos de identidad que aparecen en la imagen de muestra son de dominio público y no contienen información sensible.</i></p>"
+            },
+            "EN": {
+                "title": "Research and application of instance segmentation techniques",
+                "category": "Deep Learning",
+                "html": "<p>My Master's Thesis, focused on object detection and instance segmentation models, has two main components:</p><ul><li>Academic component: <b>literature review</b> on instance detection and segmentation techniques and <b>comparative study</b> of different architectures.</li><li>Applied component: development of an instance segmentation model to solve a <b>real use case</b> for the company <em>Veridas</em>.</li></ul><p>All stages of a Machine Learning project were covered: data collection, preprocessing, model training, evaluation, optimization, deployment, etc.</p><p><i>Disclaimer: the ID cards shown in the sample image are in the public domain and do not contain any sensitive information.</i></p>"
+            }
+        },
+        "technologies": [
+            "Python",
+            "pyTorch",
+            "Mask R-CNN",
+            "YOLO",
+            "ONNX",
+            "OpenVINO",
+            "Condor",
+            "OpenCV",
+            "MatPlotLib",
+            "numPy",
+            "Pandas"
+        ]
+    },
+    {
         "id": "cv",
         "cat_id": "sw",
         "media": "/assets/portfolio/cv.jpeg",

@@ -66,6 +66,9 @@ section h2 {
 .timeline-box p, .timeline-box ul {
     margin-bottom: 15px !important;
 }
+.modal-body .html-content li, .modal-body .html-content p, .timeline-box p, .timeline-box li {
+    /* text-align: justify; */
+}
 .timeline-box hr {
     /* display: none !important; */
     margin-top: 20px !important;
