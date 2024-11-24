@@ -852,9 +852,6 @@ header {
     text-align: center;
     margin-bottom: 15px;
 }
-/* .timeline-box-compact .date, .timeline-box-compact h3, .timeline-box-compact h4 {
-    text-align: left;
-} */
 .timeline-box .date span {
     color: #fff;
     font-size: 14px;
@@ -867,18 +864,6 @@ header {
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
-/* .timeline-box-compact .date span:before {
-    content: '';
-    width: 0;
-    height: 0;
-    top: 100%;
-    left: 5px;
-    display: block;
-    position: absolute;
-    border-style: solid;
-    border-width: 0 0 8px 8px;
-    border-color: transparent;
-} */
 .timeline-box .date {
     margin-top: -22px;
 }
@@ -1420,11 +1405,13 @@ header {
     padding: 10px 15px;
 }
 .media-container {
-    position: relative;
     width: 100%;
+    overflow: hidden;
+}
+.modal .media-container {
+    position: relative;
     height: 0;
     padding-bottom: 56.25%;
-    overflow: hidden;
 }
 .media-container, .grid-more .ajax-loader, .portfolio-figure {
     background: url('img/ajax-loader.gif') center center no-repeat;
@@ -1437,6 +1424,9 @@ header {
 }
 .media-container img {
     width: 100%;
+    max-height: 50vh;
+}
+.modal .media-container img {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1733,14 +1723,13 @@ mark,
     max-width: 920px;
     width: 100%;
     display: block;
-    margin: 20px auto;
+    margin: 15px auto;
 }
 .post-content .media-container>img {
     max-width: 100%;
     height: 100%;
     width: unset !important;
     display: block;
-    margin: 0;
 }
 .iframe-container {
     position: relative;
