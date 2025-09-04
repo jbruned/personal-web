@@ -23,7 +23,7 @@ async function sleep(millis) {
     console.log("Initializing puppeteer...");
     const browser = await puppeteer.launch({
         headless: true, // Legacy (new headless mode times out in GitHub actions)
-        // pipe: true
+        args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
     page.setViewport({width: 1280, height: 1280});
