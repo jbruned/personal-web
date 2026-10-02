@@ -477,6 +477,8 @@ if __name__ == "__main__":
         # Live mode (watch for changes and rebuild)
         class MyHandler(FileSystemEventHandler):
             def on_modified(self, event):
+                if event.is_directory:
+                    return
                 if STRINGS_URL in event.src_path or SCRIPT_URL in event.src_path or STYLE_URL in event.src_path:
                     return
                 log(f'\n=> REBUILDING ({event.event_type} {event.src_path})', header=True, verbose=VERBOSE_INFO)
