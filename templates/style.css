@@ -779,11 +779,11 @@ header {
 #certificaciones li {
     margin-top: 25px;
 }
-#certificaciones li>*:first-child {
+/* #certificaciones li>*:first-child {
     margin: 5px;
-}
+} */
 #certificaciones li>* {
-    margin: 0;
+    margin: 5px;
 }
 #certificaciones li i {
     margin: 0 5px;
@@ -1035,7 +1035,7 @@ header {
     background-color: #525458 !important;
     opacity: 1; }
 @media (min-width: 768px) {
-    #skills .section-box .row:last-child .knowledge-bar {
+    #skills .section-box .row:last-child .col-sm-6:nth-last-child(-n+3) .knowledge-bar {
         margin-bottom: 0;
     }
 }

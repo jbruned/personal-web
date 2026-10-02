@@ -242,28 +242,25 @@
                     <ul>
                         <li>
                             <h4>Certificate in Advanced English <small>(CEFR C1)</small></h4>
-                            <p><i class="icon-location"></i>University of Cambridge</p>
-                            <p><i class="icon-calendar-check"></i>2021</p>
+                            <p>University of Cambridge · 2021</p>
                         </li>
                         <li>
                             <h4>Deep Learning Specialization</h4>
-                            <p><i class="icon-location"></i>Coursera</p>
-                            <p><i class="icon-calendar-check"></i>2021</p>
+                            <p>Coursera · 2021</p>
                         </li>
                         <li>
                             <h4>English Advanced Level <small>(CEFR C1)</small></h4>
-                            <p><i class="icon-location"></i><span data-string="eoi_sabi">Escuela Oficial de Idiomas de Sabiñánigo</span></p>
-                            <p><i class="icon-calendar-check"></i>2019</p>
+                            <p><span data-string="eoi_sabi">Escuela Oficial de Idiomas de Sabiñánigo</span> · 2019</p>
                         </li>
                         <li>
                             <h4>Permiso B <small data-string="driving_license">(carnet de conducir)</small></h4>
-                            <p><i class="icon-location"></i><span data-string="dgt_hue">DGT de Huesca</span></p>
-                            <p><i class="icon-calendar-check"></i>2019</p>
+                            <p><span data-string="dgt_hue">DGT de Huesca</span> · 2019</p>
                         </li>
                         <li>
                             <h4 data-string="clarinet">Enseñanzas Profesionales de Clarinete</h4>
-                            <p><i class="icon-location"></i><span data-string="cpm_sabi">Conservatorio Profesional de Música de Sabiñánigo</span></p>
-                            <p><i class="icon-calendar-check"></i>2017</p>
+                            <p><span data-string="cpm_sabi">Conservatorio Profesional de Música de Sabiñánigo</span> · 2017</p>
+                            <!--<p><i class="icon-location"></i><span data-string="cpm_sabi">Conservatorio Profesional de Música de Sabiñánigo</span></p>
+                            <p><i class="icon-calendar-check"></i>2017</p>-->
                         </li>
                     </ul>
                 </div>
@@ -458,13 +455,13 @@
             <!-- APTITUDES -->
             <section id="skills" class="animate-up">
                 <h2 data-string="knowledge">Conocimientos</h2>
-                <p class="txt-center subtitle" data-string="knowledge_brief">A continuación enumero una serie de aptitudes y destrezas que considero que soy capaz de llevar a cabo de forma satisfactoria</p>
+                <p class="txt-center subtitle" data-string="knowledge_brief">A continuación enumero las aptitudes y destrezas que considero dominar</p>
                 <div class="section-box p-5">
                     {% for section in skills %}
                     <h3 class="fw-bold" data-string="{{ section.title.string_id }}">{{ section.title.static_value }}</h3>
                     <div class="row">
                         {% for skill in section.skills %}
-                        <div class="col-sm-6{% if section.skills|length > 2 %} col-lg-4 col-print-4{% endif %}">
+                        <div class="col-sm-6{% if section.skills|length != 2 and section.skills|length != 4 %} col-lg-4 col-print-4{% endif %}">
                             <div class="knowledge-bar">
                                 <div class="bar-data">
                                     <span class="bar-title" data-string="{{ skill.name.string_id }}">{{ skill.name.static_value }}</span>

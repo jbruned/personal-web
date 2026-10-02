@@ -1,30 +1,16 @@
 [
     {
         "title": {
-            "ES": "Áreas de conocimiento",
-            "EN": "Knowledge areas"
+            "ES": "Inteligencia Artificial",
+            "EN": "AI Engineering"
         },
         "skills": [
             {
                 "name": {
-                    "ES": "Desarrollo Web",
-                    "EN": "Web development"
+                    "ES": "Visión Artificial",
+                    "EN": "Computer Vision"
                 },
-                "percent": 85
-            },
-            {
-                "name": {
-                    "ES": "Desarrollo para Android",
-                    "EN": "Android development"
-                },
-                "percent": 95
-            },
-            {
-                "name": {
-                    "ES": "Pipelines y CI/CD",
-                    "EN": "Pipelines & CI/CD"
-                },
-                "percent": 90
+                "percent": 96
             },
             {
                 "name": {
@@ -35,66 +21,145 @@
             },
             {
                 "name": {
+                    "ES": "Curación de Datasets",
+                    "EN": "Dataset Curation"
+                },
+                "percent": 95
+            },
+            {
+                "name": {
                     "ES": "Deep Learning",
                     "EN": "Deep Learning"
-                },
-                "percent": 80
-            },
-            {
-                "name": {
-                    "ES": "Visión Artificial",
-                    "EN": "Computer Vision"
-                },
-                "percent": 82
-            },
-            {
-                "name": {
-                    "ES": "Minería de Datos",
-                    "EN": "Data Mining"
                 },
                 "percent": 92
             },
             {
                 "name": {
-                    "ES": "Redes de Ordenadores",
-                    "EN": "Computer networks"
+                    "ES": "Entrenamiento y Fine-tuning",
+                    "EN": "Model Training & Fine-tuning"
                 },
-                "percent": 90
+                "percent": 97
             },
             {
                 "name": {
-                    "ES": "Seguridad Informática",
-                    "EN": "Computer security"
+                    "ES": "Productivización de Modelos",
+                    "EN": "Model Productionization"
                 },
-                "percent": 80
+                "percent": 95
             },
             {
                 "name": {
-                    "ES": "Edición Multimedia",
-                    "EN": "Multimedia editing"
+                    "ES": "Monitorización en Producción",
+                    "EN": "Production Monitoring"
                 },
-                "percent": 80
+                "percent": 94
             },
+            {
+                "name": {
+                    "ES": "NLP y LLMs",
+                    "EN": "NLP & LLMs"
+                },
+                "percent": 78
+            },
+            {
+                "name": {
+                    "ES": "Literatura Científica y SOTA",
+                    "EN": "Scientific Literature & SOTA Review"
+                },
+                "percent": 92
+            }
+        ]
+    },
+    {
+        "title": {
+            "ES": "Desarrollo de Software",
+            "EN": "Software Development"
+        },
+        "skills": [
             {
                 "name": {
                     "ES": "Arquitectura de Software",
-                    "EN": "Software architecture"
+                    "EN": "Software Architecture"
                 },
                 "percent": 90
+            },
+            {
+                "name": {
+                    "ES": "Pipelines y CI/CD",
+                    "EN": "CI/CD & Pipelines"
+                },
+                "percent": 98
+            },
+            {
+                "name": {
+                    "ES": "Desarrollo de APIs",
+                    "EN": "API Development"
+                },
+                "percent": 92
+            },
+            {
+                "name": {
+                    "ES": "Desarrollo Frontend",
+                    "EN": "Frontend Development"
+                },
+                "percent": 82
+            },
+            {
+                "name": {
+                    "ES": "Testing y QA",
+                    "EN": "Testing & QA"
+                },
+                "percent": 88
             },
             {
                 "name": {
                     "ES": "Bases de Datos",
                     "EN": "Databases"
                 },
-                "percent": 95
+                "percent": 90
             }
         ]
     },
     {
         "title": {
-            "ES": "Lenguajes y tecnologías",
-            "EN": "Languages & technologies"
+            "ES": "Habilidades Blandas",
+            "EN": "Soft Skills"
+        },
+        "skills": [
+            {
+                "name": {
+                    "ES": "Gestión de Proyectos",
+                    "EN": "Project Management"
+                },
+                "percent": 88
+            },
+            {
+                "name": {
+                    "ES": "Oratoria y Comunicación",
+                    "EN": "Public Speaking & Communication"
+                },
+                "percent": 85
+            },
+            {
+                "name": {
+                    "ES": "Redacción Científica y Técnica",
+                    "EN": "Scientific & Technical Reporting"
+                },
+                "percent": 90
+            },
+            {
+                "name": {
+                    "ES": "Mentoría y Colaboración Académica",
+                    "EN": "Mentoring & Academic Collaboration"
+                },
+                "percent": 85
+            }
+        ]
+    },
+    {
+        "title": {
+            "ES": "Tecnologías",
+            "EN": "Technologies"
         },
         "skills": [
             {
@@ -106,80 +171,80 @@
             },
             {
                 "name": {
-                    "ES": "Kotlin",
-                    "EN": "Kotlin"
-                },
-                "percent": 98
-            },
-            {
-                "name": {
-                    "ES": "Java",
-                    "EN": "Java"
-                },
-                "percent": 95
-            },
-            {
-                "name": {
-                    "ES": "HTML + CSS (frontend)",
-                    "EN": "HTML & CSS (frontend)"
-                },
-                "percent": 96
-            },
-            {
-                "name": {
-                    "ES": "JavaScript + Frameworks (frontend)",
-                    "EN": "JavaScript & Frameworks (frontend)"
-                },
-                "percent": 92
-            },
-            {
-                "name": {
-                    "ES": "PHP + MySQL (backend)",
-                    "EN": "PHP & MySQL (backend)"
-                },
-                "percent": 96
-            },
-            {
-                "name": {
-                    "ES": "Git y Pipelines",
-                    "EN": "Git & Pipelines"
-                },
-                "percent": 95
-            },
-            {
-                "name": {
-                    "ES": "Android Studio",
-                    "EN": "Android Studio"
-                },
-                "percent": 95
-            },
-            {
-                "name": {
-                    "ES": "Despliegue <i>Cloud</i>",
-                    "EN": "Cloud deployment"
-                },
-                "percent": 95
-            },
-            {
-                "name": {
-                    "ES": "Bash y Makefile",
-                    "EN": "Bash & Makefile"
-                },
-                "percent": 80
-            },
-            {
-                "name": {
-                    "ES": "C",
-                    "EN": "C"
+                    "ES": "PyTorch",
+                    "EN": "PyTorch"
                 },
                 "percent": 90
             },
             {
                 "name": {
-                    "ES": "UNIX y Linux",
-                    "EN": "UNIX & Linux"
+                    "ES": "Transformers",
+                    "EN": "Transformers"
+                },
+                "percent": 92
+            },
+            {
+                "name": {
+                    "ES": "Redes Convolucionales",
+                    "EN": "Convolutional Neural Networks"
+                },
+                "percent": 95
+            },
+            {
+                "name": {
+                    "ES": "MLflow",
+                    "EN": "MLflow"
                 },
                 "percent": 80
+            },
+            {
+                "name": {
+                    "ES": "Docker",
+                    "EN": "Docker"
+                },
+                "percent": 78
+            },
+            {
+                "name": {
+                    "ES": "FastAPI",
+                    "EN": "FastAPI"
+                },
+                "percent": 85
+            },
+            {
+                "name": {
+                    "ES": "OpenSearch",
+                    "EN": "OpenSearch"
+                },
+                "percent": 80
+            },
+            {
+                "name": {
+                    "ES": "Grafana",
+                    "EN": "Grafana"
+                },
+                "percent": 80
+            },
+            {
+                "name": {
+                    "ES": "Despliegue Cloud (AWS)",
+                    "EN": "Cloud Deployment (AWS)"
+                },
+                "percent": 90
+            },
+            {
+                "name": {
+                    "ES": "Git",
+                    "EN": "Git"
+                },
+                "percent": 95
+            },
+            {
+                "name": {
+                    "ES": "Linux y Bash",
+                    "EN": "Linux & Bash"
+                },
+                "percent": 95
             }
         ]
     },
