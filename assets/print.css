@@ -1,3 +1,12 @@
+/*
+ * Print stylesheet.
+ *
+ * 1. The original print rules, kept as they were so the blog landing and posts print exactly as before.
+ * 2. CV page only (A4, 2 pages, rendered to PDF by deployment/pdf/web2pdf.js): everything
+ *    below is scoped with body:has(#about), so blog pages keep the generic rules above untouched.
+ *    Page 1: header, intro, Education and Experience timelines.
+ *    Page 2: Portfolio (featured projects), Skills and Languages & Certifications.
+ */
 header, .btn-upper, .filter {
     display: none !important;
     transition: unset !important;
@@ -100,4 +109,535 @@ body {
 .offset-sm-2 {
     margin: 0% !important;
     transition: unset !important;
+}
+
+/* CV page: its own A4 page with margins (a named page keeps the default for the blog) */
+@page cv {
+    size: A4;
+    margin: 8mm 10mm 6mm;
+}
+body:has(#about) {
+    page: cv;
+}
+
+/* Reset the screen-only behaviour */body:has(#about) header,
+body:has(#about) .btn-upper,
+body:has(#about) .btn,
+body:has(#about) .filter,
+body:has(#about) .subtitle,
+body:has(#about) #btn-scroll,
+body:has(#about) #btn-scroll-top,
+body:has(#about) #contact,
+body:has(#about) .modal,
+body:has(#about) .modal-backdrop {
+    display: none !important;
+}body:has(#about) .no-print {
+    display: none !important;
+}body:has(#about) .only-print {
+    display: initial !important;
+}body:has(#about) .animate-down,
+body:has(#about) .animate-left,
+body:has(#about) .animate-right,
+body:has(#about) .animate-up {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    transition: none !important;
+}body:has(#about) ::-webkit-scrollbar,
+body:has(#about) ::-moz-scrollbar {
+    width: 0 !important;
+    height: 0 !important;
+}
+
+/* The screen styles apply filter: opacity(1) to cards (a print workaround); it makes Chrome rasterize
+   their content in the PDF, so the text would not be selectable */body:has(#about) .grid-box,
+body:has(#about) .section-box,
+body:has(#about) .timeline-box-inner {
+    filter: none !important;
+    -webkit-filter: none !important;
+}
+
+/* Base */html:has(#about) {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+}body:has(#about) {
+    background: #fff !important;
+    color: #111;
+    font-size: 6.9pt;
+    line-height: 1.27;
+}body:has(#about) a {
+    color: inherit;
+    text-decoration: underline;
+}body:has(#about) p,
+body:has(#about) ul,
+body:has(#about) .timeline .timeline-box p,
+body:has(#about) .timeline .timeline-box ul {
+    margin-bottom: .7mm !important;
+}body:has(#about) ul {
+    padding-left: 3.6mm;
+}body:has(#about) main {
+    overflow: visible;
+}
+
+/* Page flow: sections are flex items so Education/Experience can take the full width
+   and Skills / Certifications can share a row (their wrappers are flattened with display: contents) */body:has(#about) .container {
+    max-width: none;
+    /* 1mm inset so the shadows of the cards at the edges are not clipped by the page content box */
+    padding: 0 1mm;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 7mm;
+    align-items: flex-start;
+}body:has(#about) #estudios {
+    display: contents;
+}body:has(#about) .container > section,
+body:has(#about) #estudios > div {
+    flex: 0 0 100%;
+    padding: 0 !important;
+    margin: 2.4mm 0 0 !important;
+}body:has(#about) #about {
+    order: 1;
+    margin-top: 0 !important;
+}body:has(#about) #estudios > div:first-child {
+    order: 2;
+}body:has(#about) #experiencia {
+    order: 3;
+}body:has(#about) #portfolio {
+    order: 4;
+    break-before: page;
+    margin-top: 0 !important;
+}body:has(#about) #portfolio {
+    padding-bottom: 2mm !important;
+}body:has(#about) #skills,
+body:has(#about) #estudios > #certificaciones {
+    min-width: 0;
+}
+/* Skills and certifications share a row (7:5) */body:has(#about) #skills {
+    flex: 0 0 calc((100% - 7mm) * 7 / 12);
+}body:has(#about) #estudios > #certificaciones {
+    flex: 0 0 calc((100% - 7mm) * 5 / 12);
+}body:has(#about) #skills {
+    order: 5;
+}body:has(#about) #certificaciones {
+    order: 6;
+}body:has(#about) section:last-child {
+    margin-bottom: 0;
+}body:has(#about) .timeline-box,
+body:has(#about) .grid-box,
+body:has(#about) .grid-item,
+body:has(#about) .knowledge-bar,
+body:has(#about) #certificaciones li {
+    break-inside: avoid;
+}
+
+/* Section titles */body:has(#about) main h2,
+body:has(#about) .section-title {
+    color: #111;
+    font-size: 10.5pt;
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: left;
+    margin: 0 0 1.4mm;
+    padding: 0 0 .8mm;
+    border-bottom: .25mm solid #bbb;
+}body:has(#about) main h2:after,
+body:has(#about) .section-title:after {
+    display: none;
+}
+
+/* Header */body:has(#about) #about .section-box {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0 0 3mm !important;
+    border-bottom: .35mm solid #111;
+}body:has(#about) #about .section-box > .row.p-5,
+body:has(#about) #about .row {
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 0;
+    padding: 0 !important;
+}body:has(#about) #about .row > div {
+    padding: 0;
+    margin: 0 !important;
+    width: auto !important;
+    float: none !important;
+}body:has(#about) #about .row > div:first-child {
+    flex: none;
+    width: 24mm !important;
+}body:has(#about) #about .row > div:last-child {
+    flex: 1;
+    padding-left: 6mm;
+}body:has(#about) #about img {
+    width: 24mm;
+    height: 24mm;
+    object-fit: cover;
+    padding: 0 !important;
+    margin: 0 !important;
+}body:has(#about) #about h1 {
+    font-size: 19pt;
+    line-height: 1.1;
+    letter-spacing: -.2pt;
+    margin: 0;
+    text-align: left;
+}body:has(#about) #about .section-box .profile-position {
+    font-size: 10pt;
+    font-weight: 400;
+    color: #333;
+    margin: .6mm 0 2.4mm !important;
+    padding: 0 !important;
+    border: 0;
+}body:has(#about) #about ul {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: .7mm 8mm;
+    padding: 0;
+    margin: 0 !important;
+}body:has(#about) #about ul > li {
+    display: flex;
+    gap: 2mm;
+    align-items: baseline;
+    margin: 0;
+    font-size: 7.6pt;
+    line-height: 1.3;
+}body:has(#about) #about ul > li > strong {
+    float: none;
+    width: auto;
+    min-width: 12mm;
+    flex: none;
+    font-size: 6pt;
+    line-height: 1.3;
+    letter-spacing: .5pt;
+    color: #555;
+}body:has(#about) #about ul > li > span {
+    margin: 0;
+    font-size: 7.6pt;
+    line-height: 1.3;
+}body:has(#about) #about .only-print {
+    display: flex !important;
+}body:has(#about) #welcome {
+    padding: 2.2mm 0 1mm !important;
+}body:has(#about) #welcome p {
+    margin: 0 0 1.2mm !important;
+    padding: 0;
+    font-size: 6.9pt;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: left;
+    color: #111;
+}body:has(#about) #welcome .txt-center {
+    font-size: 8.4pt;
+    font-weight: 600;
+}body:has(#about) #about > .only-print {
+    display: block !important;
+    margin: 2mm 0 0 !important;
+    padding: 1.3mm 4mm;
+    border: .35mm dashed #777;
+    border-radius: 3.2mm;
+    text-align: center;
+}body:has(#about) #about > .only-print p {
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 7.2pt !important;
+}body:has(#about) #about > .only-print a {
+    font-weight: 600;
+}
+
+/* Timelines: a bar on the left with the cards coming out of it, all on the same side */body:has(#about) .timeline {
+    padding-left: 7mm;
+}body:has(#about) .timeline .timeline-bar {
+    width: .5mm;
+    height: auto;
+    margin: 0;
+    left: 2.4mm;
+    top: 3mm;
+    bottom: 3mm;
+    margin-left: -.25mm;
+    opacity: 1;
+    background: rgba(32, 39, 52, .2) !important;
+}body:has(#about) .timeline .timeline-inner {
+    margin-bottom: 0 !important;
+}body:has(#about) .timeline .timeline-box {
+    float: none;
+    clear: both;
+    width: auto;
+    margin: 0 0 1mm !important;
+    color: #111;
+    font-size: 6.9pt;
+    line-height: 1.3;
+}body:has(#about) .timeline .timeline-box:last-child {
+    margin-bottom: 0 !important;
+}body:has(#about) .timeline .timeline-box .timeline-box-inner {
+    margin: 0;
+    padding: 1.5mm 3.4mm 1mm;
+    border-width: .9mm 0 0;
+    border-radius: 2.6mm;
+    box-shadow: 0 .15mm 1mm rgba(0, 0, 0, .14), 0 .1mm .5mm rgba(0, 0, 0, .22);
+    text-align: left;
+}body:has(#about) .timeline .timeline-box .timeline-box-inner > * {
+    margin-top: 0;
+}body:has(#about) #experiencia .timeline-box .timeline-box-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    column-gap: .8mm;
+}body:has(#about) #experiencia .timeline-box .timeline-box-inner > * {
+    flex: 0 0 100%;
+}body:has(#about) .timeline .timeline-box .dot {
+    display: block;
+    background: #ff9801;
+    border-radius: 50%;
+    top: 5.4mm;
+    left: -5.65mm;
+    right: auto;
+    width: 2.1mm;
+    height: 2.1mm;
+    margin: 0;
+}
+/* Arrow pointing to the bar: the web's own arrow (arrows.png shadow sprite + white CSS triangle),
+   using the "right-side card" variant for all cards and scaled down to the print size */body:has(#about) .timeline .timeline-box .timeline-box-inner .arrow {
+    display: block;
+    top: .1mm;
+    left: -12px;
+    right: auto;
+    width: 12px;
+    height: 41px;
+    flex: none;
+    background: url('img/arrows.png') no-repeat 0 0;
+    border: 0;
+    filter: none;
+    transform: scale(.62, .42);
+    transform-origin: right center;
+}body:has(#about) .timeline .timeline-box .timeline-box-inner .arrow:before {
+    display: block;
+    content: '';
+    width: 0;
+    height: 0;
+    margin: 0 0 0 2px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 0;
+    border-right: 10px solid #fff;
+}body:has(#about) .timeline .timeline-box .date {
+    position: absolute;
+    top: -1.25mm;
+    right: 3.4mm;
+    margin: 0;
+    line-height: 1.2;
+    text-align: right;
+}body:has(#about) .timeline .timeline-box .date span {
+    padding: .85mm 3.4mm .8mm;
+    border-radius: 0 0 2.6mm 2.6mm;
+    font-size: 6.4pt;
+    line-height: 1.2;
+}body:has(#about) .timeline .timeline-box .timeline-box-inner > h3,
+body:has(#about) .timeline .timeline-box .timeline-box-inner > h4 {
+    display: inline;
+    flex: 0 1 auto;
+    margin: 0 !important;
+    padding: 0;
+    text-align: left;
+    line-height: 1.3;
+    text-transform: none;
+    letter-spacing: 0;
+}body:has(#about) .timeline .timeline-box h3 {
+    font-size: 8.2pt;
+    font-weight: 700;
+    color: #111;
+}body:has(#about) .timeline .timeline-box h4 {
+    font-size: 7.4pt;
+    font-weight: 400;
+    color: #444;
+}
+/* Education: "Title · Institution" */body:has(#about) .timeline .timeline-box h4:before {
+    content: "· ";
+}
+/* Experience: "Role · Company" (the role is the h4 in the markup) */body:has(#about) #experiencia .timeline-box .timeline-box-inner > h3,
+body:has(#about) #experiencia .timeline-box .timeline-box-inner > h4 {
+    display: block;
+    flex: 0 1 auto;
+}body:has(#about) #experiencia .timeline-box h4 {
+    order: -1;
+    font-size: 8.2pt;
+    font-weight: 700;
+    color: #111;
+}body:has(#about) #experiencia .timeline-box h4:before {
+    content: none;
+}body:has(#about) #experiencia .timeline-box h3 {
+    font-size: 7.4pt;
+    font-weight: 400;
+    color: #444;
+}body:has(#about) #experiencia .timeline-box h3:before {
+    content: "· ";
+}body:has(#about) .timeline .timeline-box .timeline-box-inner > :last-child,
+body:has(#about) .timeline .timeline-box .timeline-box-inner > ul:last-child {
+    margin-bottom: 0 !important;
+}
+/* Education: keep short items on the same line (labels with their text, course list) */body:has(#about) #estudios [data-string="bsc_thesis"],
+body:has(#about) #estudios [data-string="msc_thesis"],
+body:has(#about) #estudios [data-string="internationalization"] {
+    display: inline;
+    margin-right: .8mm;
+}body:has(#about) #estudios p[data-string="bsc_internat"] {
+    display: inline;
+}body:has(#about) #estudios ul:has(> li[data-string^="eras_courses_"]) {
+    display: inline;
+    padding: 0;
+    margin: 0 !important;
+}body:has(#about) #estudios li[data-string^="eras_courses_"] {
+    display: inline;
+}body:has(#about) #estudios li[data-string^="eras_courses_"]:not(:last-child):after {
+    content: " · ";
+}body:has(#about) .timeline .timeline-box q {
+    display: inline !important;
+}body:has(#about) .timeline .timeline-box .d-block {
+    display: inline !important;
+}
+
+/* Portfolio: featured projects in 4 columns, same tiles as the web */body:has(#about) .grid .grid-sizer,
+body:has(#about) .grid:before,
+body:has(#about) .grid:after {
+    display: none;
+}body:has(#about) .grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2.7mm;
+    margin: 0 !important;
+    height: auto !important;
+}body:has(#about) .grid .grid-item {
+    position: static !important;
+    transform: none !important;
+    width: auto !important;
+    float: none;
+    margin: 0;
+    padding: 0;
+}body:has(#about) .grid:has(.featured) .grid-item:not(.featured) {
+    display: none !important;
+}body:has(#about) .grid .grid-box {
+    height: 0 !important;
+    padding-top: 96% !important;
+    margin: 0 !important;
+    border-radius: 2.6mm;
+    box-shadow: 0 .15mm 1mm rgba(0, 0, 0, .14), 0 .1mm .5mm rgba(0, 0, 0, .22);
+    transition: none !important;
+}body:has(#about) .portfolio-figure img {
+    transform: none !important;
+    transition: none !important;
+}body:has(#about) .portfolio-figure .portfolio-caption {
+    background: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+}body:has(#about) .portfolio-figure .portfolio-caption-inner {
+    transform: none !important;
+    transition: none !important;
+    padding: 2mm 2.2mm 1.8mm;
+    background: rgba(32, 39, 52, .82);
+    text-align: left;
+}body:has(#about) .portfolio-figure .portfolio-title,
+body:has(#about) .portfolio-figure .portfolio-cat {
+    opacity: 1 !important;
+    transition: none !important;
+    margin: 0;
+}body:has(#about) .grid .grid-item-small .portfolio-title {
+    font-size: 6.8pt;
+    line-height: 1.25;
+}body:has(#about) .portfolio-figure .portfolio-cat {
+    margin-top: .7mm;
+    font-size: 5.4pt;
+    font-weight: 600;
+    letter-spacing: .35pt;
+    color: #ff9801;
+}body:has(#about) .portfolio-figure .portfolio-caption-inner p {
+    display: none;
+}
+
+/* Skills: pills, without progress bars */body:has(#about) #skills .section-box {
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0 !important;
+}body:has(#about) #skills h3 {
+    font-size: 7.6pt;
+    margin: 0 0 .9mm;
+}body:has(#about) #skills .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .9mm;
+    margin: 0 0 1.8mm;
+}body:has(#about) #skills .row > div {
+    flex: none;
+    width: auto;
+    float: none;
+    padding: 0;
+    margin: 0;
+}body:has(#about) .knowledge-bar {
+    margin: 0;
+}body:has(#about) .knowledge-bar .bar-data {
+    padding: .45mm 2mm .55mm;
+    font-size: 6.5pt;
+    line-height: 1.2;
+    white-space: nowrap;
+    border: .25mm solid #ff9801;
+    border-radius: 99px;
+}body:has(#about) .knowledge-bar .bar-title,
+body:has(#about) .knowledge-bar .bar-value {
+    display: inline;
+    position: static;
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
+}body:has(#about) .knowledge-bar .bar-value:before {
+    content: "(";
+}body:has(#about) .knowledge-bar .bar-value:after {
+    content: ")";
+}body:has(#about) .knowledge-bar .bar-line {
+    display: none;
+}
+
+/* Languages & certifications */body:has(#about) #certificaciones h3 {
+    margin: 0 0 1.4mm !important;
+    padding: 0 0 .8mm;
+    font-size: 10.5pt;
+    border-bottom: .25mm solid #bbb;
+}body:has(#about) #certificaciones ul {
+    list-style: none;
+    margin: 0 !important;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5mm;
+}body:has(#about) #certificaciones li {
+    margin: 0 !important;
+    position: relative;
+    padding-left: 4mm;
+    font-size: 7.2pt;
+}body:has(#about) #certificaciones li:before {
+    content: "";
+    margin: 0;
+    position: absolute;
+    left: .4mm;
+    top: 1.1mm;
+    width: 1.6mm;
+    height: 1.6mm;
+    border-radius: 50%;
+    background: #ff9801;
+}body:has(#about) #certificaciones li > * {
+    margin: 0;
+}body:has(#about) #certificaciones li h4 {
+    margin: 0;
+    font-size: 7.2pt;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #111;
+}body:has(#about) #certificaciones li h4 small {
+    font-size: inherit;
+    font-weight: 400;
+    color: #444;
+}body:has(#about) #certificaciones li p {
+    margin: 0 !important;
+    font-size: 6.5pt;
+    color: #555;
 }

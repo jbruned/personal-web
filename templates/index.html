@@ -105,6 +105,10 @@
                                     <strong class="title" data-string="location_title">Ubicación</strong>
                                     <span class="cont" data-string="location_content">Pamplona (Navarra)<br>Sabiñánigo (Huesca)</span>
                                 </li>
+                                <li class="only-print">
+                                    <strong class="title">LinkedIn</strong>
+                                    <span class="cont"><a href="https://www.linkedin.com/in/jorge-bruned-alam%C3%A1n-439a4762/" rel="noreferrer">in/jorge-bruned-alamán</a></span>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -175,7 +179,7 @@
                                     <span style="font-weight: bold" data-string="internationalization">Internacionalización</span>
                                     <p data-string="bsc_internat">
                                         Programa Internacional en Inglés (parte de la carrera cursada en dicho idioma).
-                                        Participación en Programa de Movilidad Internacional (TU Delft).
+                                        Programa de Movilidad Internacional en TU Delft.
                                     </p>
                                 </div>
                             </div>
@@ -238,7 +242,7 @@
                     </div>
                 </div>
                 <div class="animate-up" id="certificaciones">
-                    <h3 class="fw-bold mt-3" data-string="certs">Idiomas y otras certificaciones</h3>
+                    <h3 class="fw-bold mt-3" data-string="certs">Idiomas y certificaciones</h3>
                     <ul>
                         <li>
                             <h4>Certificate in Advanced English <small>(CEFR C1)</small></h4>
@@ -284,7 +288,7 @@
                                 <!-- <div class="date"><span data-string="m_apr">Abril</span> 2018 - <span data-string="m_jan">Enero</span> 2022</div> -->
                                 <div class="date"><span>2018 - 2022</span></div>
                                 <h3>Frutas Bruned, S.L.</h3>
-                                <h4 data-string="fb_role">Técnico de Informática</h4>
+                                <h4 data-string="fb_role">Responsable de Informática</h4>
                                 <p data-string="fb_content">
                                     Durante varios años he realizado diversas labores esporádicas de instalación, despliegue y mantenimiento de hardware y software en esta PYME,
                                     lo cual me ha aportado una visión de las necesidades reales de una empresa y me ha permitido enfrentarme a problemas del mundo real
@@ -400,7 +404,7 @@
                 </div>
                 <div class="grid">
                     {% for project in projects %}
-                    <div class="grid-item grid-item-small {{ project.cat_id }}">
+                    <div class="grid-item grid-item-small {{ project.cat_id }}{% if project.featured %} featured{% endif %}">
                         <div class="grid-box">
                             <figure class="portfolio-figure">
                                 <img data-lazy-src="{{ project.thumbnail }}" alt="{{ project.title.static_value }}">

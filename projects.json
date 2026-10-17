@@ -2,6 +2,7 @@
     {
         "show": false,
         "id": "unique_project_id",
+        "featured": false,
         "cat_id": "sw/ia/hw",
         "media": "img or youtube url",
         "thumbnail": "img url (optional, otherwise media or youtube thumbnail wil be used)",
@@ -28,6 +29,7 @@
     },
     {
         "id": "tfm_od_is",
+        "featured": true,
         "cat_id": "ia",
         "media": "https://www.youtube-nocookie.com/embed/vZSmoztQGDQ",
         "thumbnail": "/assets/portfolio/tfm_od_is_thumb.jpeg",
@@ -62,6 +64,7 @@
     },
     {
         "id": "cv",
+        "featured": true,
         "cat_id": "sw",
         "media": "/assets/portfolio/cv.jpeg",
         "strings": {
@@ -110,6 +113,7 @@
     },
     {
         "id": "active_learning",
+        "featured": true,
         "cat_id": "ia",
         "media": "https://www.youtube-nocookie.com/embed/D7Q-SgApXpY",
         "thumbnail": "/assets/portfolio/tfg-plot.jpg",
@@ -140,6 +144,7 @@
     },
     {
         "id": "cv_nlp",
+        "featured": true,
         "cat_id": "ia",
         "media": "/assets/portfolio/cv-hd.jpeg",
         "thumbnail": "/assets/portfolio/cv5-hd.jpeg",
@@ -167,6 +172,7 @@
     },
     {
         "id": "app_fb",
+        "featured": true,
         "cat_id": "sw",
         "media": "https://www.youtube-nocookie.com/embed/Kt-AMsBFXaA",
         "thumbnail": "/assets/portfolio/web-tienda-bruned.jpg",
@@ -202,6 +208,7 @@
     },
     {
         "id": "poll_infra",
+        "featured": true,
         "cat_id": "sw",
         "media": "/assets/portfolio/pollapp5.png",
         "thumbnail": "/assets/portfolio/pollapp1.png",
@@ -240,6 +247,7 @@
     },
     {
         "id": "lan",
+        "featured": true,
         "cat_id": "hw",
         "media": "/assets/portfolio/rack-lan_hd.jpg",
         "thumbnail": "/assets/portfolio/rack-lan.jpg",
@@ -269,6 +277,7 @@
     },
     {
         "id": "web_fb",
+        "featured": true,
         "cat_id": "sw",
         "media": "/assets/portfolio/web-homepage_hd.jpg",
         "thumbnail": "/assets/portfolio/web-homepage.jpg",
@@ -321,6 +330,7 @@
     },                  
     {
         "id": "signal_detector",
+        "featured": true,
         "cat_id": "ia",
         "media": "https://www.youtube.com/embed/qJqlGgRcqwI",
         "thumbnail": "/assets/portfolio/signal-detector.jpg",
@@ -349,6 +359,7 @@
     },                  
     {
         "id": "android_app_fittastic",
+        "featured": true,
         "cat_id": "sw",
         "media": "https://www.youtube.com/embed/OptetubquGg",
         "thumbnail": "/assets/portfolio/android-app-fittastic.jpg",
@@ -414,6 +425,7 @@
     },
     {
         "id": "arduino",
+        "featured": true,
         "cat_id": "hw",
         "media": "https://www.youtube.com/embed/wDHCzSO8o-E",
         "thumbnail": "/assets/portfolio/arduino.jpg",
@@ -445,6 +457,7 @@
     },
     {
         "id": "kdd_stroke",
+        "featured": true,
         "cat_id": "ia",
         "media": "/assets/portfolio/kdd_hd.jpg",
         "thumbnail": "/assets/portfolio/kdd.jpg",

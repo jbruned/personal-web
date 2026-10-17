@@ -23,7 +23,7 @@ pdf:
 	cd deployment && cd pdf && npm install
 	@cd deployment && cd pdf && for lang in 'en' 'es'; do \
 		echo "> Rendering $$lang"; \
-		node web2pdf.js $$lang; \
+		node web2pdf.js $$lang || exit 1; \
 	done
 publish:
 	@echo "Publishing build..."

@@ -1,4 +1,8 @@
 const puppeteer = require('puppeteer');
+const fs = require('fs');
+
+// The print layout (assets/print.css) is designed to fit exactly two A4 pages
+const EXPECTED_PAGES = 2;
 
 // Serve the web
 rand_port = Math.floor(Math.random() * 10000) + 10000;
@@ -38,15 +42,23 @@ async function sleep(millis) {
     await sleep(1000);
 
     console.log("Rendering PDF...");
-    await page.pdf({
-        path: `../../CV_Jorge_Bruned${lang != null ? `_${lang.toUpperCase()}` : ''}.pdf`,
+    const pdf_path = `../../CV_Jorge_Bruned${lang != null ? `_${lang.toUpperCase()}` : ''}.pdf`;
+    const pdf = await page.pdf({
+        path: pdf_path,
         format: 'A4',
-        // margin: 0,
         printBackground: true,
         displayHeaderFooter: false,
-        scale: 0.7,
-        // preferCSSPageSize: true
+        preferCSSPageSize: true // Page size and margins are defined in print.css (@page)
     });
+
+    // Fail (so the job does not publish a broken CV) if the content no longer fits the expected pages
+    const pages = (pdf.toString('latin1').match(/\/Type\s*\/Page(?![a-z])/g) || []).length;
+    if (pages !== EXPECTED_PAGES) {
+        console.error(`ERROR: the PDF has ${pages} pages instead of ${EXPECTED_PAGES}. Shorten the content or adjust assets/print.css.`);
+        fs.unlinkSync(pdf_path);
+        await browser.close();
+        process.exit(1);
+    }
 
     console.log("Wrapping up...");
     await browser.close();
